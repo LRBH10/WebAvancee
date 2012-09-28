@@ -14,13 +14,14 @@ class GoogleBookApiCaller {
 
     //put your code here
     function callAuthor($author) {
-        /*$ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "www.google.fr");
-        curl_setopt($ch, CURLOPT_HEADER, TRUE);
-        curl_setopt($ch, CURLOPT_NOBODY, TRUE); // remove body 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        $head = curl_exec($ch);//*/
-        echo $head+"TTTEE";
+       $URL = 'www.google.fr';
+       
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $URL);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $resultat = curl_exec($ch);
+
+        var_dump($resultat);
         
     }
 
