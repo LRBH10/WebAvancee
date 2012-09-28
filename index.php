@@ -9,6 +9,6 @@ echo ' <h1> testCurl</h1> ';
 
 $googleapi = new GoogleBookApiCaller();
 
-$googleapi->callAuthor("test");
+$googleapi->callAuthor("flowers");
 
 ?>
