@@ -1,5 +1,4 @@
 <?php
-include 'book.php';
 
 /*
  * To change this template, choose Tools | Templates
@@ -11,6 +10,9 @@ include 'book.php';
  *
  * @author GoceDelcev
  */
+
+include_once  'Book.php';
+
 class Author {
     var $name;
     var $liste_livres;

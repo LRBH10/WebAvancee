@@ -11,7 +11,7 @@
  * @author bibouh
  */
 
-include_once 'Auteur.php';
+include_once 'Author.php';
 class GoogleBookApiCaller {
 
     //URL of google book api
@@ -21,8 +21,8 @@ class GoogleBookApiCaller {
     //put your code here
     function callAuthor($author, $lang = 'fr' ) {
         
-        $author = urlencode($author);
-        $url_ = $this->url . "inauthor:" . $author . "&langRestrict=" . $lang ;
+        $author_ = urlencode($author);
+        $url_ = $this->url . "inauthor:" . $author_ . "&langRestrict=" . $lang ;
 
         //DEBUG
         var_dump($url_);
@@ -37,16 +37,20 @@ class GoogleBookApiCaller {
         curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
         $resultat = curl_exec($c);
         
-        $json_result = json_encode($resultat);
+        $json_result = json_decode($resultat,true);
 
         //DEBUG
-        print $json_result; // */
-        
+        //print $json_result; // */
+        $this->generateAuthor($author, $json_result);
         
         return $json_result;
     }
 
-    function generateAuthor($json_object){
+    function generateAuthor($nameAuthor ,$json_object){
+        $author_instance = new Author($nameAuthor);
+        
+        echo "<br/>";
+        var_dump($json_object['items'][0]);
         
     }
 }
