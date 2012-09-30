@@ -10,6 +10,8 @@
  *
  * @author bibouh
  */
+
+include_once 'Auteur.php';
 class GoogleBookApiCaller {
 
     //URL of google book api
@@ -41,8 +43,12 @@ class GoogleBookApiCaller {
         print $json_result; // */
         
         
+        return $json_result;
     }
 
+    function generateAuthor($json_object){
+        
+    }
 }
 
 ?>
