@@ -10,7 +10,7 @@ echo ' <h1> testCurl</h1> ';
 
 $googleapi = new GoogleBookApiCaller();
 
-$googleapi->callAuthor("flowers");
+$googleapi->callAuthor("yasmina khadra",'fr',true);
 
 $auteur1 = new Auteur("Blazo");
 

@@ -14,14 +14,17 @@ class GoogleBookApiCaller {
 
     //URL of google book api
     var $key = "AIzaSyBaZwSa7tSjJnWmiCGYnEY087u-P-aGFGE";
-    var $url = "http://www.googleapis.com/books/v1/volumes?q=";
+    var $url = "https://www.googleapis.com/books/v1/volumes?maxResults=40&prettyPrint=false&printType=books&orderBy=relevance&q=";
 
     //put your code here
-    function callAuthor($author) {
-        $url_ = "https://www.googleapis.com/books/v1/volumes?q=yasmina";
+    function callAuthor($author, $lang = 'fr' ) {
+        
+        $author = urlencode($author);
+        $url_ = $this->url . "inauthor:" . $author . "&langRestrict=" . $lang ;
 
         //DEBUG
         var_dump($url_);
+        echo "<br/>";
         
 //Curl Requete
         $c = curl_init();
@@ -31,13 +34,13 @@ class GoogleBookApiCaller {
         curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
         $resultat = curl_exec($c);
+        
+        $json_result = json_encode($resultat);
 
         //DEBUG
-        echo "<br/>";
-        var_dump($resultat); // */
-        echo "<br/>";
-        var_dump(curl_error($c));
-
+        print $json_result; // */
+        
+        
     }
 
 }
