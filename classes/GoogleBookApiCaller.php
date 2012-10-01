@@ -10,8 +10,8 @@
  *
  * @author bibouh
  */
-
 include_once 'Author.php';
+
 class GoogleBookApiCaller {
 
     //URL of google book api
@@ -19,15 +19,15 @@ class GoogleBookApiCaller {
     var $url = "https://www.googleapis.com/books/v1/volumes?maxResults=40&prettyPrint=false&printType=books&orderBy=relevance&q=";
 
     //put your code here
-    function callAuthor($author, $lang = 'fr' ) {
-        
+    function callAuthor($author, $lang = 'fr') {
+
         $author_ = urlencode($author);
-        $url_ = $this->url . "inauthor:" . $author_ . "&langRestrict=" . $lang ;
+        $url_ = $this->url . "inauthor:" . $author_ . "&langRestrict=" . $lang;
 
         //DEBUG
         var_dump($url_);
         echo "<br/>";
-        
+
 //Curl Requete
         $c = curl_init();
         curl_setopt($c, CURLOPT_URL, $url_);
@@ -36,23 +36,32 @@ class GoogleBookApiCaller {
         curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
         $resultat = curl_exec($c);
-        
-        $json_result = json_decode($resultat,true);
 
-        //DEBUG
-        //print $json_result; // */
-        $this->generateAuthor($author, $json_result);
-        
-        return $json_result;
+        $json_result = json_decode($resultat, true);
+
+        return $this->generateAuthor($author, $json_result);
     }
 
-    function generateAuthor($nameAuthor ,$json_object){
+    function generateAuthor($nameAuthor, $json_object) {
         $author_instance = new Author($nameAuthor);
-        
-        echo "<br/>";
-        var_dump($json_object['items'][0]);
-        
+
+        if ($json_object != null) {
+            foreach ($json_object['items'] as $book) {
+                //DEBUG
+                echo "<br/>****************<br/><br/>";
+                //var_dump($book);
+                
+                Book::debug(Book::parseFromJson($book)); 
+                
+                    //$author_instance->Add_Book(Book::parseFromJson($book));
+            }
+        } else {
+            echo "<br/> Fuck requete";
+        }
+
+        return $author_instance;
     }
+
 }
 
 ?>

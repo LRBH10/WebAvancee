@@ -11,29 +11,62 @@
  * @author bibouh
  */
 class Book {
+
     var $id;
     var $titre;
-    var $publicheur;
+    var $publisher;
     var $date_pub;
     var $nb_pages;
     var $isbn_10;
     var $isbn_13;
-    
-    public function __construct( $id , $titre , $publisheur , $date_pub , $nb_pages , $isbn_10 , $isbn_13 ) {
+
+    public function __construct($id, $titre, $publisher, $date_pub, $nb_pages, $isbn_10, $isbn_13) {
         $this->id = $id;
         $this->titre = $titre;
-        $this->publicheur = $publisheur;
+        $this->publisher = $publisher;
         $this->date_pub = $date_pub;
         $this->nb_pages = $nb_pages;
         $this->isbn_10 = $isbn_10;
         $this->isbn_13 = $isbn_13;
     }
-    
-    function Generate_Book_RDF($file){
+
+    function Generate_Book_RDF($file) {
         //Ici on ecrit dans le fichier passe en parametre
-        fwrite($file, '<rdf:Description rdf:about="https://www.googleapis.com/books/v1/volumes/'.$this->id.'"><a:titre>'.$this->titre.'</a:titre><a:publisher>'.$this->publicheur.'</a:publisher><a:date_publication>'.$this->date_pub.'</a:date_publication><a:nb_pages>'.$this->nb_pages.'</a:nb_pages><a:isbn_10>'.$this->isbn_10.'</a:isbn_10><a:isbn_13>'.$this->isbn_13.'</a:isbn_13></rdf:Description>');
+        fwrite($file, '<rdf:Description rdf:about="https://www.googleapis.com/books/v1/volumes/' . $this->id . '"><a:titre>' . $this->titre . '</a:titre><a:publisher>' . $this->publisher . '</a:publisher><a:date_publication>' . $this->date_pub . '</a:date_publication><a:nb_pages>' . $this->nb_pages . '</a:nb_pages><a:isbn_10>' . $this->isbn_10 . '</a:isbn_10><a:isbn_13>' . $this->isbn_13 . '</a:isbn_13></rdf:Description>');
     }
 
+    public static function parseFromJson($object) {
+        $id = $object['id'];
+        $titre = $object['volumeInfo']['title'];
+        if (array_key_exists('publisher', $object['volumeInfo'])) {
+            $publisher = $object['volumeInfo']['publisher'];
+        } else {
+            $publisher = 'does not exist';
+        }
+
+
+        if (array_key_exists('publishedDate', $object['volumeInfo'])) {
+            $date_pub = $object['volumeInfo']['publishedDate'];
+        } else {
+            $date_pub = 'does not exist';
+        }
+
+
+        if (count($object['volumeInfo']['industryIdentifiers']) == 2) {
+            $isbn_10 = $object['volumeInfo']['industryIdentifiers'][0]['identifier'];
+            $isbn_13 = $object['volumeInfo']['industryIdentifiers'][1]['identifier'];
+        } else {
+            $isbn_10 = 'does not exist';
+            $isbn_13 = 'does not exist';
+        }
+
+        $new_book = new Book($id, $titre, $publisher, $date_pub, 100, $isbn_10, $isbn_13);
+        return $new_book;
+    }
+
+    public static function debug($book) {
+        echo $book->id . "<br/>" . $book->titre . "<br/>" . $book->date_pub . "<br/>" . $book->publisher . "<br/>" . $book->isbn_10 . "<br/>" . $book->isbn_13 ;
+    }
 
     //put your code here
 }
