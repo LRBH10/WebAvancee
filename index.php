@@ -1,4 +1,6 @@
 <?php
+define("RDFAPI_INCLUDE_DIR", "c:/wamp/www/WebAvancee/lib/rdf_api/api/"); 
+include(RDFAPI_INCLUDE_DIR . "RdfAPI.php");
 
 include_once 'classes/GoogleBookApiCaller.php';
 include_once 'classes/Author.php';
