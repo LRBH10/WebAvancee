@@ -39,27 +39,26 @@ class GoogleBookApiCaller {
 
         $json_result = json_decode($resultat, true);
 
-        return $this->generateAuthor($author, $json_result);
+        return $this->generateBooksOfAuthor($json_result);
     }
 
-    function generateAuthor($nameAuthor, $json_object) {
-        $author_instance = new Author($nameAuthor);
-
+    function generateBooksOfAuthor($json_object) {
+        $list_of_books = array();
         if ($json_object != null) {
             foreach ($json_object['items'] as $book) {
                 //DEBUG
                 echo "<br/>****************<br/><br/>";
                 //var_dump($book);
+
+                $list_of_books[] = Book::parseFromJson($book);
                 
-                Book::debug(Book::parseFromJson($book)); 
-                
-                    //$author_instance->Add_Book(Book::parseFromJson($book));
+                //$author_instance->Add_Book(Book::parseFromJson($book));
             }
         } else {
             echo "<br/> Fuck requete";
         }
 
-        return $author_instance;
+        return $list_of_books;
     }
 
 }
