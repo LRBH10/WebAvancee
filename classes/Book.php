@@ -1,6 +1,6 @@
 <?php
-//define("RDFAPI_INCLUDE_DIR", "C:/Program Files (x86)/EasyPHP-12.1/www/WebAvancee/lib/rdf_api/api/"); 
-define("RDFAPI_INCLUDE_DIR", "C:/wamp/www/WebAvancee/lib/rdf_api/api/"); 
+define("RDFAPI_INCLUDE_DIR", "C:/Program Files (x86)/EasyPHP-12.1/www/WebAvancee/lib/rdf_api/api/"); 
+//define("RDFAPI_INCLUDE_DIR", "C:/wamp/www/WebAvancee/lib/rdf_api/api/"); 
 
 include(RDFAPI_INCLUDE_DIR . "RdfAPI.php");
 /*
@@ -34,18 +34,19 @@ class Book {
     }
 
     function Generate_Book_RDF() {
-        $base = new MemModel();
+        $base = ModelFactory::getDefaultModel();
         $base->load("base.rdf");
+        $base->addNamespace("book", "http://www.googleapi.com/book/");
         
-        //$base->Model()
+        
         $subject = new Resource ("https://www.googleapis.com/books/v1/volumes/" . $this->id); 
         
-        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://book/id"), new Literal($this->id)));
-        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.example.org/myVocabulary/titre"), new Literal($this->titre)));
-        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.example.org/myVocabulary/publisher"), new Literal($this->publisher)));
-        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.example.org/myVocabulary/number-of-pages"), new Literal($this->nb_pages)));
-        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.example.org/myVocabulary/isbn-10"), new Literal($this->isbn_10)));
-        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.example.org/myVocabulary/isbn-13"), new Literal($this->isbn_13)));
+        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/id"), new Literal($this->id)));
+        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/titre"), new Literal($this->titre)));
+        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/publisher"), new Literal($this->publisher)));
+        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/number-of-pages"), new Literal($this->nb_pages)));
+        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/isbn-10"), new Literal($this->isbn_10)));
+        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/isbn-13"), new Literal($this->isbn_13)));
         
         $base->saveAs("base.rdf", "rdf");
         $base->close();

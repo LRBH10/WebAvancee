@@ -8,8 +8,26 @@ include_once 'classes/Author.php';
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
+
+
 echo ' <h1> testCurl</h1> ';
 
+$model1 = new MemModel();
+$model1->load("base.rdf");
+
+$query = "SELECT ?titre
+WHERE
+{
+  <https://www.googleapis.com/books/v1/volumes/R1g7aLtLMAkC> <http://www.googleapi.com/book/titre> ?titre .
+}";
+
+$result = $model1->sparqlQuery($query);
+
+var_dump($result);
+
+/*
 $googleapi = new GoogleBookApiCaller();
 
 $books = $googleapi->callAuthor("yasmina khadra",'fr',true);
@@ -41,4 +59,6 @@ echo '</br>';
         $base->close();
  * 
  */
+
+
 ?>
