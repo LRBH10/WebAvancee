@@ -11,7 +11,7 @@ include(RDFAPI_INCLUDE_DIR . "RdfAPI.php");
 /**
  * Description of Book
  *
- * @author bibouh
+ * @author bibouh & blazo
  */
 class Book {
 
