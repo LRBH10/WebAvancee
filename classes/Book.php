@@ -1,5 +1,6 @@
 <?php
-
+define("RDFAPI_INCLUDE_DIR", "C:/Program Files (x86)/EasyPHP-12.1/www/WebAvancee/lib/rdf_api/api/"); 
+include(RDFAPI_INCLUDE_DIR . "RdfAPI.php");
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -30,10 +31,23 @@ class Book {
         $this->isbn_13 = $isbn_13;
     }
 
-    function Generate_Book_RDF($file) {
-        //Ici on ecrit dans le fichier passe en parametre
-        fwrite($file, '<rdf:Description rdf:about="https://www.googleapis.com/books/v1/volumes/' . $this->id . '"><a:titre>' . $this->titre . '</a:titre><a:publisher>' . $this->publisher . '</a:publisher><a:date_publication>' . $this->date_pub . '</a:date_publication><a:nb_pages>' . $this->nb_pages . '</a:nb_pages><a:isbn_10>' . $this->isbn_10 . '</a:isbn_10><a:isbn_13>' . $this->isbn_13 . '</a:isbn_13></rdf:Description>');
-    }
+    function Generate_Book_RDF() {
+        $base = new MemModel();
+        $base->load("base.rdf");
+        
+        //$base->Model()
+        $subject = new Resource ("https://www.googleapis.com/books/v1/volumes/" . $this->id); 
+        
+        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://book/id"), new Literal($this->id)));
+        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.example.org/myVocabulary/titre"), new Literal($this->titre)));
+        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.example.org/myVocabulary/publisher"), new Literal($this->publisher)));
+        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.example.org/myVocabulary/number-of-pages"), new Literal($this->nb_pages)));
+        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.example.org/myVocabulary/isbn-10"), new Literal($this->isbn_10)));
+        $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.example.org/myVocabulary/isbn-13"), new Literal($this->isbn_13)));
+        
+        $base->saveAs("base.rdf", "rdf");
+        $base->close();
+}
 
     public static function parseFromJson($object) {
         $id = $object['id'];
