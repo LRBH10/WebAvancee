@@ -1,6 +1,6 @@
 <?php
-define("RDFAPI_INCLUDE_DIR", "C:/Program Files (x86)/EasyPHP-12.1/www/WebAvancee/lib/rdf_api/api/"); 
-//define("RDFAPI_INCLUDE_DIR", "C:/wamp/www/WebAvancee/lib/rdf_api/api/"); 
+//define("RDFAPI_INCLUDE_DIR", "C:/Program Files (x86)/EasyPHP-12.1/www/WebAvancee/lib/rdf_api/api/"); 
+define("RDFAPI_INCLUDE_DIR", "C:/wamps/www/WebAvancee/lib/rdf_api/api/"); 
 
 include(RDFAPI_INCLUDE_DIR . "RdfAPI.php");
 /*
