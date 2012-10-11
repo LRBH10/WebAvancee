@@ -61,21 +61,37 @@ class Book {
     }
 
     function Generate_Book_RDF($base) {
-        /* $base = ModelFactory::getDefaultModel();
-          $base->load("base.rdf");
-          $base->addNamespace("book", "http://www.googleapi.com/book/");//
 
-          $subject = new Resource("https://www.googleapis.com/books/v1/volumes/" . $this->id);
+        $subject = new Resource($this->selfLink);
 
+        $class_vars = get_class_vars(get_class($this));
+
+        foreach ($class_vars as $name => $value) {
+            if ($name != "authors" || $name != "categories" || $name != "industryIdentifiers ") {
+                echo $name . " : " . $this->$name . "<br/>";
+                $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/".$name), new Literal($this->$name)));
+            }
+            else if($name == "authors"){
+                
+            }
+            else if($name == "categories"){
+                
+            }
+            else if($name == "industryIdentifiers"){
+                
+            }
+        }
+
+        /* $subject = new Resource("https://www.googleapis.com/books/v1/volumes/" . $this->id);
+
+          $attributes = get_object_vars($this);
           $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/id"), new Literal($this->id)));
           $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/titre"), new Literal($this->titre)));
           $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/publisher"), new Literal($this->publisher)));
           $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/number-of-pages"), new Literal($this->nb_pages)));
           $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/isbn-10"), new Literal($this->isbn_10)));
           $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/isbn-13"), new Literal($this->isbn_13)));
-
-          /* $base->saveAs("base.rdf", "rdf");
-          $base->close(); */
+         */
     }
 
     public static function parseFromJson($object) {
@@ -212,8 +228,10 @@ class Book {
             }
         }
 
-        if (array_key_exists('textSnippet', $object['searchInfo'])) {
-            $book->textSnippet = $object['searchInfo']['textSnippet'];
+        if (array_key_exists('searchInfo', $object)) {
+            if (array_key_exists('textSnippet', $object['searchInfo'])) {
+                $book->textSnippet = $object['searchInfo']['textSnippet'];
+            }
         }
 
 

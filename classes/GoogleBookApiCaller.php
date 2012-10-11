@@ -4,13 +4,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
+include_once 'Book.php';
 /**
  * Description of GoogleBookApiCaller
  *
  * @author bibouh
  */
-include_once 'Author.php';
 
 class GoogleBookApiCaller {
 
@@ -47,8 +46,8 @@ class GoogleBookApiCaller {
             foreach ($json_object['items'] as $book) {
                 //DEBUG
                 echo "<br/>****************<br/><br/>";
-                //$list_of_books[] = Book::parseFromJson($book);
-                var_dump(Book::parseFromJson($book));
+                $list_of_books[] = Book::parseFromJson($book);
+                //var_dump(Book::parseFromJson($book));
             }
         } else {
             echo "<br/> Fuck requete";

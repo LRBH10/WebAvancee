@@ -30,7 +30,7 @@ class ModelFactory
 	* @return	object	MemModel
 	* @access	public
 	*/
-	function & getDefaultModel($baseURI = null)
+	static function & getDefaultModel($baseURI = null)
 	{
 		return ModelFactory::getMemModel($baseURI);
 	}
@@ -58,7 +58,7 @@ class ModelFactory
 	* @return	object	MemModel
 	* @access	public
 	*/
-	function & getMemModel($baseURI = null)
+	static function & getMemModel($baseURI = null)
 	{
         require_once RDFAPI_INCLUDE_DIR . 'model/MemModel.php';
 		$m = new MemModel($baseURI);
