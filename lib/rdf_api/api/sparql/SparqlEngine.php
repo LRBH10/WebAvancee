@@ -51,7 +51,7 @@ Class SparqlEngine extends Object{
     *
     * @param Model $model   RDF model that uses the engine
     */
-    public function factory($model = null)
+    public static function factory($model = null)
     {
         if ($model !== null && $model instanceof DbModel) {
             require_once RDFAPI_INCLUDE_DIR . 'sparql/SparqlEngineDb.php';
