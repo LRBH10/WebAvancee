@@ -14,7 +14,8 @@ include_once 'classes/Author.php';
 
 echo ' <h1> testCurl</h1> ';
 
-$model1 = new MemModel();
+
+/*$model1 = new MemModel();
 $model1->load("base.rdf");
 
 $query = "SELECT ?titre
@@ -26,8 +27,8 @@ WHERE
 $result = $model1->sparqlQuery($query);
 
 var_dump($result);
+//*/
 
-/*
 $googleapi = new GoogleBookApiCaller();
 
 $books = $googleapi->callAuthor("yasmina khadra",'fr',true);

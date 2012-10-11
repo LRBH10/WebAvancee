@@ -16,14 +16,13 @@ class GoogleBookApiCaller {
 
     //URL of google book api
     var $key = "AIzaSyBaZwSa7tSjJnWmiCGYnEY087u-P-aGFGE";
-    var $url = "https://www.googleapis.com/books/v1/volumes?maxResults=40&prettyPrint=false&printType=books&orderBy=relevance&q=";
+    var $url = "https://www.googleapis.com/books/v1/volumes?maxResults=5&prettyPrint=false&printType=books&orderBy=relevance&q=";
 
     //put your code here
     function callAuthor($author, $lang = 'fr') {
 
         $author_ = urlencode($author);
-        $url_ = $this->url . "inauthor:" . $author_ . "&langRestrict=" . $lang;
-
+        $url_ = $this->url . "inauthor:" . $author_; //. "&langRestrict=" . $lang;
         //DEBUG
         var_dump($url_);
         echo "<br/>";
@@ -48,11 +47,8 @@ class GoogleBookApiCaller {
             foreach ($json_object['items'] as $book) {
                 //DEBUG
                 echo "<br/>****************<br/><br/>";
-                //var_dump($book);
-
-                $list_of_books[] = Book::parseFromJson($book);
-                
-                //$author_instance->Add_Book(Book::parseFromJson($book));
+                //$list_of_books[] = Book::parseFromJson($book);
+                var_dump(Book::parseFromJson($book));
             }
         } else {
             echo "<br/> Fuck requete";
