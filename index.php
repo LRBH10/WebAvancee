@@ -29,7 +29,7 @@ $result = $model1->sparqlQuery($query);
 var_dump($result);
 //*/
 
-$googleapi = new GoogleBookApiCaller();
+/*$googleapi = new GoogleBookApiCaller();
 
 $books = $googleapi->callAuthor("yasmina khadra",'fr',true);
 
@@ -42,6 +42,8 @@ foreach ($books as $book){
 
 
 echo '</br>';
-
+*/
+$x= new OntologyModel();
+$x->create();
 
 ?>

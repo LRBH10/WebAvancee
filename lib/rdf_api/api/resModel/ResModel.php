@@ -820,7 +820,7 @@ class ResModel
 	/**
 	* Returns the models namespaces.
 	*
-	* @author   Tobias Gauß <tobias.gauss@web.de>
+	* @author   Tobias Gauï¿½ <tobias.gauss@web.de>
 	* @access   public
 	* @return   Array
 	*/
@@ -835,7 +835,7 @@ class ResModel
 	* the parser. !!!! addParsedNamespaces() not overwrites manual
 	* added namespaces in the model !!!!
 	*
-	* @author   Tobias Gauß <tobias.gauss@web.de>
+	* @author   Tobias Gauï¿½ <tobias.gauss@web.de>
 	* @access   public
 	* @param    Array $newNs
 	*/
@@ -847,7 +847,7 @@ class ResModel
 	/**
 	* Adds a namespace and prefix to the model.
 	*
-	* @author   Tobias Gauß <tobias.gauss@web.de>
+	* @author   Tobias Gauï¿½ <tobias.gauss@web.de>
 	* @access   public
 	* @param    String $prefix, String $nmsp
 	*/
@@ -858,7 +858,7 @@ class ResModel
 	/**
 	* removes a single namespace from the model
 	*
-	* @author   Tobias Gauß <tobias.gauss@web.de>
+	* @author   Tobias Gauï¿½ <tobias.gauss@web.de>
 	* @access   public
 	* @param    String $nmsp
 	*/
