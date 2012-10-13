@@ -3,16 +3,22 @@
 # http://www.wiwiss.fu-berlin.de/suhl/bizer/rdfapi/index.html !-->
 
 <rdf:RDF
-   xml:base="base.rdf#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:book="http://www.googleapi.com/book/"
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
    xmlns:owl="http://www.w3.org/2002/07/owl#"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#"
-   xmlns:ns1="http://www.googleapi.com/author/">
+   xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
 
+<rdf:Description rdf:about="http://../blazonastov">
+   <vcard:FN>Blazo Nastov</vcard:FN>
+   <vcard:FN rdf:resource="http://../blazonastov1"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://../blazonastov1">
+   <vcard:FN>Blazo</vcard:FN>
+   <vcard:FN>Nastov</vcard:FN>
+</rdf:Description>
 
 </rdf:RDF>
