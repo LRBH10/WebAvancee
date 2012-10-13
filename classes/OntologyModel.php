@@ -1,5 +1,6 @@
 <?php
-include_once 'classes/Book.php';
+include(RDFAPI_INCLUDE_DIR . "/RdfAPI.php");
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -17,22 +18,16 @@ class OntologyModel {
     //put your code here
 
     public function create() {
-        $base = ModelFactory::getOntModel(MEMMODEL,RDFS_VOCABULARY); 
-        //We define the ontology here
-        //$book = $base->createOntClass( "bookNS:" . "Book" );
-        //$book->setIsDefinedBy(new Resource("http://purl.org/ontology/bibo/Book"));
-        
+        $base = new OntModel();
         //$base->saveAs("base.rdf", "rdf");
         //$base->close();
     }
 
-    public function getBaseRDF() { 
+    public function getBaseRDF() {
+        $this->base =  ModelFactory::getOntModel(MEMMODEL,RDFS_VOCABULARY);
         $this->base->load("base.rdf");
+        //$this->base->addNamespace("book", "http://www.googleapi.com/book/");// */
         return $this->base;
-    }
-    
-    public function test(){
-        
     }
 
     public function closeBaseRDF() {

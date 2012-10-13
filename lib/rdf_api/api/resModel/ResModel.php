@@ -22,10 +22,11 @@
 * @package 	resModel
 * @access	public
 **/
+
  
 class ResModel
 {
-	
+
 	/**
 	* Holds a reference to the assoiated memmodel/dbmodel/infmodel
 	* @var		ResResource
@@ -33,7 +34,7 @@ class ResModel
 	*/
 	var $model;
 
-	
+
 	/**
     * Constructor
 	* You have to supply a memmodel/dbmodel/infmodel to save the statements.
@@ -46,10 +47,10 @@ class ResModel
 		if (!is_a($model,'Model'))
 			trigger_error(RDFAPI_ERROR . '(class: ResourceLayer; method: ResourceLayer): 
 				$model has to be object of class Model', E_USER_ERROR);	
-		
+
 		$this->model =& $model;			
 	}
-	
+
 	/**
 	* Create a new resource associated with this model. 
 	* If the uri string isn't set, this creates a bnode. 
@@ -72,10 +73,10 @@ class ResModel
 		//associate the resource with this model, and get a unique identifier
 		//if it is bnode.
 		$resResource->setAssociatedModel($this);
-		
+
 		return $resResource;
 	} 
-	
+
 	/**
 	* Create a new Property associated with this model. 
 	* This method may return an existing property with the correct URI and model, 
@@ -92,10 +93,10 @@ class ResModel
 	{
 		$resProperty = new ResProperty($uri);
 		$resProperty->setAssociatedModel($this);
-			
+
 		return $resProperty;
 	}
-	
+
 	/**
 	* Create an untyped literal from a String value with a specified language.
 	*
@@ -112,10 +113,10 @@ class ResModel
 	{
 		$resLiteral = new ResLiteral($label,$languageTag);
 		$resLiteral->setAssociatedModel($this);
-		
+
 		return $resLiteral;
 	}
-	
+
 	/**
 	* General method to search for triples.
 	* NULL input for any parameter will match anything.
@@ -147,9 +148,9 @@ class ResModel
 								    );
 		};
 		return $result;
-		
+
 	}
-	
+
 	/**
 	* Searches for triples and returns the first matching statement.
 	* NULL input for any parameter will match anything.
@@ -167,7 +168,7 @@ class ResModel
 	*/
 	function findFirstMatchingStatement($subject,$predicate,$object,$offset = 0)
 	{
-	
+
 		$statement = $this->model->findFirstMatchingStatement(	$this->_resNode2Node($subject),
 																$this->_resNode2Node($predicate),
 																$this->_resNode2Node($object),
@@ -184,7 +185,7 @@ class ResModel
 			return null;
 		}
 	}
-	
+
 	/**
 	* Adds a new triple to the Model without checking if the statement is already in the Model.
 	* So if you want a duplicate free Model use the addWithoutDuplicates() function (which is slower then add())
@@ -220,7 +221,7 @@ class ResModel
 																$this->_resNode2Node($statement->getObject()))
 															    );	
 	}
-	
+
 	/**
 	* Tests if the Model contains the given statement.
 	* TRUE if the statement belongs to the model;
@@ -233,13 +234,13 @@ class ResModel
 	*/
 	function contains(& $statement)
 	{
-		
+
 		return $this->model->contains(new Statement($this->_resNode2Node($statement->getSubject()),
 													$this->_resNode2Node($statement->getPredicate()),
 													$this->_resNode2Node($statement->getObject()))
 													);
 	}
-	
+
 	/**
 	* Determine if all of the statements in a model are also contained in this model.
 	* True if all of the statements in $model are also contained in this model and false otherwise.
@@ -252,10 +253,10 @@ class ResModel
 	{
 		if (is_a($model,'ResModel'))
 			return $this->model->containsAll($model->getModel());
-		
+
 		return $this->model->containsAll($model);
 	}
-	
+
 	/**
 	* Determine if any of the statements in a model are also contained in this model.
 	* True if any of the statements in $model are also contained in this model and false otherwise.
@@ -270,7 +271,7 @@ class ResModel
 			return $this->model->containsAny($model->getModel());
 		return $this->model->containsAny($model);
 	}
-	
+
 	/**
 	* Determine if the node (ResResource / ResLiteral) $node appears in any statement of this model.
 	*
@@ -284,10 +285,10 @@ class ResModel
 			if ($this->findFirstMatchingStatement(null,$node,null) === null)
 				if ($this->findFirstMatchingStatement(null,null,$node) === null)
 					return false;
-					
+
 		return true;
 	}
-	
+
 	/**
 	* Create a literal from a String value with the $dtype Datatype 
 	* An existing literal of the right value may be returned, or a fresh one created. 
@@ -302,10 +303,10 @@ class ResModel
 		$resLiteral = new ResLiteral($value);
 		$resLiteral->setDatatype($dtype);
 		$resLiteral->setAssociatedModel($this);
-		
+
 		return $resLiteral;
 	}
-	
+
 	/**
 	* Checks if two models are equal.
 	* Two models are equal if and only if the two RDF graphs they represent are isomorphic.
@@ -324,7 +325,7 @@ class ResModel
 			return $this->model->equals($that->getModel());
 		return $this->model->equals($that);	
 	}
-	
+
 	/** 
 	* Returns a new model that is the subtraction of another model from this model.
 	*
@@ -339,7 +340,7 @@ class ResModel
 			return $this->model->subtract($model->getModel());
 		return $this->model->subtract($model);
 	}
-	
+
 	/** 
 	* Answer a statement find(s, p, null) with ResResources(ResLiterals) from this model. 
 	* If none exist, return null; if several exist, pick one arbitrarily.
@@ -352,21 +353,21 @@ class ResModel
 	*/ 
 	function getProperty($subject,$property)
 	{
-	
+
 		$statement= $this->model->findFirstMatchingStatement(	$this->_resNode2Node($subject),
 																$this->_resNode2Node($property),
 																null
 															);
 		if ($statement === null)
 			return null;
-																
+
 		return new Statement($this->_node2ResNode($statement->getSubject()),
 									$this->_node2ResNode($statement->getPredicate(),true),
 									$this->_node2ResNode($statement->getObject())
 							);
-													
+
 	}
-	
+
 	/**
 	* Checks if MemModel is empty
 	*
@@ -377,7 +378,7 @@ class ResModel
 	{
 		return $this->model->isEmpty();
 	}
-	
+
 	/** 
 	* Returns a ResIterator with all objects in a model.
 	*
@@ -389,7 +390,7 @@ class ResModel
 	{
 		return $this->listObjectsOfProperty(null);
 	}
-	
+
 	/** 
 	* Returns a ResIterator with all objects with a given property and property value.
 	*
@@ -403,7 +404,7 @@ class ResModel
 		return new ResIterator(null,$property,$value,'o',$this);
 	}
 
-	
+
 	/** 
 	* Returns a ResIterator with all subjects in a model.
 	*
@@ -415,7 +416,7 @@ class ResModel
 	{
 		return $this->listSubjectsWithProperty(null);
 	}
-	
+
 	/** 
 	* Returns a ResIterator with all subjects with a given property and property value.
 	*
@@ -429,7 +430,7 @@ class ResModel
 	{
 		return new ResIterator(null,$property,$value,'s',$this);
 	}
-	
+
 	/**
 	* Removes the statement of ResResources(ResTriples) from the MemModel. 
 	* TRUE if the statement is removed.
@@ -447,7 +448,7 @@ class ResModel
 													$this->_resNode2Node($statement->getObject())
 												  ));
 	}
-	
+
 	/**
 	* Number of statements in the MemModel
 	*
@@ -458,7 +459,7 @@ class ResModel
 	{
 		return $this->model->size();
 	}
-	
+
 	/** 
 	* Returns a new Model that is the set-union of the model with another model.
 	* Duplicate statements are removed. If you want to allow duplicates, use addModel() which is much faster.
@@ -492,7 +493,7 @@ class ResModel
 			return $this->model->unite($model->getModel());
 		return $this->model->unite($model);
 	}
-	
+
 	/** 
 	* Adds another model to this MemModel.
 	* Duplicate statements are not removed. 
@@ -511,7 +512,7 @@ class ResModel
 			return $this->model->addModel($model->getModel());
 		return $this->model->addModel($model);
 	}
-	
+
 	/**
 	* Create a new RDF Container from type rdf:Alt 
 	* This method may return an existing container with the correct URI and model, 
@@ -528,10 +529,10 @@ class ResModel
 	{
 		$resAlt = new ResAlt($uri);
 		$resAlt->setAssociatedModel($this);
-			
+
 		return $resAlt;		
 	}
-	
+
 	/**
 	* Create a new RDF Container from type rdf:Bag 
 	* This method may return an existing container with the correct URI and model, 
@@ -548,10 +549,10 @@ class ResModel
 	{
 		$resBag = new ResBag($uri);
 		$resBag->setAssociatedModel($this);
-			
+
 		return $resBag;
 	}
-	
+
 	/**
 	* Create a new RDF Container from type rdf:Seq 
 	* This method may return an existing container with the correct URI and model, 
@@ -568,10 +569,10 @@ class ResModel
 	{
 		$resSeq = new ResSeq($uri);
 		$resSeq->setAssociatedModel($this);
-			
+
 		return $resSeq;
 	}	
-	
+
 	/**
 	* Create a new RDF Collection from type rdf:List 
 	* This method may return an existing container with the correct URI and model, 
@@ -588,10 +589,10 @@ class ResModel
 	{
 		$resList = new ResList($uri);
 		$resList->setAssociatedModel($this);
-			
+
 		return $resList;	
 	}
-	
+
 	/**
 	* Returns a reference to the underlying model (Mem/DB/InfModel) that contains the statements 
 	*  
@@ -603,8 +604,8 @@ class ResModel
 	{
 		return  $this->model;
 	}
-	
-	
+
+
 	/**
 	* Internal method, that returns a resource URI that is unique for the Model.
 	* URIs are generated using the base_uri of the Model, the prefix and a unique number.
@@ -618,7 +619,7 @@ class ResModel
 	{
 		return $this->model->getUniqueResourceURI($bnodePrefix);
 	}
-	
+
 	/**
 	* Load a model from a file containing RDF, N3 or N-Triples.
 	* This function recognizes the suffix of the filename (.n3 or .rdf) and
@@ -634,7 +635,7 @@ class ResModel
 	{
 		$this->model->load($filename, $type, $stream);
 	}
-	
+
 	/**
 	* Return current baseURI.
 	*
@@ -663,7 +664,7 @@ class ResModel
 	{
 		return $this->model->saveAs($filename, $type ='rdf');
 	}
-	
+
 	/**
 	* Writes the RDF serialization of the MemModel as HTML table.
 	*
@@ -673,7 +674,7 @@ class ResModel
 	{
 		$this->model->writeAsHtmlTable();
 	}
-	
+
 	/** 
 	* Returns a new model containing all the statements which are in both this model and another.
 	*
@@ -688,7 +689,7 @@ class ResModel
 			return $this->model->intersect($model->getModel());
 		return $this->model->intersect($model);
 	}
-	
+
 	/** 
 	* converts a Resource,Blanknode,Literal into a ResResource, ResProperty, or ResLiteral
 	*
@@ -720,11 +721,11 @@ class ResModel
 			$res->setAssociatedModel($this);
 			if (is_a($node,'Blanknode'))
 				$res->setIsAnon(true);	
-		
+
 			return $res;
 		}
 	}
-	
+
 	/** 
 	* converts a ResResource, ResProperty, or ResLiteral into a Resource, Blanknode, or Literal
 	*
@@ -746,7 +747,7 @@ class ResModel
 			}	
 		return $return;	
 		}
-		
+
 		if (is_a($resNode,'ResLiteral'))
 		{
 			$literal=new Literal($resNode->getLabel(),$resNode->getLanguage());
@@ -755,7 +756,7 @@ class ResModel
 			return $literal;
 		}
 	}
-	
+
 	/**
 	* Set a base URI for the MemModel.
 	* Affects creating of new resources and serialization syntax.
@@ -767,7 +768,7 @@ class ResModel
 	{
 		$this->model->setBaseURI($uri);
 	}
-	
+
 	/**
 	* Writes the RDF serialization of the MemModel as HTML table.
 	*
@@ -778,7 +779,7 @@ class ResModel
 	{
 		return $this->model->writeRdfToString();	
 	}
-	
+
 	/**
 	* Perform an RDQL query on this MemModel.
 	* This method returns an associative array of variable bindings.
@@ -797,7 +798,7 @@ class ResModel
 		$ret = $this->model->rdqlQuery($queryString, $returnNodes);
 		return $ret;
 	}
-	
+
 	/**
 	* Perform an RDQL query on this MemModel.
 	* This method returns an RdqlResultIterator of variable bindings.
@@ -815,8 +816,8 @@ class ResModel
 	{
 		return $this->model->rdqlQueryAsIterator($queryString, $returnNodes);
 	}
-	
-	
+
+
 	/**
 	* Returns the models namespaces.
 	*
@@ -854,7 +855,7 @@ class ResModel
 	function addNamespace($prefix, $namespace){
 		$this->model->addNamespace($prefix, $namespace);
 	}
-	
+
 	/**
 	* removes a single namespace from the model
 	*
@@ -866,11 +867,11 @@ class ResModel
 		return $this->model->removeNamespace($nmsp);
 	}
 
-	
-	
-	
-	
-	
+
+
+
+
+
 }
 
 ?>

@@ -61,15 +61,15 @@ class Book {
     }
 
     function Generate_Book_RDF($base) {
-
-        $subject = new Resource($this->selfLink);
-
+        echo $this->selfLink;
+        $subject = $base->createResource($this->selfLink);
+/*
         $class_vars = get_class_vars(get_class($this));
 
         foreach ($class_vars as $name => $value) {
             if ($name != "authors" || $name != "categories" || $name != "industryIdentifiers ") {
                 echo $name . " : " . $this->$name . "<br/>";
-                $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/".$name), new Literal($this->$name)));
+                //$base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/".$name), new Literal($this->$name)));
             }
             else if($name == "authors"){
                 
@@ -92,6 +92,48 @@ class Book {
           $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/isbn-10"), new Literal($this->isbn_10)));
           $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/isbn-13"), new Literal($this->isbn_13)));
          */
+        define('BOOK_NS', 'http://www.googleapi.com/book/');
+        
+        $kind = $base->createLiteral($this->kind);
+        $kind->setDatatype("http://www.w3.org/TR/xmlschema-2/#rf-enumeration");
+        $kind_p= $base->createProperty(BOOK_NS.'kind');
+        $subject->addProperty($kind_p,$kind);
+        
+        $id =  $base->createLiteral($this->id);
+        $id->setDatatype("http://www.w3.org/TR/xmlschema-2/#ID");
+        $id_p =$base->createProperty(BOOK_NS.'id');
+        $subject->addProperty($id_p,$id);
+        
+        $etag =  $base->createLiteral($this->etag);
+        $etag_p =$base->createProperty(BOOK_NS.'etag');
+        $subject->addProperty($etag_p,$etag);
+        
+        $title =  $base->createLiteral($this->title);
+        $title->setDatatype("http://xmlns.com/foaf/spec/#term_title");
+        $title_p =$base->createProperty(BOOK_NS.'title');
+        $subject->addProperty($title_p,$title);
+        
+        define('AUTHOR_NS', 'http://www.googleapi.com/author/');
+        $author_p =$base->createProperty(AUTHOR_NS.'author');
+        
+        $bb=  new OntModel();
+        //$bagAuthors =  $base->createBag();
+        //$subject->addProperty("xxx",$bagAuthors);
+        $bNode = new BlankNode();
+        
+        $subject->addProperty($author_p,$bNode);
+        foreach($this->authors as $author){
+            $res = $base->createResource('http://../authorName/'.$author);
+            $lit = $base->createLiteral($author);            
+            $res->addProperty($author_p,$lit);  
+            $bagAuthors->add($res);
+            //$subject->addProperty($author_p,$res);
+        }
+        
+        
+        
+        $base->saveAs("base.rdf","rdf");
+        //$base->close();
     }
 
     public static function parseFromJson($object) {

@@ -37,8 +37,8 @@ class OntModel extends ResModel
 	* @access	private
 	*/
 	var $vocabulary;
-	
-	
+
+
 	/**
     * Constructor.
 	* You have to supply a memmodel/dbmodel/infmodel to save the statements and a vocabulary
@@ -51,7 +51,7 @@ class OntModel extends ResModel
 		parent::ResModel($model);
 		$this->vocabulary = & $vocabulary;
 	}
-	
+
 	/**
 	* Answer a resource that represents a class description node in this model. 
 	* If a resource with the given uri exists in the model, it will be re-used. 
@@ -69,7 +69,7 @@ class OntModel extends ResModel
 		$class->setInstanceRdfType($this->vocabulary->ONTCLASS());
 		return $class;
 	}
-	
+
 	/**
 	* Answer a resource that represents an Individual node in this model.
 	* If a resource with the given uri exists in the model, it will be re-used. 
@@ -86,7 +86,7 @@ class OntModel extends ResModel
 		$individual->setVocabulary($this->vocabulary);
 		return $individual;
 	}
-	
+
 	/**
 	* Answer a resource that represents an OntProperty node in this model.
 	* If a resource with the given uri exists in the model, it will be re-used. 
@@ -104,7 +104,7 @@ class OntModel extends ResModel
 		$ontProperty->setInstanceRdfType($this->createResource(RDF_NAMESPACE_URI.RDF_PROPERTY));
 		return $ontProperty;	
 	}
-	
+
 	/**
 	* Answer an array that ranges over all of the various forms of class 
 	* description resource in this model. 

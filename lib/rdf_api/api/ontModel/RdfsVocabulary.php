@@ -28,7 +28,7 @@ class RdfsVocabulary extends OntVocabulary
 	{
 		return new ResResource(RDF_SCHEMA_URI.RDFS_CLASS);	
 	}
-	
+
 	/**
 	* Answer the predicate that denotes the domain of a property.
 	*
@@ -39,8 +39,8 @@ class RdfsVocabulary extends OntVocabulary
 	{
 		return new ResProperty(RDF_SCHEMA_URI.RDFS_DOMAIN);	
 	}
-	
-	 
+
+
  	/**
 	* Answer the predicate that denotes comment annotation on an ontology element.
 	*
@@ -51,7 +51,7 @@ class RdfsVocabulary extends OntVocabulary
 	{
 		return new ResProperty(RDF_SCHEMA_URI.RDFS_COMMENT);	
 	}
-	
+
  	/**
 	* Answer the predicate that denotes isDefinedBy annotation on an ontology element
 	*
@@ -62,7 +62,7 @@ class RdfsVocabulary extends OntVocabulary
 	{
 		return new ResProperty(RDF_SCHEMA_URI.RDFS_IS_DEFINED_BY);
 	}
-	
+
 	/**
 	* Answer the predicate that denotes label annotation on an ontology element
 	*
@@ -73,7 +73,7 @@ class RdfsVocabulary extends OntVocabulary
 	{
 		return new ResProperty(RDF_SCHEMA_URI.RDFS_LABEL);
 	}
-	
+
 	/**
 	* Answer the predicate that denotes the domain of a property.
 	*
@@ -84,7 +84,7 @@ class RdfsVocabulary extends OntVocabulary
 	{
 		return new ResProperty(RDF_SCHEMA_URI.RDFS_RANGE);
 	}
-	
+
 	/**
 	* Answer the predicate that denotes seeAlso annotation on an ontology element
 	*
@@ -95,7 +95,7 @@ class RdfsVocabulary extends OntVocabulary
 	{
 		return new ResProperty(RDF_SCHEMA_URI.RDFS_SEE_ALSO);
 	}
-	
+
 	/**
 	* Answer the predicate that denotes that one class is a sub-class of another.
 	*
@@ -106,7 +106,7 @@ class RdfsVocabulary extends OntVocabulary
 	{
 		return new ResProperty(RDF_SCHEMA_URI.RDFS_SUBCLASSOF);
 	}
-	
+
 	/**
 	* Answer the predicate that denotes that one property is a sub-property of another.
 	*
@@ -124,11 +124,11 @@ class RdfsVocabulary extends OntVocabulary
    	* @return	string
    	* @access	public
    	*/
-	function NAMESPACE()
+	function GETNAMESPACE()
 	{
 		return RDF_SCHEMA_URI;
 	}
-	
+
 	/**
 	* Answer the predicate that denotes the rdf:type property.
 	*
