@@ -60,7 +60,7 @@ class Book {
         $this->categories = array();
     }
 
-    function Generate_Book_RDF($base) {
+    function Generate_Book_RDF(OntModel $base) {
         echo $this->selfLink;
         $subject = $base->createResource($this->selfLink);
 /*
@@ -116,20 +116,18 @@ class Book {
         define('AUTHOR_NS', 'http://www.googleapi.com/author/');
         $author_p =$base->createProperty(AUTHOR_NS.'author');
         
-        $bb=  new OntModel();
-        //$bagAuthors =  $base->createBag();
-        //$subject->addProperty("xxx",$bagAuthors);
-        $bNode = new BlankNode();
+        $bag_authors = $base->createBag();
+        $subject->addProperty($author_p,$bag_authors);
         
-        $subject->addProperty($author_p,$bNode);
+     
+        
         foreach($this->authors as $author){
             $res = $base->createResource('http://../authorName/'.$author);
-            $lit = $base->createLiteral($author);            
+            $lit = $base->createLiteral($author);  
+            
             $res->addProperty($author_p,$lit);  
-            $bagAuthors->add($res);
-            //$subject->addProperty($author_p,$res);
+            $bag_authors->add($res);
         }
-        
         
         
         $base->saveAs("base.rdf","rdf");

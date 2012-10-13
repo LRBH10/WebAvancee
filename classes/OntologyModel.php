@@ -33,7 +33,5 @@ class OntologyModel {
     public function closeBaseRDF() {
         $this->base->close();
     }
-
 }
-
 ?>
