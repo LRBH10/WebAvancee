@@ -32,8 +32,36 @@ WHERE
 $result = $model1->sparqlQuery($query);
 
 var_dump($result);
-*/
 
+
+*/
+$ontModel = ModelFactory::getOntModel(MEMMODEL,RDFS_VOCABULARY);
+
+$documment = $ontModel->createOntClass("documment");
+
+
+$book = $ontModel->createOntClass("bookNS"."book");
+
+$book->addSuperClass($documment);
+
+$comment= new ResLiteral("this is my comment");
+
+$book->addComment($comment);
+
+$resLiteral = new ResLiteral("blazoo");
+
+$book->addLabelProperty($resLiteral);
+
+$book1 = $book->createInstance("http://../book1");
+
+$property = $ontModel->createOntProperty("1stppt");
+$lit =  $ontModel->createLiteral("xxx");
+$lit->setDatatype("http://www.w3.org/TR/xmlschema-2/#rf-enumeration");
+
+$book1->addProperty($property, $lit);
+
+
+$ontModel->saveAs("test.rdf","rdf");
 
 $x = new OntologyModel();
 
@@ -41,30 +69,7 @@ $googleapi = new GoogleBookApiCaller();
 $books = $googleapi->callAuthor("yasmina khadra",'fr',true);
 
 foreach ($books as $book){
-    $book->Generate_Book_RDF($x->getBaseRDF());
+    $book->Generate_Book_RDF($x->getBaseRDF(), $x->getAuthorClass(), $x->getBookClass());
 }
 
-/*
-echo 'finish</br>';
-
-$model = ModelFactory::getOntModel(MEMMODEL,RDFS_VOCABULARY);
-
-$fullNameLiteral = $model->createLiteral("Blazo Nastov");
-$johnSmith = $model->createResource("http://../blazonastov");
-define('VCARD_NS', 'http://www.w3.org/2001/vcard-rdf/3.0#');
-$vcard_FN= $model->createProperty(VCARD_NS.'FN');
-
-$johnSmith1 = $model->createResource("http://../blazonastov1");
-
-$johnSmith->addProperty($vcard_FN, $fullNameLiteral);
-$johnSmith->addProperty($vcard_FN, $johnSmith1);
-
-$fullNameLiteral1 = $model->createLiteral("Blazo");
-$fullNameLiteral2 = $model->createLiteral("Nastov");
-
-$johnSmith1->addProperty($vcard_FN, $fullNameLiteral1);
-$johnSmith1->addProperty($vcard_FN, $fullNameLiteral2);
-$model->saveAs("test.rdf", "rdf");
-
-*/
 ?>

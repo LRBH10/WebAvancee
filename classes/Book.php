@@ -60,7 +60,7 @@ class Book {
         $this->categories = array();
     }
 
-    function Generate_Book_RDF(OntModel $base) {
+    function Generate_Book_RDF(OntModel $base , OntClass $authorClass, OntClass $bookClass) {
         $subject = $base->createResource($this->selfLink);
 /*
         $class_vars = get_class_vars(get_class($this));
@@ -91,6 +91,7 @@ class Book {
           $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/isbn-10"), new Literal($this->isbn_10)));
           $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/isbn-13"), new Literal($this->isbn_13)));
          */
+        
         define('BOOK_NS', 'http://www.googleapi.com/book/');
         
         $kind = $base->createLiteral($this->kind);
@@ -172,9 +173,6 @@ class Book {
         $preview_link_p =$base->createProperty(BOOK_NS.'preview_link');
         $subject->addProperty($preview_link_p,$preview_link);
         
-        //var_dump($this->previewLink);
-        echo $this->previewLink[0];
-        echo '<br/>';
         
         $info_link =  $base->createLiteral($this->infoLink);
         $info_link_p =$base->createProperty(BOOK_NS.'info_link');
@@ -235,19 +233,33 @@ class Book {
         $web_reader_link =  $base->createLiteral($this->webReaderLink);
         $web_reader_link_p =$base->createProperty(BOOK_NS.'web_reader_link');
         $subject->addProperty($web_reader_link_p,$web_reader_link);
+        /*
+        $instance_book = $bookClass->createInstance($this->selfLink);
+        $kind = $base->createLiteral($this->kind);
+        $kind_p = $base->createOntProperty(BOOK_NS.$this->kind);
+        $instance_book->setPropertyValue($kind_p,$kind);
         
+        $base->add($instance_book);
+        */
         //creating and adding bag into the ressource book 
         define('AUTHOR_NS', 'http://www.googleapi.com/author/');
         $bag_authors = $base->createBag();
         $author_p =$base->createProperty(AUTHOR_NS.'authors');
         $subject->addProperty($author_p,$bag_authors);    
         //Creating the authorts riplets
-        foreach($this->authors as $author){     
-            $res = $base->createResource('http://../changethiswithDBPediaLink/authorName/'.$author);
-            $lit = $base->createLiteral($author);              
-            $res->addProperty($author_p,$lit);
+        foreach($this->authors as $author){
+            $instance = $authorClass->createInstance(AUTHOR_NS.$author);
+            $lit = $base->createLiteral($author); 
+            $ppt = $base->createOntProperty(AUTHOR_NS);
+            //$instance->addProperty($ppt,$lit);
+            $instance->setPropertyValue($ppt, $lit);
+            $bag_authors->add($instance);
+            
+            //$res = $base->createResource('http://../changethiswithDBPediaLink/authorName/'.$author);
+            //$lit = $base->createLiteral($author);              
+            //$res->addProperty($author_p,$lit);
             //Addingitto the bag
-            $bag_authors->add($res);
+            //$bag_authors->add($res);
         }   
         
         
