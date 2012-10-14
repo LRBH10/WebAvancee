@@ -61,7 +61,6 @@ class Book {
     }
 
     function Generate_Book_RDF(OntModel $base) {
-        echo $this->selfLink;
         $subject = $base->createResource($this->selfLink);
 /*
         $class_vars = get_class_vars(get_class($this));
@@ -105,6 +104,7 @@ class Book {
         $subject->addProperty($id_p,$id);
         
         $etag =  $base->createLiteral($this->etag);
+        $etag->setDatatype("http://www.w3.org/TR/xmlschema-2/#string");
         $etag_p =$base->createProperty(BOOK_NS.'etag');
         $subject->addProperty($etag_p,$etag);
         
@@ -113,21 +113,142 @@ class Book {
         $title_p =$base->createProperty(BOOK_NS.'title');
         $subject->addProperty($title_p,$title);
         
-        define('AUTHOR_NS', 'http://www.googleapi.com/author/');
-        $author_p =$base->createProperty(AUTHOR_NS.'author');
+        $publisher =  $base->createLiteral($this->publisher);
+        $publisher_p =$base->createProperty(BOOK_NS.'publisher');
+        $subject->addProperty($publisher_p,$publisher);
         
-        $bag_authors = $base->createBag();
-        $subject->addProperty($author_p,$bag_authors);
+        $publiched_date =  $base->createLiteral($this->publishedDate);
+        $publiched_date->setDatatype("http://www.w3.org/TR/xmlschema-2/#date");
+        $publiched_date_p =$base->createProperty(BOOK_NS.'publiching_date');
+        $subject->addProperty($publiched_date_p,$publiched_date);
         
-     
+        $description =  $base->createLiteral($this->description);
+        $description->setDatatype("http://www.w3.org/TR/xmlschema-2/#string");
+        $description_p =$base->createProperty(BOOK_NS.'description');
+        $subject->addProperty($description_p,$description);
         
-        foreach($this->authors as $author){
-            $res = $base->createResource('http://../authorName/'.$author);
-            $lit = $base->createLiteral($author);  
-            
-            $res->addProperty($author_p,$lit);  
-            $bag_authors->add($res);
+        foreach ($this->industryIdentifiers as $identifiers){
+            //echo $identifiers['type'].'->'.$identifiers['identifier'].'<br/>';
+            $identity =  $base->createLiteral($identifiers['identifier']);
+            $identity_p =$base->createProperty(BOOK_NS.$identifiers['type']);
+            $subject->addProperty($identity_p,$identity);
         }
+        
+        $page_count =  $base->createLiteral($this->pageCount);
+        $page_count->setDatatype("http://www.w3.org/TR/xmlschema-2/#integer");
+        $page_count_p =$base->createProperty(BOOK_NS.'page_count');
+        $subject->addProperty($page_count_p,$page_count);
+        
+        $print_typet =  $base->createLiteral($this->printType);
+        $print_type_p =$base->createProperty(BOOK_NS.'print_type');
+        $subject->addProperty($print_type_p,$print_typet);
+        
+        foreach ($this->categories as $categorie){
+            $category =  $base->createLiteral($categorie);
+            $category_p =$base->createProperty(BOOK_NS.'category');
+            $subject->addProperty($category_p,$category);
+        }
+        
+        $average_rating =  $base->createLiteral($this->averageRating);
+        $average_rating->setDatatype("http://www.w3.org/TR/xmlschema-2/#float");
+        $average_rating_p =$base->createProperty(BOOK_NS.'average_rating');
+        $subject->addProperty($average_rating_p,$average_rating);
+        
+        $rating_count =  $base->createLiteral($this->ratingsCount);
+        $rating_count->setDatatype("http://www.w3.org/TR/xmlschema-2/#integer");
+        $rating_count_p =$base->createProperty(BOOK_NS.'rating_count');
+        $subject->addProperty($rating_count_p,$rating_count);
+        
+        $contentversion =  $base->createLiteral($this->contentVersion);
+        $content_version_p =$base->createProperty(BOOK_NS.'content_version');
+        $subject->addProperty($content_version_p,$contentversion);
+        
+        $language =  $base->createLiteral($this->language);
+        $language_p =$base->createProperty(BOOK_NS.'language');
+        $subject->addProperty($language_p,$language);
+       
+        $preview_link =  $base->createLiteral($this->previewLink);
+        $preview_link->setDatatype("http://www.w3.org/TR/xmlschema-2/#string");
+        $preview_link_p =$base->createProperty(BOOK_NS.'preview_link');
+        $subject->addProperty($preview_link_p,$preview_link);
+        
+        //var_dump($this->previewLink);
+        echo $this->previewLink[0];
+        echo '<br/>';
+        
+        $info_link =  $base->createLiteral($this->infoLink);
+        $info_link_p =$base->createProperty(BOOK_NS.'info_link');
+        $subject->addProperty($info_link_p,$info_link);
+        
+        $country =  $base->createLiteral($this->country);
+        $country_p =$base->createProperty(BOOK_NS.'country');
+        $subject->addProperty($country_p,$country);
+        
+        $saleability =  $base->createLiteral($this->saleability);
+        $saeleability_p =$base->createProperty(BOOK_NS.'saleability');
+        $subject->addProperty($saeleability_p,$saleability);
+        
+        $is_ebook =  $base->createLiteral($this->isEbook);
+        $is_ebook_p =$base->createProperty(BOOK_NS.'is_ebook');
+        $subject->addProperty($is_ebook_p,$is_ebook);
+        
+        $price =  $base->createLiteral($this->price);
+        $price_p =$base->createProperty(BOOK_NS.'price');
+        $subject->addProperty($price_p,$price);
+        
+        $buy_link =  $base->createLiteral($this->buyLink);
+        $buy_link_p =$base->createProperty(BOOK_NS.'buy_link');
+        $subject->addProperty($buy_link_p,$buy_link);
+        
+        $viewability =  $base->createLiteral($this->viewability);
+        $viewability_p =$base->createProperty(BOOK_NS.'viewability');
+        $subject->addProperty($viewability_p,$viewability);
+        
+        $embeddable =  $base->createLiteral($this->embeddable);
+        $embeddable_p =$base->createProperty(BOOK_NS.'embeddable');
+        $subject->addProperty($embeddable_p,$embeddable);
+        
+        $public_domain =  $base->createLiteral($this->publicDomain);
+        $public_domain_p =$base->createProperty(BOOK_NS.'public_domain');
+        $subject->addProperty($public_domain_p,$public_domain);
+        
+        $text_snippet =  $base->createLiteral($this->textSnippet);
+        $text_snippet_p =$base->createProperty(BOOK_NS.'text_snippet');
+        $subject->addProperty($text_snippet_p,$text_snippet);
+        
+        $epub_available =  $base->createLiteral($this->epubAvailable);
+        $epub_available_p =$base->createProperty(BOOK_NS.'epub_available');
+        $subject->addProperty($epub_available_p,$epub_available);
+        
+        $epub_link =  $base->createLiteral($this->epubLink);
+        $epub_link_p =$base->createProperty(BOOK_NS.'epub_link');
+        $subject->addProperty($epub_link_p,$epub_link);
+        
+        $pdf_available =  $base->createLiteral($this->pdfAvailable);
+        $pdf_available_p =$base->createProperty(BOOK_NS.'pdf_available');
+        $subject->addProperty($pdf_available_p,$pdf_available);
+        
+        $pdf_link =  $base->createLiteral($this->pdfLink);
+        $pdf_link_p =$base->createProperty(BOOK_NS.'pdf_link');
+        $subject->addProperty($pdf_link_p,$pdf_link);
+        
+        $web_reader_link =  $base->createLiteral($this->webReaderLink);
+        $web_reader_link_p =$base->createProperty(BOOK_NS.'web_reader_link');
+        $subject->addProperty($web_reader_link_p,$web_reader_link);
+        
+        //creating and adding bag into the ressource book 
+        define('AUTHOR_NS', 'http://www.googleapi.com/author/');
+        $bag_authors = $base->createBag();
+        $author_p =$base->createProperty(AUTHOR_NS.'authors');
+        $subject->addProperty($author_p,$bag_authors);    
+        //Creating the authorts riplets
+        foreach($this->authors as $author){     
+            $res = $base->createResource('http://../changethiswithDBPediaLink/authorName/'.$author);
+            $lit = $base->createLiteral($author);              
+            $res->addProperty($author_p,$lit);
+            //Addingitto the bag
+            $bag_authors->add($res);
+        }   
         
         
         $base->saveAs("base.rdf","rdf");
