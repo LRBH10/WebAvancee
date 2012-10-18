@@ -21,6 +21,7 @@ class OntologyModel {
     public function OntologyModel() {
         $this->base = ModelFactory::getOntModel(MEMMODEL,RDFS_VOCABULARY);
         //Creating the class  AUTHOR
+        /*
         define('AUTHOR_NS', 'http://www.googleapi.com/author/');
         
         $this->author_class = $this->base->createOntClass(AUTHOR_NS);
@@ -31,7 +32,7 @@ class OntologyModel {
         
         $property = $this->base->createOntProperty(AUTHOR_NS.'name');
         $this->author_class->addProperty($property, $author_label);
-        
+        */
         //Creating the class BOOK
         define('BOOK_NS', 'http://www.googleapi.com/book/');
         $this->book_class = $this->base->createOntClass(BOOK_NS);
@@ -89,18 +90,18 @@ class OntologyModel {
         $this->book_class->addProperty($property_average_rating, $average_rating_literal);
         
         $this->base->saveAs("base.rdf", "rdf");
-        //$base->close();
+        
     }
 
     public function getBaseRDF() {
         $this->base =  ModelFactory::getOntModel(MEMMODEL,RDFS_VOCABULARY);
         $this->base->load("base.rdf");
-        //$this->base->addNamespace("book", "http://www.googleapi.com/book/");// */
         return $this->base;
     }
 
     public function closeBaseRDF() {
-        $this->base->close();
+        $this->base->saveAs("base.rdf","rdf");
+        //$this->base->close();
     }
     
     public function getAuthorClass(){

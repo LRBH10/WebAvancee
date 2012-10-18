@@ -2,6 +2,7 @@
 
 define("RDFAPI_INCLUDE_DIR", "C:/Program Files (x86)/EasyPHP-12.1/www/WebAvancee/lib/rdf_api/api/"); 
 //define("RDFAPI_INCLUDE_DIR", "C:/wamps/www/WebAvancee/lib/rdf_api/api/");
+define('BOOK_NS', 'http://www.googleapi.com/book/');
 
 include(RDFAPI_INCLUDE_DIR . "RdfAPI.php");
 /*
@@ -59,9 +60,51 @@ class Book {
         $this->industryIdentifiers = array();
         $this->categories = array();
     }
+    
+    function generate_book_instance(OntModel $base , OntClass $book_class){
+        
+        $instance = $book_class->createInstance($this->selfLink);
+        
+        $kind = $base->createLiteral($this->kind);
+        $id =  $base->createLiteral($this->id);
+        $etag =  $base->createLiteral($this->etag);
+        $kind->setDatatype("http://www.w3.org/TR/xmlschema-2/#rf-enumeration");        
+        $id->setDatatype("http://www.w3.org/TR/xmlschema-2/#ID"); 
+        $etag->setDatatype("http://www.w3.org/TR/xmlschema-2/#string");
+        
+        
+        foreach($book_class->listProperties() as $property){
+            
+            if($property->getLabelObject() == 'kind'){
+                echo $property->getPredicate();
+                echo '<br/>'.$property->pred;
+                
+                
+            }
+            if($property->getLabelObject() == 'id'){
+                //echo $property->getPredicate();
+                //$instance->addProperty($property->getPredicate() , $id);
+            }
+            if($property->getLabelObject() == 'etag'){
+                //echo $property->getSubject();
+                //$instance->addProperty($property->getPredicate() , $etag);
+            }
+        }
+ 
+        $instance1 = $book_class->createInstance("testinstance");
+        $ppt = $base->createOntProperty("http://../pt1");
+        $x = $base->createLiteral("lit");        
+        $instance1->addProperty($ppt , $x);
+        
+        
+        
+        //echo '<br/><br/>'.$instance->toString().'final<br/><br/>';
+    }
 
-    function Generate_Book_RDF(OntModel $base , OntClass $authorClass, OntClass $bookClass) {
-        $subject = $base->createResource($this->selfLink);
+    function generate_book_rdf(OntModel $base, OntClass $bookClass) {       
+        
+        $this->generate_book_instance($base , $bookClass);         
+       
 /*
         $class_vars = get_class_vars(get_class($this));
 
@@ -92,23 +135,8 @@ class Book {
           $base->addWithoutDuplicates(new Statement($subject, new Resource("http://www.googleapi.com/book/isbn-13"), new Literal($this->isbn_13)));
          */
         
-        define('BOOK_NS', 'http://www.googleapi.com/book/');
         
-        $kind = $base->createLiteral($this->kind);
-        $kind->setDatatype("http://www.w3.org/TR/xmlschema-2/#rf-enumeration");
-        $kind_p= $base->createProperty(BOOK_NS.'kind');
-        $subject->addProperty($kind_p,$kind);
-        
-        $id =  $base->createLiteral($this->id);
-        $id->setDatatype("http://www.w3.org/TR/xmlschema-2/#ID");
-        $id_p =$base->createProperty(BOOK_NS.'id');
-        $subject->addProperty($id_p,$id);
-        
-        $etag =  $base->createLiteral($this->etag);
-        $etag->setDatatype("http://www.w3.org/TR/xmlschema-2/#string");
-        $etag_p =$base->createProperty(BOOK_NS.'etag');
-        $subject->addProperty($etag_p,$etag);
-        
+        /*
         $title =  $base->createLiteral($this->title);
         $title->setDatatype("http://xmlns.com/foaf/spec/#term_title");
         $title_p =$base->createProperty(BOOK_NS.'title');
@@ -233,14 +261,7 @@ class Book {
         $web_reader_link =  $base->createLiteral($this->webReaderLink);
         $web_reader_link_p =$base->createProperty(BOOK_NS.'web_reader_link');
         $subject->addProperty($web_reader_link_p,$web_reader_link);
-        /*
-        $instance_book = $bookClass->createInstance($this->selfLink);
-        $kind = $base->createLiteral($this->kind);
-        $kind_p = $base->createOntProperty(BOOK_NS.$this->kind);
-        $instance_book->setPropertyValue($kind_p,$kind);
-        
-        $base->add($instance_book);
-        */
+
         //creating and adding bag into the ressource book 
         define('AUTHOR_NS', 'http://www.googleapi.com/author/');
         $bag_authors = $base->createBag();
@@ -262,11 +283,11 @@ class Book {
             //$bag_authors->add($res);
         }   
         
+        */
         
-        $base->saveAs("base.rdf","rdf");
         //$base->close();
     }
-
+    
     public static function parseFromJson($object) {
         $book = new Book();
         $volumeinfo = $object['volumeInfo'];

@@ -35,41 +35,49 @@ var_dump($result);
 
 
 */
+
+/*
 $ontModel = ModelFactory::getOntModel(MEMMODEL,RDFS_VOCABULARY);
-
-$documment = $ontModel->createOntClass("documment");
-
-
 $book = $ontModel->createOntClass("bookNS"."book");
 
-$book->addSuperClass($documment);
-
 $comment= new ResLiteral("this is my comment");
-
 $book->addComment($comment);
-
 $resLiteral = new ResLiteral("blazoo");
-
 $book->addLabelProperty($resLiteral);
+
+$property = $ontModel->createOntProperty("1stppt");
+$lit =  $ontModel->createLiteral("property1");
+$lit->setDatatype("http://www.w3.org/TR/xmlschema-2/#rf-enumeration");
+
+$book->addProperty($property, $lit);
+
 
 $book1 = $book->createInstance("http://../book1");
 
-$property = $ontModel->createOntProperty("1stppt");
-$lit =  $ontModel->createLiteral("xxx");
-$lit->setDatatype("http://www.w3.org/TR/xmlschema-2/#rf-enumeration");
 
-$book1->addProperty($property, $lit);
+$lit1 =  $ontModel->createLiteral("property1");
+$book1->addProperty($property, $lit1);
 
+foreach($book->listProperties() as $prop){
+    echo $prop->getLabelObject();
+    echo '<br/>';
+    if($prop->getLabelObject() == 'property1'){
+        echo 'Cest bon <br/>';
+        echo $prop->getPredicate();
+    }
+}
 
 $ontModel->saveAs("test.rdf","rdf");
-
+/*/
 $x = new OntologyModel();
 
 $googleapi = new GoogleBookApiCaller();
 $books = $googleapi->callAuthor("yasmina khadra",'fr',true);
 
 foreach ($books as $book){
-    $book->Generate_Book_RDF($x->getBaseRDF(), $x->getAuthorClass(), $x->getBookClass());
+    $book->generate_book_rdf($x->getBaseRDF(), $x->getBookClass());
 }
-
+$x->closeBaseRDF();
 ?>
+ 
+ 
