@@ -125,10 +125,10 @@ class OntologyModel {
 
     /**
      * 
-     * @param type $NS   Name Space
-     * @param type $class 
-     * @param type $literal_name
-     * @param type $property_name
+     * @param string $NS   Name Space
+     * @param string $class 
+     * @param string $literal_name
+     * @param string $property_name
      */
     private function createTriplet($NS, $class, $literal_name, $property_name) {
         $property_ = $this->base->createOntProperty($NS . $property_name);
