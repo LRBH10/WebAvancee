@@ -48,7 +48,6 @@ class OntologyModel {
     public function createOntologyModel() {
         $this->base = ModelFactory::getOntModel(MEMMODEL, RDFS_VOCABULARY);
         $this->base->addNamespace("book", BOOK_NS);
-
         $this->createBookClass();
         $this->base->saveAs("base/" . $this->basename . ".rdf", "rdf");
     }
@@ -105,9 +104,8 @@ class OntologyModel {
 
         $book_label = new ResLiteral("Book");
         $book_comment = new ResLiteral("Structured type of documment describing a Book");
-        $this->book_class->addComment($book_comment);
-        $this->book_class->addLabelProperty($book_label);
-
+        $this->book_class->addCommentWithoutDuplicate($book_comment);
+        $this->book_class->addLabelPropertyWithoutDuplicate($book_label);
 
         $this->createTriplet(BOOK_NS, $this->book_class, "kind", "kind");
         $this->createTriplet(BOOK_NS, $this->book_class, "id", "id");
@@ -120,7 +118,7 @@ class OntologyModel {
         $this->createTriplet(BOOK_NS, $this->book_class, "isbn_13", "isbn_13");
         $this->createTriplet(BOOK_NS, $this->book_class, "page_count", "page_count");
         $this->createTriplet(BOOK_NS, $this->book_class, "print_type", "print_type");
-        $this->createTriplet(BOOK_NS, $this->book_class, "average_rating", "average_rating");
+        $this->createTriplet(BOOK_NS, $this->book_class, "average_rating", "average_rating"); // */
     }
 
     /**

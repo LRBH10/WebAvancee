@@ -67,9 +67,20 @@ class OntResource extends ResResource
    	*/
 	function addComment($comment)
 	{
-            	return $this->addPropertyWithoutDuplicate($this->vocabulary->COMMENT(),$comment);
+            	return $this->addProperty($this->vocabulary->COMMENT(),$comment);
 	}
 	
+        /**
+	* Add the given comment to this resource.
+	*
+   	* @param	object ResLiteral	$comment
+   	* @return	boolean 
+   	* @access	public
+   	*/
+	function addCommentWithoutDuplicate($comment)
+	{
+            	return $this->addPropertyWithoutDuplicate($this->vocabulary->COMMENT(),$comment);
+	}
 	/**
 	* Answer the comment string for this object. If there is more than one such resource, an arbitrary selection is made.
 	*
@@ -114,9 +125,20 @@ class OntResource extends ResResource
    	*/
 	function addLabelProperty($resLiteral)
 	{
-		return $this->addPropertyWithoutDuplicate($this->vocabulary->LABEL(),$resLiteral);
+		return $this->addProperty($this->vocabulary->LABEL(),$resLiteral);
 	}
 	
+        /**
+	* Add the given Label to this resource
+	*
+   	* @param	object ResLiteral	$resLiteral
+   	* @return	boolean 
+   	* @access	public
+   	*/
+	function addLabelPropertyWithoutDuplicate($resLiteral)
+	{
+		return $this->addPropertyWithoutDuplicate($this->vocabulary->LABEL(),$resLiteral);
+	}
 	/**
 	* Answer the label ResLiteral for this object. 
 	* If there is more than one such resource, an arbitrary selection is made.

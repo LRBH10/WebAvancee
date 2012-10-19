@@ -84,13 +84,22 @@ class Author {
     var $read;
     var $face;
 
-    public static  function getAuthor($json_array, $xml_source) {
+    public static function searchAuthor($name_author) {
+        $reader = new GoodReadApiCaller();
+        $result = $reader->searchAuthor($name_author);
+
+        $face = new FacebookApiCaller();
+        $json_o = $face->searchAuthor($name_author);
+    
+        return Author::getAuthor($json_o, $result);
+    }
+
+    public static function getAuthor($json_array, $xml_source) {
         $author = new Author();
-        
-        
+
         $author->face = FacebookAuthor::getFacebookDetailsFromJson($json_array);
         $author->read = GoodReadAuthor::parsefromXML($xml_source);
-        
+
         return $author;
     }
 

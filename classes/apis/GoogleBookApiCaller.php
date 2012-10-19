@@ -17,7 +17,11 @@ class GoogleBookApiCaller extends ApiCaller {
     var $key = "AIzaSyBaZwSa7tSjJnWmiCGYnEY087u-P-aGFGE";
     var $url = "https://www.googleapis.com/books/v1/volumes?maxResults=5&prettyPrint=false&printType=books&orderBy=relevance&q=";
 
-    //put your code here
+    /**
+     * 
+     * @param string $author
+     * @return array of Book
+     */
     function callAuthor($author) {
         $author_ = urlencode($author);
         $url_ = $this->url . "inauthor:" . $author_; //. "&langRestrict=" . $lang;
@@ -27,7 +31,12 @@ class GoogleBookApiCaller extends ApiCaller {
         return $this->generateBooksOfAuthor($json_result);
     }
 
-    function generateBooksOfAuthor($json_object) {
+    /**
+     * 
+     * @param array $json_object
+     * @return array of Book
+     */
+    private function generateBooksOfAuthor($json_object) {
         $list_of_books = array();
         if ($json_object != null) {
             foreach ($json_object['items'] as $book) {
