@@ -1,5 +1,5 @@
 <?php
-include 'classes/includes.php';
+include 'includes.php';
 
 /*$reader = new GoodReadApiCaller();
 $reader->searchAuthor("yasmina khadra");
@@ -8,7 +8,12 @@ $goo = new GoogleBookApiCaller();
 $goo ->callAuthor("yasmina khadra");//*/
 
 $face = new FacebookApiCaller();
-$face->searchAuthor("yasmina khadra");
+$json_o = $face->searchAuthor("yasmina khadra");
+
+$author = new Author();
+$author->getFacebookDetailFromJson($json_o);//*/
+
+var_dump($author);
 ?>
  
  
