@@ -4,9 +4,9 @@ include 'includes.php';
 
 $test = new OntologyModel("test");
 
-//$test->createOntologyModel();
+$test->createOntologyModel();
 
-
+/*
 $test->loadBaseRDF();
 
 $instance = $test->getBookInstance("sddsfsd");
