@@ -3,22 +3,35 @@
 # http://www.wiwiss.fu-berlin.de/suhl/bizer/rdfapi/index.html !-->
 
 <rdf:RDF
+   xml:base="base/test.rdf#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
    xmlns:owl="http://www.w3.org/2002/07/owl#"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+   xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#"
+   xmlns:ns1="http://www.googleapi.com/book/">
 
-<rdf:Description rdf:about="http://../blazonastov">
-   <vcard:FN>Blazo Nastov</vcard:FN>
-   <vcard:FN rdf:resource="http://../blazonastov1"/>
-</rdf:Description>
+<rdfs:Class rdf:about="http://www.googleapi.com/book/">
+   <rdfs:comment>Structured type of documment describing a Book</rdfs:comment>
+   <rdfs:label>Book</rdfs:label>
+   <ns1:kind>kind</ns1:kind>
+   <ns1:id>id</ns1:id>
+   <ns1:etag>etag</ns1:etag>
+   <ns1:title>title</ns1:title>
+   <ns1:publicher>publisher</ns1:publicher>
+   <ns1:publiching_date>publiching_date</ns1:publiching_date>
+   <ns1:description>description</ns1:description>
+   <ns1:isbn_10>isbn_10</ns1:isbn_10>
+   <ns1:isbn_13>isbn_13</ns1:isbn_13>
+   <ns1:page_count>page_count</ns1:page_count>
+   <ns1:print_type>print_type</ns1:print_type>
+   <ns1:average_rating>average_rating</ns1:average_rating>
+</rdfs:Class>
 
-<rdf:Description rdf:about="http://../blazonastov1">
-   <vcard:FN>Blazo</vcard:FN>
-   <vcard:FN>Nastov</vcard:FN>
-</rdf:Description>
+<ns1: rdf:about="sddsfsd">
+   <propriété>literal</propriété>
+</ns1:>
 
 </rdf:RDF>

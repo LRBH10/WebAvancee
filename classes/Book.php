@@ -1,5 +1,4 @@
 <?php
-define('BOOK_NS', 'http://www.googleapi.com/book/');
 
 /*
  * To change this template, choose Tools | Templates
@@ -68,7 +67,7 @@ class Book {
         $id->setDatatype("http://www.w3.org/TR/xmlschema-2/#ID"); 
         $etag->setDatatype("http://www.w3.org/TR/xmlschema-2/#string");
         
-        
+
         foreach($book_class->listProperties() as $property){
             
             if($property->getLabelObject() == 'kind'){

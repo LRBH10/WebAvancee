@@ -67,7 +67,7 @@ class OntResource extends ResResource
    	*/
 	function addComment($comment)
 	{
-		return $this->addProperty($this->vocabulary->COMMENT(),$comment);
+            	return $this->addPropertyWithoutDuplicate($this->vocabulary->COMMENT(),$comment);
 	}
 	
 	/**
@@ -114,7 +114,7 @@ class OntResource extends ResResource
    	*/
 	function addLabelProperty($resLiteral)
 	{
-		return $this->addProperty($this->vocabulary->LABEL(),$resLiteral);
+		return $this->addPropertyWithoutDuplicate($this->vocabulary->LABEL(),$resLiteral);
 	}
 	
 	/**
@@ -705,6 +705,29 @@ class OntResource extends ResResource
    	*/
 	function addProperty($property,$object)
 	{
+		if ($this->rdfType !== false)
+			if (!$this->hasRDFType($this->rdfType))
+					$this->model->add(new Statement($this,$this->vocabulary->TYPE(),$this->rdfType));
+	
+		return parent:: addProperty($property,$object);
+	}
+        
+        /**
+	* Add a property to this resource.
+	* A statement with this resource as the subject, p as the predicate and o 
+	* as the object is added to the model associated with this resource.
+	* If $this->rdfType is set, an additional statement about it's type
+	* is added.
+	*
+   	* @param	ResResource				$property
+   	* @param	ResResource/ResLiteral	$object
+   	* @return	object ResResource 
+   	* @access	public
+   	*/
+	function addPropertyWithoutDuplicate($property,$object)
+	{
+            if($this->hasProperty($property))
+                return;
 		if ($this->rdfType !== false)
 			if (!$this->hasRDFType($this->rdfType))
 					$this->model->add(new Statement($this,$this->vocabulary->TYPE(),$this->rdfType));
