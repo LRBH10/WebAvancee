@@ -40,12 +40,43 @@ class FacebookAuthor {
 }
 
 class GoodReadAuthor {
-    
+
+    var $id;
+    var $name;
+    var $link;
+    var $fans_count;
+    var $image_url;
+    var $about;
+    var $works_count;
+    var $gender;
+    var $hometown;
+    var $born_at;
+    var $died_at;
+
+    public static function parsefromXML($source) {
+        $goodauthor = new GoodReadAuthor();
+
+        $dom = new DOMDocument();
+        $dom->loadXML($source);
+
+        $goodauthor->id = $dom->getElementsByTagName('id')->item(0)->nodeValue;
+        $goodauthor->name = $dom->getElementsByTagName('name')->item(0)->nodeValue;
+        $goodauthor->link = $dom->getElementsByTagName('link')->item(0)->nodeValue;
+        $goodauthor->fans_count = $dom->getElementsByTagName('fans_count')->item(0)->nodeValue;
+        $goodauthor->image_url = $dom->getElementsByTagName('image_url')->item(0)->nodeValue;
+        $goodauthor->about = $dom->getElementsByTagName('about')->item(0)->nodeValue;
+        $goodauthor->works_count = $dom->getElementsByTagName('works_count')->item(0)->nodeValue;
+        $goodauthor->gender = $dom->getElementsByTagName('gender')->item(0)->nodeValue;
+        $goodauthor->hometown = $dom->getElementsByTagName('hometown')->item(0)->nodeValue;
+        $goodauthor->born_at = $dom->getElementsByTagName('born_at')->item(0)->nodeValue;
+        $goodauthor->died_at = $dom->getElementsByTagName('died_at')->item(0)->nodeValue;
+
+        return $goodauthor;
+    }
+
 }
 
 /**
- * Description of Author
- *
  * 
  */
 class Author {
@@ -53,10 +84,29 @@ class Author {
     var $read;
     var $face;
 
-    public function getFacebookDetailFromJson($json_o){
-        $this->face = new FacebookAuthor();
-        $this->face = FacebookAuthor::getFacebookDetailsFromJson($json_o);
+    public static  function getAuthor($json_array, $xml_source) {
+        $author = new Author();
+        
+        
+        $author->face = FacebookAuthor::getFacebookDetailsFromJson($json_array);
+        $author->read = GoodReadAuthor::parsefromXML($xml_source);
+        
+        return $author;
     }
+
+    public function generateAuthor($json_array, $xml_source) {
+        $this->face = FacebookAuthor::getFacebookDetailsFromJson($json_array);
+        $this->read = GoodReadAuthor::parsefromXML($xml_source);
+    }
+
+    public function getFacebookDetailFromJson($json_array) {
+        $this->face = FacebookAuthor::getFacebookDetailsFromJson($json_array);
+    }
+
+    public function getGoodReadDetailFromXml($xml_source) {
+        $this->read = GoodReadAuthor::parsefromXML($xml_source);
+    }
+
 }
 
 ?>
