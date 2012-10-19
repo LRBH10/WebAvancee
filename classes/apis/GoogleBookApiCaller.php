@@ -5,7 +5,6 @@
  * and open the template in the editor.
  */
 include_once 'ApiCaller.php';
-include_once 'Book.php';
 
 /**
  * Description of GoogleBookApiCaller
@@ -21,15 +20,10 @@ class GoogleBookApiCaller extends ApiCaller {
     //put your code here
     function callAuthor($author) {
         $author_ = urlencode($author);
-        $url_ = $this->url . "inauthor:" . $author_;//. "&langRestrict=" . $lang;
-        //DEBUG
-        var_dump($url_);
-        echo "<br/>";
+        $url_ = $this->url . "inauthor:" . $author_; //. "&langRestrict=" . $lang;
 
-//Curl Requete
         $resultat = $this->callApi($url_, true);
         $json_result = json_decode($resultat, true);
-
         return $this->generateBooksOfAuthor($json_result);
     }
 
@@ -37,8 +31,6 @@ class GoogleBookApiCaller extends ApiCaller {
         $list_of_books = array();
         if ($json_object != null) {
             foreach ($json_object['items'] as $book) {
-                //DEBUG
-                echo "<br/>****************<br/><br/>";
                 $list_of_books[] = Book::parseFromJson($book);
             }
         } else {
@@ -47,7 +39,6 @@ class GoogleBookApiCaller extends ApiCaller {
 
         return $list_of_books;
     }
-
 }
 
 ?>

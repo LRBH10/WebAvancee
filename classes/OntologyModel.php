@@ -89,18 +89,18 @@ class OntologyModel {
         $average_rating_literal = new ResLiteral("average_rating");
         $this->book_class->addProperty($property_average_rating, $average_rating_literal);
         
-        $this->base->saveAs("base.rdf", "rdf");
+        $this->base->saveAs("base/base.rdf", "rdf");
         
     }
 
     public function getBaseRDF() {
         $this->base =  ModelFactory::getOntModel(MEMMODEL,RDFS_VOCABULARY);
-        $this->base->load("base.rdf");
+        $this->base->load("base/base.rdf");
         return $this->base;
     }
 
     public function closeBaseRDF() {
-        $this->base->saveAs("base.rdf","rdf");
+        $this->base->saveAs("base/base.rdf","rdf");
         //$this->base->close();
     }
     

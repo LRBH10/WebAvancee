@@ -11,7 +11,7 @@ include_once 'ApiCaller.php';
  *
  * @author Rabah
  */
-class GoodReadApiCaller {
+class GoodReadApiCaller extends ApiCaller{
 
     //put your code here
     var $key = "IJ9e4JY4Gnl1JU5ADSYYg";
@@ -19,6 +19,11 @@ class GoodReadApiCaller {
     var $url_author = "http://www.goodreads.com/author/show/";
 
     public function searchAuthor($author) {
+        $author_ = urlencode($author);
+        $url_ = $this->url_search . "?key=" . $this->key . "&q=" . $author_ . "&search[field]=author";
+        $result = $this->callApi($url_);
+        //var_dump($result);
+        //echo "<br/>";
         
     }
 
