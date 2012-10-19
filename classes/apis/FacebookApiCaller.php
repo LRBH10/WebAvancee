@@ -43,13 +43,13 @@ class FacebookApiCaller extends ApiCaller {
          * get the most page with author name
          */
         $url_ = $this->url . $author_;
-        $result = $this->callApi($url_, true);
-        $results = json_decode($result, TRUE);
+        $result1 = $this->callApi($url_, true);
+        $results1 = json_decode($result1, TRUE);
 
         /**
          * get the ID of the most page author (the first)
          */
-        $id = $results['data'][0]['id'];
+        $id = $results1['data'][0]['id'];
 
         /**
          * get the details

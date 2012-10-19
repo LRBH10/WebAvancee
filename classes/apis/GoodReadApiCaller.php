@@ -24,9 +24,9 @@ class GoodReadApiCaller extends ApiCaller {
          */
         $author_ = urlencode($author);
         $url_ = $this->url_search . "?key=" . $this->key . "&q=" . $author_ . "&search[field]=author";
-        $result = $this->callApi($url_);
+        $result1 = $this->callApi($url_);
 
-        $id = $this->parserXMLidAuthor($result);
+        $id = $this->parserXMLidAuthor($result1);
 
         /**
          * get author details
