@@ -55,51 +55,56 @@ class Book {
         $this->industryIdentifiers = array();
         $this->categories = array();
     }
+    /**
+     * Methode that generate instances of the
+     * class book into our basen passed on parameter
+     * 
+     * @param OntologyModel $baseOnt
+     */
+    function generate_book_rdf(OntologyModel $baseOnt) {
+        
+        $instance = $baseOnt->createBookInstance($this->selfLink);
 
-    function generate_book_instance(OntModel $base, OntClass $book_class) {
-
-        $instance = $book_class->createInstance($this->selfLink);
-
-        $kind = $base->createLiteral($this->kind);
-        $id = $base->createLiteral($this->id);
-        $etag = $base->createLiteral($this->etag);
+        $kind = $baseOnt->getBase()->createLiteral($this->kind);
+        $id = $baseOnt->getBase()->createLiteral($this->id);
+        $etag = $baseOnt->getBase()->createLiteral($this->etag);
+        $title =  $baseOnt->getBase()->createLiteral($this->title);
+        $publisher =  $baseOnt->getBase()->createLiteral($this->publisher);
+        $publiched_date =  $baseOnt->getBase()->createLiteral($this->publishedDate);
+        $description =  $baseOnt->getBase()->createLiteral($this->description);
+        
         $kind->setDatatype("http://www.w3.org/TR/xmlschema-2/#rf-enumeration");
         $id->setDatatype("http://www.w3.org/TR/xmlschema-2/#ID");
         $etag->setDatatype("http://www.w3.org/TR/xmlschema-2/#string");
+        $title->setDatatype("http://xmlns.com/foaf/spec/#term_title");
+        $publiched_date->setDatatype("http://www.w3.org/TR/xmlschema-2/#date");
+        $description->setDatatype("http://www.w3.org/TR/xmlschema-2/#string");
 
 
-        foreach ($book_class->listProperties() as $property) {
+        foreach ($baseOnt->getBookOntClass()->listProperties() as $property) {
 
             if ($property->getLabelObject() == 'kind') {
-                echo $property->getPredicate();
-                echo '<br/>' . $property->pred;
+                $instance->addProperty( $property->getPredicate() , $kind );
             }
             if ($property->getLabelObject() == 'id') {
-                //echo $property->getPredicate();
-                //$instance->addProperty($property->getPredicate() , $id);
+                $instance->addProperty( $property->getPredicate() , $id );
             }
             if ($property->getLabelObject() == 'etag') {
-                //echo $property->getSubject();
-                //$instance->addProperty($property->getPredicate() , $etag);
+                $instance->addProperty( $property->getPredicate() , $etag );
+            }
+            if ($property->getLabelObject() == 'title') {
+                $instance->addProperty( $property->getPredicate() , $title );
+            }
+            if ($property->getLabelObject() == 'publisher') {
+                $instance->addProperty( $property->getPredicate() , $publisher );
+            }
+            if ($property->getLabelObject() == 'publiched_date') {
+                $instance->addProperty( $property->getPredicate() , $publiched_date );
+            }
+            if ($property->getLabelObject() == 'description') {
+                $instance->addProperty( $property->getPredicate() , $description );
             }
         }
-
-        $instance1 = $book_class->createInstance("testinstance");
-        $ppt = $base->createOntProperty("http://../pt1");
-        $x = $base->createLiteral("lit");
-        $instance1->addProperty($ppt, $x);
-
-
-
-        //echo '<br/><br/>'.$instance->toString().'final<br/><br/>';
-    }
-
-    function generate_book_rdf(OntologyModel $baseOnt) {
-        
-        $book_instance = $baseOnt->getBookOntClass()->createInstance();
-        $pp = $baseOnt->getBase()->createOntProperty("id");
-        $lit = $baseOnt->getBase()->createLiteral($this->id);
-        $book_instance->addProperty($pp, $lit);
     }
 
     public static function parseFromJson($object) {
@@ -291,24 +296,7 @@ class Book {
 
 
     /*
-      $title =  $base->createLiteral($this->title);
-      $title->setDatatype("http://xmlns.com/foaf/spec/#term_title");
-      $title_p =$base->createProperty(BOOK_NS.'title');
-      $subject->addProperty($title_p,$title);
-
-      $publisher =  $base->createLiteral($this->publisher);
-      $publisher_p =$base->createProperty(BOOK_NS.'publisher');
-      $subject->addProperty($publisher_p,$publisher);
-
-      $publiched_date =  $base->createLiteral($this->publishedDate);
-      $publiched_date->setDatatype("http://www.w3.org/TR/xmlschema-2/#date");
-      $publiched_date_p =$base->createProperty(BOOK_NS.'publiching_date');
-      $subject->addProperty($publiched_date_p,$publiched_date);
-
-      $description =  $base->createLiteral($this->description);
-      $description->setDatatype("http://www.w3.org/TR/xmlschema-2/#string");
-      $description_p =$base->createProperty(BOOK_NS.'description');
-      $subject->addProperty($description_p,$description);
+      
 
       foreach ($this->industryIdentifiers as $identifiers){
       //echo $identifiers['type'].'->'.$identifiers['identifier'].'<br/>';

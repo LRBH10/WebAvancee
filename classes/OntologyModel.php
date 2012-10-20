@@ -81,7 +81,7 @@ class OntologyModel {
     /**
      * @return OntClass
      */
-    public function getBookInstance($uri) {
+    public function createBookInstance($uri) {
         return $this->book_class->createInstance($uri);
     }
 
@@ -98,27 +98,46 @@ class OntologyModel {
     public function getBookOntClass() {
         return $this->book_class;
     }
-
+    
+    /**
+     *  Creating the ontology class BOOK
+     * If it already exists into the base,
+     * we are simply loading  it from the base
+     * 
+     *  @return OntClass
+     */
+    
     private function createBookClass() {
-        $this->book_class = $this->base->createOntClass(BOOK_NS);
+        $loader = 1;
+        foreach ( $this->base->listClasses() as $class ){
+            if($class->uri == BOOK_NS){
+                echo 'ca existe';
+                $this->book_class = $this->base->createOntClass(BOOK_NS);
+                $this->book_class = $class;
+                $loader = null;
+            }
+        }
+        if($loader){
+            $this->book_class = $this->base->createOntClass(BOOK_NS);
 
-        $book_label = new ResLiteral("Book");
-        $book_comment = new ResLiteral("Structured type of documment describing a Book");
-        $this->book_class->addCommentWithoutDuplicate($book_comment);
-        $this->book_class->addLabelPropertyWithoutDuplicate($book_label);
+            $book_label = new ResLiteral("Book");
+            $book_comment = new ResLiteral("Structured type of documment describing a Book");
+            $this->book_class->addCommentWithoutDuplicate($book_comment);
+            $this->book_class->addLabelPropertyWithoutDuplicate($book_label);
 
-        $this->createTriplet(BOOK_NS, $this->book_class, "kind", "kind");
-        $this->createTriplet(BOOK_NS, $this->book_class, "id", "id");
-        $this->createTriplet(BOOK_NS, $this->book_class, "etag", "etag");
-        $this->createTriplet(BOOK_NS, $this->book_class, "title", "title");
-        $this->createTriplet(BOOK_NS, $this->book_class, "publicher", "publicher");
-        $this->createTriplet(BOOK_NS, $this->book_class, "publiching_date", "publiching_date");
-        $this->createTriplet(BOOK_NS, $this->book_class, "description", "description");
-        $this->createTriplet(BOOK_NS, $this->book_class, "isbn_10", "isbn_10");
-        $this->createTriplet(BOOK_NS, $this->book_class, "isbn_13", "isbn_13");
-        $this->createTriplet(BOOK_NS, $this->book_class, "page_count", "page_count");
-        $this->createTriplet(BOOK_NS, $this->book_class, "print_type", "print_type");
-        $this->createTriplet(BOOK_NS, $this->book_class, "average_rating", "average_rating"); // */
+            $this->createTriplet(BOOK_NS, $this->book_class, "kind", "kind");
+            $this->createTriplet(BOOK_NS, $this->book_class, "id", "id");
+            $this->createTriplet(BOOK_NS, $this->book_class, "etag", "etag");
+            $this->createTriplet(BOOK_NS, $this->book_class, "title", "title");
+            $this->createTriplet(BOOK_NS, $this->book_class, "publicher", "publicher");
+            $this->createTriplet(BOOK_NS, $this->book_class, "publiching_date", "publiching_date");
+            $this->createTriplet(BOOK_NS, $this->book_class, "description", "description");
+            $this->createTriplet(BOOK_NS, $this->book_class, "isbn_10", "isbn_10");
+            $this->createTriplet(BOOK_NS, $this->book_class, "isbn_13", "isbn_13");
+            $this->createTriplet(BOOK_NS, $this->book_class, "page_count", "page_count");
+            $this->createTriplet(BOOK_NS, $this->book_class, "print_type", "print_type");
+            $this->createTriplet(BOOK_NS, $this->book_class, "average_rating", "average_rating");
+        }
     }
 
     /**

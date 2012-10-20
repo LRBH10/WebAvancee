@@ -2,14 +2,33 @@
 
 include 'includes.php';
 
+
 $baseOnt = new OntologyModel("test");
 $baseOnt->loadBaseRDF();
 
-$goo = new GoogleBookApiCaller();
-$list_of_books = $goo->callAuthor("yasmina khadra");
+$maclass = $baseOnt->getBookOntClass();
+foreach ( $maclass->listProperties() as $p ){
+    echo $p->getObject();
+}
 
-$list_of_books[1]->generate_book_rdf($baseOnt);
 
+//$baseOnt->getBookOntClass()->createInstance();
+foreach ( $baseOnt->getBase()->listClasses() as $class ){
+    echo $class->listProperties();
+}
+
+//$goo = new GoogleBookApiCaller();
+//$list_of_books = $goo->callAuthor("yasmina khadra");
+
+//$list_of_books[1]->generate_book_rdf($baseOnt);
+
+//$var = $baseOnt->createBookInstance("book");
+
+//echo $var->uri;
+
+//foreach ( $baseOnt->getBase()->listObjects() as $base_lits ){
+  //  echo $base_lits->searchObject;
+//}
 
 $baseOnt->closeBaseRDF();
 ?>

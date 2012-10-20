@@ -11,7 +11,8 @@
    xmlns:owl="http://www.w3.org/2002/07/owl#"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+   xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#"
+   xmlns:ns1="http://.../">
 
 <rdfs:Class rdf:about="http://www.googleapi.com/book/">
    <rdfs:comment>Structured type of documment describing a Book</rdfs:comment>
@@ -29,6 +30,5 @@
    <book:print_type>print_type</book:print_type>
    <book:average_rating>average_rating</book:average_rating>
 </rdfs:Class>
-
 
 </rdf:RDF>
