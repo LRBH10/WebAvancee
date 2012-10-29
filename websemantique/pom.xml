@@ -1,0 +1,16 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>um2</groupId>
+	<artifactId>websemantique</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<name>Project Web Semantic MASTER 2 </name>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>website</module>
+		<module>entities</module>
+		<module>ontoligie</module>
+	</modules>
+</project>

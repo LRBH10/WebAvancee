@@ -1,0 +1,8 @@
+<html t:type="layout" title="Contact um2"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+    <p>Contact um2 ...</p>
+
+	${ApiCall}
+</html>
