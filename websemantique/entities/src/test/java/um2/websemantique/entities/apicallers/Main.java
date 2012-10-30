@@ -12,7 +12,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		GetterBookAuthor get = new GetterBookAuthor();
-		get.find("yasmina khadra",GoogleBookApiCaller.T_AUTHOR,50);
+		get.find("yasmina khadra",GoogleBookApiCaller.T_AUTHOR,5);
 		
 		for (Author author : get.getAuthors()) {
 			System.out.println(author.getLinkAbout());
