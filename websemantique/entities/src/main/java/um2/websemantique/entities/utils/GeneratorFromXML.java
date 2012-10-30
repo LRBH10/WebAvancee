@@ -40,17 +40,22 @@ public class GeneratorFromXML {
 	 */
 	public static String getIdGoodReadAuthor(String xml_url) {
 		String res = "";
-		System.out.println(xml_url);
 
 		Document document = getDocumentFromUrl(xml_url);
 		Element rootNode = document.getRootElement();
 
-		Element id = rootNode.getChild("search").getChild("results")
-				.getChild("work").getChild("best_book").getChild("author")
-				.getChild("id");
+		System.out.println(xml_url);
+		try {
 
-		res = id.getValue();
+			Element id = rootNode.getChild("search").getChild("results")
+					.getChild("work").getChild("best_book").getChild("author")
+					.getChild("id");
+			res = id.getValue();
+		} catch (NullPointerException e) {
+			res ="0";
+		}
 
+		
 		return res;
 	}
 
@@ -62,7 +67,6 @@ public class GeneratorFromXML {
 	 */
 	public static AuthorGoodRead getGoodReadAuthor(String xml_url) {
 		AuthorGoodRead res = new AuthorGoodRead();
-		System.out.println(xml_url);
 
 		Document document = getDocumentFromUrl(xml_url);
 		Element author = document.getRootElement().getChild("author");
@@ -84,8 +88,8 @@ public class GeneratorFromXML {
 	}
 
 	/**
-	 * get Value of Child in the ELEMENT
-	 * getStringChildFromElement :) -- ABBREV
+	 * get Value of Child in the ELEMENT getStringChildFromElement :) -- ABBREV
+	 * 
 	 * @param element
 	 *            {@link Element}
 	 * @param child

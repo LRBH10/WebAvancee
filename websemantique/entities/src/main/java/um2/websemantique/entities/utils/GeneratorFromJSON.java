@@ -186,7 +186,11 @@ public class GeneratorFromJSON {
 	 * @return {@link AuthorFacebook}
 	 */
 	public static AuthorFacebook createAuthorFacebook(String json_text) {
-		return createAuthorFacebook(createJSONObject(json_text));
+		if (json_text.equals("0")) {
+			return null;
+		} else {
+			return createAuthorFacebook(createJSONObject(json_text));
+		}
 	}
 
 	/**

@@ -21,22 +21,22 @@ public class FacebookAuthorApiCaller {
 	 */
 	private String url_detail = "https://graph.facebook.com/";
 
-	
 	public String findAuthorFacebook(String author) {
 		author = ApiCaller.urlEncode(author);
 		String result = ApiCaller
 				.cUrl(ApiCaller.getUrlFromString(url + author));
 		result = GeneratorFromJSON.getIdAuthorFacebook(result);
-		result = ApiCaller
-				.cUrl(ApiCaller.getUrlFromString(url_detail + result));
+
+		if (!result.equals("0")) {
+			result = ApiCaller.cUrl(ApiCaller.getUrlFromString(url_detail
+					+ result));
+		}
 		return result;
 	}
-
 
 	public String getKey() {
 		return key;
 	}
-
 
 	public void setKey(String key) {
 		this.key = key;

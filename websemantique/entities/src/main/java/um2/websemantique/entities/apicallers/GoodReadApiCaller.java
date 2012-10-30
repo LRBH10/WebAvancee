@@ -20,8 +20,12 @@ public class GoodReadApiCaller extends ApiCaller {
 				+ "&search[field]=author";
 		String id = GeneratorFromXML.getIdGoodReadAuthor(url);
 
-		url = urlAuthor + id + "&key=" + key;
-		AuthorGoodRead result = GeneratorFromXML.getGoodReadAuthor(url);
+		AuthorGoodRead result = null;
+		if (!id.equals("0")) {
+			url = urlAuthor + id + "&key=" + key;
+			result = GeneratorFromXML.getGoodReadAuthor(url);
+		}
+
 		return result;
 	}
 }

@@ -13,6 +13,7 @@ public class Book {
 	private String publishedDate;
 	private String pageCount;
 	private ArrayList<String> authors = new ArrayList<String>(); // []
+	private ArrayList<String> authorslink = new ArrayList<String>(); // []
 	private ArrayList<IdentifierBook> industryIdentifiers = new ArrayList<IdentifierBook>(); // []
 	private String thumbnail;
 	private String language;
@@ -35,6 +36,14 @@ public class Book {
 	private String webReaderLink;
 	private String textSnippet;
 	private String currencyCode;
+
+	public ArrayList<String> getAuthorslink() {
+		return authorslink;
+	}
+
+	public void setAuthorslink(ArrayList<String> authorslink) {
+		this.authorslink = authorslink;
+	}
 
 	public String getCurrencyCode() {
 		return currencyCode;

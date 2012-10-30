@@ -7,6 +7,7 @@ import um2.websemantique.entities.utils.GeneratorFromJSON;
 public class Author {
 	private AuthorGoodRead goodRead;
 	private AuthorFacebook facebook;
+	private String key;
 
 	public AuthorGoodRead getGoodRead() {
 		return goodRead;
@@ -44,11 +45,54 @@ public class Author {
 	 *            {@link String}
 	 */
 	public Author(String author) {
+		key = author;
+
 		GoodReadApiCaller gd = new GoodReadApiCaller();
 		goodRead = gd.findGoodReadAuthor(author);
-		
+
 		FacebookAuthorApiCaller fa = new FacebookAuthorApiCaller();
-		facebook = GeneratorFromJSON.createAuthorFacebook(fa.findAuthorFacebook(author));
+		facebook = GeneratorFromJSON.createAuthorFacebook(fa
+				.findAuthorFacebook(author));
 	}
 
+	/**
+	 * Get Link identifier for this instance of {@link Author}
+	 * 
+	 * @return link
+	 */
+
+	public String getLinkAbout() {
+		String res = "";
+		if (goodRead != null) {
+			res = goodRead.getLink();
+		} else if (facebook != null) {
+			res = facebook.getLink();
+		} else {
+			res = "www.google.com?q=" + key;
+		}
+
+		return res;
+	}
+
+	/**
+	 * key of Search
+	 * 
+	 * @return
+	 */
+	public String getKey() {
+		return key;
+	}
+
+	/**
+	 * Verify if the two Object facebook and goodRead are'nt null
+	 * 
+	 * @return {@link Boolean}
+	 */
+	public boolean isNull() {
+		boolean ret = false;
+		if (goodRead == null && facebook == null) {
+			ret = true;
+		}
+		return ret;
+	}
 }

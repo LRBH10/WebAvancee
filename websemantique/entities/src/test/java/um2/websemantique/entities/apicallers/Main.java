@@ -1,6 +1,8 @@
 package um2.websemantique.entities.apicallers;
 
-import um2.websemantique.entities.utils.GeneratorFromXML;
+import um2.websemantique.entities.base.Author;
+import um2.websemantique.entities.utils.GetterBookAuthor;
+
 
 
 public class Main {
@@ -9,21 +11,13 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		/*GoogleBookApiCaller g = new GoogleBookApiCaller();
-		ArrayList<Book> bks = JSONFactory.createBooks(g
-				.findBookofAuthor("yasmina khadra"));
-
-		for (int i = 0; i < bks.size(); i++) {
-			System.out.println(bks.get(i));
-		} //*/
+		GetterBookAuthor get = new GetterBookAuthor();
+		get.findwithAuthor("blazo");
 		
-		/*FacebookAuthorApiCaller ff = new FacebookAuthorApiCaller();
-		System.out.println(ff.findAuthorFacebook("yasmina khadra"));//*/
+		for (Author author : get.getAuthors()) {
+			System.out.println(author.getLinkAbout());
+		}
 		
-		
-		GoodReadApiCaller gr = new GoodReadApiCaller();
-		gr.findGoodReadAuthor("yasmina khadra");
 	}
 
 }
