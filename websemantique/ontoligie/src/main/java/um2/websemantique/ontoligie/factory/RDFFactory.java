@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
+import um2.websemantique.entities.base.Author;
 import um2.websemantique.entities.base.Book;
 import um2.websemantique.entities.utils.IdentifierBook;
 
@@ -110,11 +111,66 @@ public class RDFFactory {
      * This method creates the Author Class with it's properties
      */
     private void createAuhorClass() {
+        
         this.authorClass = this.base.createClass(authorNS + "Author");
         this.authorClass.addLabel("The  Author Class", "en");
         this.authorClass.addComment("The class describint en author", "en");
+        
+        addAuthorProperty("id").setDomain(XSD.ID);
+        addAuthorProperty("name").setDomain(XSD.Name);
+        addAuthorProperty("fans_count").setDomain(XSD.xint);
+        addAuthorProperty("image_uri").setDomain(XSD.xstring);
+        addAuthorProperty("about").setDomain(XSD.xstring);
+        addAuthorProperty("works_count").setDomain(XSD.ID);
+        addAuthorProperty("gender").setDomain(XSD.xstring);
+        addAuthorProperty("home_town").setDomain(XSD.xstring);
+        addAuthorProperty("born_at").setDomain(XSD.xstring);
+        addAuthorProperty("died_at").setDomain(XSD.xstring);
+        addAuthorProperty("id_facebook").setDomain(XSD.ID);
+        addAuthorProperty("name_facebook").setDomain(XSD.xstring);
+        addAuthorProperty("likes_facebook").setDomain(XSD.xint);
+        addAuthorProperty("talking_about_count_facebook").setDomain(XSD.xint);
+        addAuthorProperty("link_facebook").setDomain(XSD.xstring);
+        
     }
-
+    
+    private OntProperty addAuthorProperty(String propertyName){
+        OntProperty property = this.base.createOntProperty(this.authorClass.getNameSpace() + propertyName);
+        property.setDomain(this.authorClass);
+        return property;
+    }
+    
+    private void addPropertyToAuthorInstance(String propertyName , Individual instance, String literalValue) {
+        Iterator<OntProperty> i = this.authorClass.listDeclaredProperties();
+        while (i.hasNext()) {
+            OntProperty property = i.next();
+            if (property.getLocalName().equals(propertyName)) {
+                instance.addProperty(property, literalValue);
+            }
+        }
+    }
+    
+    public void generateRDFAuthorInstance(Author author) {
+        Individual instance = this.authorClass.createIndividual(author.getGoodRead().getLink());
+        
+        addPropertyToAuthorInstance( "id" , instance , author.getGoodRead().getId());
+        addPropertyToAuthorInstance( "name" , instance , author.getGoodRead().getName());
+        addPropertyToAuthorInstance( "fans_count" , instance , author.getGoodRead().getFansCount());
+        addPropertyToAuthorInstance( "image_uri" , instance , author.getGoodRead().getImageUrl());
+        addPropertyToAuthorInstance( "about" , instance , author.getGoodRead().getAbout());
+        addPropertyToAuthorInstance( "works_count" , instance , author.getGoodRead().getWorksCount());
+        addPropertyToAuthorInstance( "gender" , instance , author.getGoodRead().getGender());
+        addPropertyToAuthorInstance( "home_town" , instance , author.getGoodRead().getHometown());
+        addPropertyToAuthorInstance( "born_at" , instance , author.getGoodRead().getBornAt());
+        addPropertyToAuthorInstance( "died_at" , instance , author.getGoodRead().getDiedAt());
+        addPropertyToAuthorInstance( "id_facebook" , instance , author.getFacebook().getId());
+        addPropertyToAuthorInstance( "likes_facebook" , instance , new String(""+author.getFacebook().getLikes()));
+        addPropertyToAuthorInstance( "link_facebook" , instance , author.getFacebook().getLink());
+        addPropertyToAuthorInstance( "talking_about_count_facebook" , instance , new String (""+author.getFacebook().getTalkingAboutCount()));
+        addPropertyToAuthorInstance( "name_facebook" , instance , author.getFacebook().getName());
+        
+    }
+    
     /**
      * This method creates the Author Class with it's properties
      */
@@ -164,18 +220,6 @@ public class RDFFactory {
         property.setDomain(this.bookClass);
         return property;
     }
-
-    public OntClass getBookClass() {
-        return this.bookClass;
-    }
-
-    public OntClass getAuthorClass() {
-        return authorClass;
-    }
-
-    public Individual createBookInstance(String uri) {
-        return bookClass.createIndividual(uri);
-    }
     
     /**
      * The method that actually add the properties into the individual, by getting the
@@ -185,7 +229,7 @@ public class RDFFactory {
      * @param instance The individual want to add into the RDF base
      * @param literalValue The Value added into the Propriety
      */
-    public void addPropertyToBookInstance(String propertyName , Individual instance, String literalValue) {
+    private void addPropertyToBookInstance(String propertyName , Individual instance, String literalValue) {
         Iterator<OntProperty> i = this.bookClass.listDeclaredProperties();
         while (i.hasNext()) {
             OntProperty property = i.next();
@@ -202,7 +246,7 @@ public class RDFFactory {
      * @param identifierList List of identifiers ( isbn 10, isnb 13 of other industrial identifiers
      * @param instance The individual we want to store into the RDF base
      */
-    public void addIdentifierToBook(ArrayList<IdentifierBook> identifierList, Individual instance){
+    private void addIdentifierToBook(ArrayList<IdentifierBook> identifierList, Individual instance){
         for (IdentifierBook item : identifierList){
             if(item.getType().equals(IdentifierBook.ISBN10))
                 addPropertyToBookInstance("isbn_10", instance, item.getContaints());
@@ -219,7 +263,7 @@ public class RDFFactory {
      * @param listCategory The list of categories
      * @param instance The individual we want to store into the RDF base
      */
-    public void addCategoryToBook(ArrayList<String> listCategory , Individual instance){
+    private void addCategoryToBook(ArrayList<String> listCategory , Individual instance){
         
         for(String item : listCategory){
             addPropertyToBookInstance("category" , instance, item);
