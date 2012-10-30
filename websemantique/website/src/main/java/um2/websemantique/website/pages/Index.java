@@ -10,41 +10,20 @@ import org.apache.tapestry5.alerts.AlertManager;
 /**
  * Start page of application website.
  */
-public class Index
-{
-    @Property
-    @Inject
-    @Symbol(SymbolConstants.TAPESTRY_VERSION)
-    private String tapestryVersion;
+public class Index {
 
-    @InjectComponent
-    private Zone zone;
+	@Property
+	@Persist
+	private String search;
 
-    @Persist
-    @Property
-    private int clickCount;
+	@Property
+	@Persist
+	private String containts;
 
-    @Inject
-    private AlertManager alertManager;
+	
+	void onValidateFromSearchForm() {
+		containts = search;
+		//return containts;
+	}
 
-    public Date getCurrentTime()
-    {
-        return new Date();
-    }
-
-    void onActionFromIncrement()
-    {
-        alertManager.info("Increment clicked");
-
-        clickCount++;
-    }
-
-    Object onActionFromIncrementAjax()
-    {
-        clickCount++;
-
-        alertManager.info("Increment (via Ajax) clicked");
-
-        return zone;
-    }
 }

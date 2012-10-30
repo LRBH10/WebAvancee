@@ -1,42 +1,98 @@
 package um2.websemantique.entities.utils;
 
-import java.util.Iterator;
+import java.io.IOException;
 
-import org.jdom.Element;
-import org.jdom.input.SAXBuilder;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+
+import um2.websemantique.entities.base.AuthorGoodRead;
 
 public class GeneratorFromXML {
-	private static String getIdGoodReadBook(String xml_str) {
-		org.jdom.Document document = null;
-		Element racine;
 
-		String res = "";
-		SAXBuilder sxb = new SAXBuilder();
+	/**
+	 * build a document from url
+	 * 
+	 * @param url
+	 * @return {@link Document}
+	 */
+	public static Document getDocumentFromUrl(String url) {
+		SAXBuilder builder = new SAXBuilder();
+
+		Document document = null;
 		try {
-			// On crée un nouveau document JDOM avec en argument le fichier XML
-			// Le parsing est terminé ;)
-			document = sxb.build(xml_str);
-		} catch (Exception e) {
+			document = builder.build(url);
+		} catch (JDOMException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
-		// On initialise un nouvel élément racine avec l'élément racine du
-		// document.
-		racine = document.getRootElement();
+		return document;
+	}
 
-		/*Iterator i = listLivres.iterator();
-		while (i.hasNext()) {
-			// On recrée l'Element courant à chaque tour de boucle afin de
-			// pouvoir utiliser les méthodes propres aux Element
-			Element courant = (Element) i.next();
+	/**
+	 * getting id of Author in GoodRead Web Site
+	 * 
+	 * @param xml_url
+	 * @return the id of author in GoodReads web site
+	 */
+	public static String getIdGoodReadAuthor(String xml_url) {
+		String res = "";
+		System.out.println(xml_url);
 
-			// On affiche le titre et le genre de l'element courant
-			System.out.println("Titre :" + courant.getChild("titre").getText());
-			System.out.println("Genre :" + courant.getChild("genre").getText());
-			System.out
-					.println("Numero :" + courant.getAttributeValue("numero"));
+		Document document = getDocumentFromUrl(xml_url);
+		Element rootNode = document.getRootElement();
 
-		}//*/
+		Element id = rootNode.getChild("search").getChild("results")
+				.getChild("work").getChild("best_book").getChild("author")
+				.getChild("id");
+
+		res = id.getValue();
 
 		return res;
+	}
+
+	/**
+	 * getting {@link AuthorGoodRead} in GoodRead Web Site
+	 * 
+	 * @param xml_url
+	 * @return {@link AuthorGoodRead}
+	 */
+	public static AuthorGoodRead getGoodReadAuthor(String xml_url) {
+		AuthorGoodRead res = new AuthorGoodRead();
+		System.out.println(xml_url);
+
+		Document document = getDocumentFromUrl(xml_url);
+		Element author = document.getRootElement().getChild("author");
+
+		res.setAbout(getSCFE(author, "about"));
+		res.setBornAt(getSCFE(author, "born_at"));
+		res.setLink(getSCFE(author, "link"));
+
+		res.setDiedAt(getSCFE(author, "died_at"));
+		res.setFansCount(getSCFE(author, "fans_count"));
+		res.setGender(getSCFE(author, "gender"));
+		res.setHometown(getSCFE(author, "hometown"));
+		res.setId(getSCFE(author, "id"));
+		res.setImageUrl(getSCFE(author, "image_url"));
+		res.setName(getSCFE(author, "name"));
+		res.setWorksCount(getSCFE(author, "works_count"));
+
+		return res;
+	}
+
+	/**
+	 * get Value of Child in the ELEMENT
+	 * getStringChildFromElement :) -- ABBREV
+	 * @param element
+	 *            {@link Element}
+	 * @param child
+	 *            key to get value in this element
+	 * @return {@link String}
+	 */
+	public static String getSCFE(Element element, String child) {
+		return element.getChild(child).getValue();
 	}
 }

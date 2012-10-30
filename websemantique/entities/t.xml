@@ -1,0 +1,557 @@
+<GoodreadsResponse>
+	<Request>
+		<authentication>true</authentication>
+		<key>
+<![CDATA[ IJ9e4JY4Gnl1JU5ADSYYg ]]>
+		</key>
+		<method>
+<![CDATA[ search_index ]]>
+		</method>
+	</Request>
+	<search>
+		<query>
+<![CDATA[ yasmina khadra ]]>
+		</query>
+		<results-start>1</results-start>
+		<results-end>20</results-end>
+		<total-results>23</total-results>
+		<source>Goodreads</source>
+		<query-time-seconds>0.03</query-time-seconds>
+		<results>
+			<work>
+				<books_count type="integer">28</books_count>
+				<id type="integer">1235388</id>
+				<original_publication_day type="integer">19
+				</original_publication_day>
+				<original_publication_month type="integer">1
+				</original_publication_month>
+				<original_publication_year type="integer">2002
+				</original_publication_year>
+				<ratings_count type="integer">2137</ratings_count>
+				<text_reviews_count type="integer">318</text_reviews_count>
+				<average_rating>3.59</average_rating>
+				<best_book>
+					<id type="integer">123615</id>
+					<title>Swallows Of Kabul</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://www.goodreads.com/assets/nocover/111x148.png
+					</image_url>
+					<small_image_url>http://www.goodreads.com/assets/nocover/60x80.png
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">38</books_count>
+				<id type="integer">1193391</id>
+				<original_publication_day type="integer"
+					nil="true" />
+				<original_publication_month type="integer"
+					nil="true" />
+				<original_publication_year type="integer">2005
+				</original_publication_year>
+				<ratings_count type="integer">1693</ratings_count>
+				<text_reviews_count type="integer">299</text_reviews_count>
+				<average_rating>3.76</average_rating>
+				<best_book>
+					<id type="integer">213206</id>
+					<title>The Attack</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://www.goodreads.com/assets/nocover/111x148.png
+					</image_url>
+					<small_image_url>http://www.goodreads.com/assets/nocover/60x80.png
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">30</books_count>
+				<id type="integer">2053799</id>
+				<original_publication_day type="integer"
+					nil="true" />
+				<original_publication_month type="integer"
+					nil="true" />
+				<original_publication_year type="integer">2006
+				</original_publication_year>
+				<ratings_count type="integer">530</ratings_count>
+				<text_reviews_count type="integer">79</text_reviews_count>
+				<average_rating>3.77</average_rating>
+				<best_book>
+					<id type="integer">213210</id>
+					<title>The Sirens of Baghdad</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://www.goodreads.com/assets/nocover/111x148.png
+					</image_url>
+					<small_image_url>http://www.goodreads.com/assets/nocover/60x80.png
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">19</books_count>
+				<id type="integer">4507580</id>
+				<original_publication_day type="integer"
+					nil="true" />
+				<original_publication_month type="integer"
+					nil="true" />
+				<original_publication_year type="integer">2008
+				</original_publication_year>
+				<ratings_count type="integer">283</ratings_count>
+				<text_reviews_count type="integer">31</text_reviews_count>
+				<average_rating>3.97</average_rating>
+				<best_book>
+					<id type="integer">4459330</id>
+					<title>Ce que le jour doit à la nuit</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://photo.goodreads.com/books/1256832543m/4459330.jpg
+					</image_url>
+					<small_image_url>
+						http://photo.goodreads.com/books/1256832543s/4459330.jpg
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">13</books_count>
+				<id type="integer">206386</id>
+				<original_publication_day type="integer">1
+				</original_publication_day>
+				<original_publication_month type="integer">1
+				</original_publication_month>
+				<original_publication_year type="integer">2000
+				</original_publication_year>
+				<ratings_count type="integer">142</ratings_count>
+				<text_reviews_count type="integer">21</text_reviews_count>
+				<average_rating>3.68</average_rating>
+				<best_book>
+					<id type="integer">213202</id>
+					<title>Wolf Dreams</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://www.goodreads.com/assets/nocover/111x148.png
+					</image_url>
+					<small_image_url>http://www.goodreads.com/assets/nocover/60x80.png
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">8</books_count>
+				<id type="integer">1235407</id>
+				<original_publication_day type="integer"
+					nil="true" />
+				<original_publication_month type="integer"
+					nil="true" />
+				<original_publication_year type="integer">2000
+				</original_publication_year>
+				<ratings_count type="integer">69</ratings_count>
+				<text_reviews_count type="integer">14</text_reviews_count>
+				<average_rating>3.62</average_rating>
+				<best_book>
+					<id type="integer">213197</id>
+					<title>In the Name of God</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://www.goodreads.com/assets/nocover/111x148.png
+					</image_url>
+					<small_image_url>http://www.goodreads.com/assets/nocover/60x80.png
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">6</books_count>
+				<id type="integer">206398</id>
+				<original_publication_day type="integer"
+					nil="true" />
+				<original_publication_month type="integer"
+					nil="true" />
+				<original_publication_year type="integer">1997
+				</original_publication_year>
+				<ratings_count type="integer">50</ratings_count>
+				<text_reviews_count type="integer">6</text_reviews_count>
+				<average_rating>3.38</average_rating>
+				<best_book>
+					<id type="integer">213199</id>
+					<title>Morituri</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://www.goodreads.com/assets/nocover/111x148.png
+					</image_url>
+					<small_image_url>http://www.goodreads.com/assets/nocover/60x80.png
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">5</books_count>
+				<id type="integer">10117151</id>
+				<original_publication_day type="integer"
+					nil="true" />
+				<original_publication_month type="integer"
+					nil="true" />
+				<original_publication_year type="integer"
+					nil="true" />
+				<ratings_count type="integer">48</ratings_count>
+				<text_reviews_count type="integer">11</text_reviews_count>
+				<average_rating>3.35</average_rating>
+				<best_book>
+					<id type="integer">7626651</id>
+					<title>L'Olympe des Infortunes</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://photo.goodreads.com/books/1331333576m/7626651.jpg
+					</image_url>
+					<small_image_url>
+						http://photo.goodreads.com/books/1331333576s/7626651.jpg
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">4</books_count>
+				<id type="integer">487897</id>
+				<original_publication_day type="integer"
+					nil="true" />
+				<original_publication_month type="integer"
+					nil="true" />
+				<original_publication_year type="integer"
+					nil="true" />
+				<ratings_count type="integer">49</ratings_count>
+				<text_reviews_count type="integer">8</text_reviews_count>
+				<average_rating>2.96</average_rating>
+				<best_book>
+					<id type="integer">499783</id>
+					<title>Cousine K</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://photo.goodreads.com/books/1315075536m/499783.jpg
+					</image_url>
+					<small_image_url>
+						http://photo.goodreads.com/books/1315075536s/499783.jpg
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">4</books_count>
+				<id type="integer">1235381</id>
+				<original_publication_day type="integer">1
+				</original_publication_day>
+				<original_publication_month type="integer">1
+				</original_publication_month>
+				<original_publication_year type="integer">2001
+				</original_publication_year>
+				<ratings_count type="integer">31</ratings_count>
+				<text_reviews_count type="integer">3</text_reviews_count>
+				<average_rating>3.39</average_rating>
+				<best_book>
+					<id type="integer">1246652</id>
+					<title>L'écrivain</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://www.goodreads.com/assets/nocover/111x148.png
+					</image_url>
+					<small_image_url>http://www.goodreads.com/assets/nocover/60x80.png
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">2</books_count>
+				<id type="integer">17211554</id>
+				<original_publication_day type="integer">1
+				</original_publication_day>
+				<original_publication_month type="integer">1
+				</original_publication_month>
+				<original_publication_year type="integer">2011
+				</original_publication_year>
+				<ratings_count type="integer">24</ratings_count>
+				<text_reviews_count type="integer">7</text_reviews_count>
+				<average_rating>3.62</average_rating>
+				<best_book>
+					<id type="integer">12237646</id>
+					<title>L'équation africaine</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://photo.goodreads.com/books/1346667209m/12237646.jpg
+					</image_url>
+					<small_image_url>
+						http://photo.goodreads.com/books/1346667209s/12237646.jpg
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">1</books_count>
+				<id type="integer">2712896</id>
+				<original_publication_day type="integer">12
+				</original_publication_day>
+				<original_publication_month type="integer">11
+				</original_publication_month>
+				<original_publication_year type="integer">2007
+				</original_publication_year>
+				<ratings_count type="integer">21</ratings_count>
+				<text_reviews_count type="integer">1</text_reviews_count>
+				<average_rating>3.67</average_rating>
+				<best_book>
+					<id type="integer">2687571</id>
+					<title>
+						Yasmina Khadra Coffret en 3 volumes : Les hirondelles de Kaboul;
+						L'attentat ; Les sirènes de Bagdad Yasmina Khadra Coffret en 3
+						volumes : Les hirondelles de Kaboul; L'attentat ; Les sirènes de
+						Bagdad
+					</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://www.goodreads.com/assets/nocover/111x148.png
+					</image_url>
+					<small_image_url>http://www.goodreads.com/assets/nocover/60x80.png
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">10</books_count>
+				<id type="integer">6858858</id>
+				<original_publication_day type="integer"
+					nil="true" />
+				<original_publication_month type="integer"
+					nil="true" />
+				<original_publication_year type="integer">205
+				</original_publication_year>
+				<ratings_count type="integer">19</ratings_count>
+				<text_reviews_count type="integer">5</text_reviews_count>
+				<average_rating>3.63</average_rating>
+				<best_book>
+					<id type="integer">6664044</id>
+					<title>Dead Man's Share: An Inspector Llob Mystery</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://www.goodreads.com/assets/nocover/111x148.png
+					</image_url>
+					<small_image_url>http://www.goodreads.com/assets/nocover/60x80.png
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">4</books_count>
+				<id type="integer">1235389</id>
+				<original_publication_day type="integer"
+					nil="true" />
+				<original_publication_month type="integer"
+					nil="true" />
+				<original_publication_year type="integer">1998
+				</original_publication_year>
+				<ratings_count type="integer">19</ratings_count>
+				<text_reviews_count type="integer">4</text_reviews_count>
+				<average_rating>3.21</average_rating>
+				<best_book>
+					<id type="integer">637929</id>
+					<title>Double Blank</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://www.goodreads.com/assets/nocover/111x148.png
+					</image_url>
+					<small_image_url>http://www.goodreads.com/assets/nocover/60x80.png
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">5</books_count>
+				<id type="integer">624175</id>
+				<original_publication_day type="integer"
+					nil="true" />
+				<original_publication_month type="integer"
+					nil="true" />
+				<original_publication_year type="integer">2000
+				</original_publication_year>
+				<ratings_count type="integer">14</ratings_count>
+				<text_reviews_count type="integer">3</text_reviews_count>
+				<average_rating>3.64</average_rating>
+				<best_book>
+					<id type="integer">637925</id>
+					<title>Autumn of the Phantoms</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://www.goodreads.com/assets/nocover/111x148.png
+					</image_url>
+					<small_image_url>http://www.goodreads.com/assets/nocover/60x80.png
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">1</books_count>
+				<id type="integer">1235392</id>
+				<original_publication_day type="integer"
+					nil="true" />
+				<original_publication_month type="integer"
+					nil="true" />
+				<original_publication_year type="integer"
+					nil="true" />
+				<ratings_count type="integer">14</ratings_count>
+				<text_reviews_count type="integer">1</text_reviews_count>
+				<average_rating>3.50</average_rating>
+				<best_book>
+					<id type="integer">534570</id>
+					<title>L'imposture Des Mots</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://www.goodreads.com/assets/nocover/111x148.png
+					</image_url>
+					<small_image_url>http://www.goodreads.com/assets/nocover/60x80.png
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">3</books_count>
+				<id type="integer">2047039</id>
+				<original_publication_day type="integer"
+					nil="true" />
+				<original_publication_month type="integer"
+					nil="true" />
+				<original_publication_year type="integer">2001
+				</original_publication_year>
+				<ratings_count type="integer">9</ratings_count>
+				<text_reviews_count type="integer">2</text_reviews_count>
+				<average_rating>3.67</average_rating>
+				<best_book>
+					<id type="integer">2750821</id>
+					<title>Le Dingue Au Bistouri</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://www.goodreads.com/assets/nocover/111x148.png
+					</image_url>
+					<small_image_url>http://www.goodreads.com/assets/nocover/60x80.png
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">1</books_count>
+				<id type="integer">4507582</id>
+				<original_publication_day type="integer">1
+				</original_publication_day>
+				<original_publication_month type="integer">6
+				</original_publication_month>
+				<original_publication_year type="integer">2008
+				</original_publication_year>
+				<ratings_count type="integer">7</ratings_count>
+				<text_reviews_count type="integer">1</text_reviews_count>
+				<average_rating>3.57</average_rating>
+				<best_book>
+					<id type="integer">4459331</id>
+					<title>
+						Le quatuor algérien: La part du mort; Morituri; Double blanc;
+						L'automne des chimères [Omnibus]
+					</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://www.goodreads.com/assets/nocover/111x148.png
+					</image_url>
+					<small_image_url>http://www.goodreads.com/assets/nocover/60x80.png
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">3</books_count>
+				<id type="integer">2215751</id>
+				<original_publication_day type="integer">1
+				</original_publication_day>
+				<original_publication_month type="integer">1
+				</original_publication_month>
+				<original_publication_year type="integer">2006
+				</original_publication_year>
+				<ratings_count type="integer">4</ratings_count>
+				<text_reviews_count type="integer">0</text_reviews_count>
+				<average_rating>3.75</average_rating>
+				<best_book>
+					<id type="integer">2209975</id>
+					<title>La Rose De Blida</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://www.goodreads.com/assets/nocover/111x148.png
+					</image_url>
+					<small_image_url>http://www.goodreads.com/assets/nocover/60x80.png
+					</small_image_url>
+				</best_book>
+			</work>
+			<work>
+				<books_count type="integer">1</books_count>
+				<id type="integer">3016197</id>
+				<original_publication_day type="integer"
+					nil="true" />
+				<original_publication_month type="integer"
+					nil="true" />
+				<original_publication_year type="integer"
+					nil="true" />
+				<ratings_count type="integer">3</ratings_count>
+				<text_reviews_count type="integer">0</text_reviews_count>
+				<average_rating>3.33</average_rating>
+				<best_book>
+					<id type="integer">2985754</id>
+					<title>
+						Die Algier Romane. Morituri Doppelweiß Herbst Der Chimären;
+					</title>
+					<author>
+						<id type="integer">71181</id>
+						<name>Yasmina Khadra</name>
+					</author>
+					<image_url>
+						http://www.goodreads.com/assets/nocover/111x148.png
+					</image_url>
+					<small_image_url>http://www.goodreads.com/assets/nocover/60x80.png
+					</small_image_url>
+				</best_book>
+			</work>
+		</results>
+	</search>
+</GoodreadsResponse>

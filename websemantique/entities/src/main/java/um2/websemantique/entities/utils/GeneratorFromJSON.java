@@ -180,6 +180,16 @@ public class GeneratorFromJSON {
 	// ** FACEBOOOOOOOOOOOK AUTHOR
 
 	/**
+	 * Create {@link AuthorFacebook} from {@link String}
+	 * 
+	 * @param json_text
+	 * @return {@link AuthorFacebook}
+	 */
+	public static AuthorFacebook createAuthorFacebook(String json_text) {
+		return createAuthorFacebook(createJSONObject(json_text));
+	}
+
+	/**
 	 * Create {@link AuthorFacebook} from {@link JSONObject}
 	 * 
 	 * @param json_object

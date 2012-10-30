@@ -1,5 +1,7 @@
 package um2.websemantique.entities.apicallers;
 
+import um2.websemantique.entities.utils.GeneratorFromXML;
+
 
 public class Main {
 
@@ -16,8 +18,12 @@ public class Main {
 			System.out.println(bks.get(i));
 		} //*/
 		
-		FacebookAuthorApiCaller ff = new FacebookAuthorApiCaller();
-		System.out.println(ff.findAuthorFacebook("yasmina khadra"));
+		/*FacebookAuthorApiCaller ff = new FacebookAuthorApiCaller();
+		System.out.println(ff.findAuthorFacebook("yasmina khadra"));//*/
+		
+		
+		GoodReadApiCaller gr = new GoodReadApiCaller();
+		gr.findGoodReadAuthor("yasmina khadra");
 	}
 
 }

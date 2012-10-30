@@ -1,7 +1,5 @@
 package um2.websemantique.entities.apicallers;
 
-import java.net.URL;
-
 import um2.websemantique.entities.utils.GeneratorFromJSON;
 
 public class FacebookAuthorApiCaller {
@@ -32,5 +30,15 @@ public class FacebookAuthorApiCaller {
 		result = ApiCaller
 				.cUrl(ApiCaller.getUrlFromString(url_detail + result));
 		return result;
+	}
+
+
+	public String getKey() {
+		return key;
+	}
+
+
+	public void setKey(String key) {
+		this.key = key;
 	}
 }
