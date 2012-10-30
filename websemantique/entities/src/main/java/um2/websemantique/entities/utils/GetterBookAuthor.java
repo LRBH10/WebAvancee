@@ -2,6 +2,7 @@ package um2.websemantique.entities.utils;
 
 import java.util.ArrayList;
 
+import um2.websemantique.entities.apicallers.FacebookAuthorApiCaller;
 import um2.websemantique.entities.apicallers.GoogleBookApiCaller;
 import um2.websemantique.entities.base.Author;
 import um2.websemantique.entities.base.Book;
@@ -13,13 +14,20 @@ public class GetterBookAuthor {
 	/**
 	 * find all book for an author given
 	 * 
-	 * @param author
+	 * @param query
 	 *            name of author
+	 * @param type
+	 *            {@link GoogleBookApiCaller}
+	 * @param maxResults
+	 *            max book calculed
 	 */
-	public void findwithAuthor(String author) {
-		GoogleBookApiCaller g = new GoogleBookApiCaller();
-		books = GeneratorFromJSON.createBooks(g.findBookofAuthor(author));
 
+	public void find(String query, String type, int maxResults) {
+		GoogleBookApiCaller g = new GoogleBookApiCaller();
+		g.setMaxResults(maxResults);
+		g.setType(type);
+
+		books = GeneratorFromJSON.createBooks(g.findBooks(query));
 		Author origin = null;
 
 		for (Book book : books) {

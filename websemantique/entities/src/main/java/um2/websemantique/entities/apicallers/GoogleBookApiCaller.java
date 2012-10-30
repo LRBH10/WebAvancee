@@ -4,8 +4,45 @@ import java.net.URL;
 
 public class GoogleBookApiCaller extends ApiCaller {
 
+	public static final String T_AUTHOR = "inauthor:";
+	public static final String T_TITLE = "intitle:";
+	public static final String T_ISBN = "isbn:";
+	public static final String T_SUBJECT = "subject:";
+	public static final String T_ANY = "";
+
+	private int maxResults = 5;
+	private int startIndex = 0;
+
 	private String key = "AIzaSyBaZwSa7tSjJnWmiCGYnEY087u-P-aGFGE";
-	private String url = "https://www.googleapis.com/books/v1/volumes?maxResults=5&printType=books&orderBy=relevance&q=";// &prettyPrint=false
+	private String url = "https://www.googleapis.com/books/v1/volumes?printType=books&prettyPrint=false&orderBy=relevance&q=";//
+	private String type = T_ANY;
+
+	public void setStartIndex(int startIndex) {
+		this.startIndex = startIndex;
+	}
+
+	public int getStartIndex() {
+		return startIndex;
+	}
+
+	public int getMaxResults() {
+		return maxResults;
+	}
+
+	public void setMaxResults(int maxResults) {
+		if(maxResults >40 || maxResults<0)
+			maxResults = 40;
+		
+		this.maxResults = maxResults;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	public String getKey() {
 		return key;
@@ -15,9 +52,10 @@ public class GoogleBookApiCaller extends ApiCaller {
 		return url;
 	}
 
-	public String findBookofAuthor(String author) {
-		author = ApiCaller.urlEncode(author);
-		URL url_object = ApiCaller.getUrlFromString(url + "inauthor:" + author);
+	public String findBooks(String query) {
+		query = ApiCaller.urlEncode(query);
+		URL url_object = ApiCaller.getUrlFromString(url + type + query
+				+ "&maxResults=" + maxResults + "&startIndex=" + startIndex);
 		String result = ApiCaller.cUrl(url_object);
 		return result;
 	}

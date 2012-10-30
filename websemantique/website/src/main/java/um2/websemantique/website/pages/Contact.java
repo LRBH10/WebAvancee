@@ -12,7 +12,7 @@ public class Contact {
 
 	public String getApiCall() {
 		GoogleBookApiCaller gg =new GoogleBookApiCaller();
-		return gg.findBookofAuthor("yasmina khadra");//*/
+		return gg.findBooks("yasmina khadra");//*/
 	}
 	
 	
