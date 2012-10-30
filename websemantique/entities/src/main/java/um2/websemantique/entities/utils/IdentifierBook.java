@@ -1,8 +1,8 @@
 package um2.websemantique.entities.utils;
 
 public class IdentifierBook {
-	public static final String ISBN10 = "ISBN10";
-	public static final String ISBN13 = "ISBN13";
+	public static final String ISBN10 = "ISBN_10";
+	public static final String ISBN13 = "ISBN_13";
 	public static final String OTHER = "OTHER";
 
 	private String type;
