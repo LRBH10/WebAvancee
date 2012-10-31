@@ -2,20 +2,17 @@ package um2.websemantique.entities.apicallers;
 
 import java.net.URL;
 
+import um2.websemantique.entities.utils.SearchType;
+
 public class GoogleBookApiCaller extends ApiCaller {
 
-	public static final String T_AUTHOR = "inauthor:";
-	public static final String T_TITLE = "intitle:";
-	public static final String T_ISBN = "isbn:";
-	public static final String T_SUBJECT = "subject:";
-	public static final String T_ANY = "";
-
+	
 	private int maxResults = 5;
 	private int startIndex = 0;
 
 	private String key = "AIzaSyBaZwSa7tSjJnWmiCGYnEY087u-P-aGFGE";
 	private String url = "https://www.googleapis.com/books/v1/volumes?printType=books&prettyPrint=false&orderBy=relevance&q=";//
-	private String type = T_ANY;
+	private String type = SearchType.getValueFromType(SearchType.ANY);
 
 	public void setStartIndex(int startIndex) {
 		this.startIndex = startIndex;

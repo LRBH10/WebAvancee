@@ -22,10 +22,10 @@ public class GetterBookAuthor {
 	 *            max book calculed
 	 */
 
-	public void find(String query, String type, int maxResults) {
+	public void find(String query, SearchType type, int maxResults) {
 		GoogleBookApiCaller g = new GoogleBookApiCaller();
 		g.setMaxResults(maxResults);
-		g.setType(type);
+		g.setType(SearchType.getValueFromType(type));
 
 		books = GeneratorFromJSON.createBooks(g.findBooks(query));
 		Author origin = null;
