@@ -41,13 +41,13 @@ public class Main {
 			Resource v = mdb.createClass(ns + "FLUAV");
 			Property p = mdb.createObjectProperty(ns + "AprOrigine");
 
-			tmp.add(m, p, v);
+			mdb.add(m, p, v);
 
 			// Commit the database transaction
 			// tmp.commit();
 
 			System.out.println("Contenu " + tmp.size());
-			tmp.write(System.out, "RDF/XML-ABBREV");
+			mdb.write(System.out, "RDF/XML-ABBREV");
 			// Close the database connection
 			conn.close();
 		} catch (Exception e) {
