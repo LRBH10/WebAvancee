@@ -16,11 +16,13 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import um2.websemantique.entities.base.Author;
 import um2.websemantique.entities.base.Book;
 import um2.websemantique.entities.utils.IdentifierBook;
+import um2.websemantique.ontoligie.sdb.SDBUtil;
 
 /**
  * The class RDFFactory will generate the ontology of the rdf base. It generate
@@ -30,20 +32,18 @@ import um2.websemantique.entities.utils.IdentifierBook;
  */
 public class RDFFactory {
 
-	private String baseName;
+	private String baseName = "base_rdf";
 	private OntModel base;
 	private OntClass authorClass;
 	private String authorNS = "http://fuck.JENA/author#";
 	private OntClass bookClass;
 	private String bookNS = "http://fuck.JENA/book#";
 
-	public RDFFactory(String nameOfBase) {
-
-		this.baseName = nameOfBase;
-		this.loadOntologyModel();
+	public RDFFactory(){
+		this.base = SDBUtil.createOrGetModel(this.baseName);               
 		this.initFactoryClass();
 	}
-
+        
 	/**
 	 * This method is used to initialise the bookClass and the authorClass
 	 * attributes from the rdf base if they exists. If not it calls methods that
@@ -65,45 +65,19 @@ public class RDFFactory {
 				this.bookClass = x;
 			}
 		}
-		if (!existBookClass) {
-			this.createBookClass();
-		}
-		if (!existeAuthorClass) {
+                if (!existeAuthorClass) {
+                    System.out.println("creating author class");
+                        this.base.setNsPrefix("Author", this.authorNS);
 			this.createAuhorClass();
 		}
+		if (!existBookClass) {
+                        System.out.println("creating book class");
+                        this.base.setNsPrefix("Book", this.bookNS);				
+			this.createBookClass();
+		}		
 	}
 
 	public OntModel getBase() {
-		return this.base;
-	}
-
-	/**
-	 * This method will load the base if it exist, if not, it will create the
-	 * base. This method is called only once, in the RDFFactory constructor
-	 * 
-	 * @return en Ontology Model, loaded from the RDF base
-	 */
-	private OntModel loadOntologyModel() {
-		this.base = ModelFactory.createOntologyModel();
-		File f = new File(baseName + ".rdf");
-		if (!f.exists()) {
-			try {
-				f.createNewFile();
-				System.out.println("The Ontology Base : " + baseName
-						+ " has been created");
-				this.base.setNsPrefix("Book", this.bookNS);
-				this.base.setNsPrefix("Author", this.authorNS);
-				FileWriter fstream = new FileWriter(baseName + ".rdf");
-				this.base.write(fstream, "RDF/XML-ABBREV");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} else {
-			System.out.println("The Ontology Base : " + baseName
-					+ " already exists");
-			InputStream in = FileManager.get().open(baseName + ".rdf");
-			this.base.read(in, null);
-		}
 		return this.base;
 	}
 
@@ -155,7 +129,7 @@ public class RDFFactory {
 	public void generateRDFAuthorInstance(Author author) {
 		Individual instance = this.authorClass.createIndividual(author
 				.getGoodRead().getLink());
-
+                System.out.println("Adding instance properties !!!");
 		addPropertyToAuthorInstance("id", instance, author.getGoodRead()
 				.getId());
 		addPropertyToAuthorInstance("name", instance, author.getGoodRead()
@@ -201,7 +175,7 @@ public class RDFFactory {
 						"This is the class we use to create all book individuals",
 						"en");
 		this.bookClass.addLabel("The Book Class", "en");
-
+                
 		addBookProperty("id").setDomain(XSD.ID);
 		addBookProperty("self_link").setDomain(XSD.xstring);
 		addBookProperty("title").setDomain(XSD.xstring);
@@ -235,6 +209,7 @@ public class RDFFactory {
 		addBookProperty("web_reader_link").setDomain(XSD.xstring);
 		addBookProperty("text_snippet").setDomain(XSD.xstring);
 		addBookProperty("currency_code").setDomain(XSD.xstring);
+                
 	}
 
 	private OntProperty addBookProperty(String propertyName) {

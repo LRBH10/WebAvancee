@@ -24,7 +24,7 @@ public class SDBUtil {
 		JDBC.loadDriverMySQL();
 		String jdbcURL = "jdbc:mysql://localhost:3306/rdf_base";
 
-		conn = new DBConnection(jdbcURL, "root", "rabah123", "MySQL");
+		conn = new DBConnection(jdbcURL, "root", "", "MySQL");
 
 		return conn;
 	}
@@ -51,10 +51,10 @@ public class SDBUtil {
 		ModelMaker maker = ModelFactory.createModelRDBMaker(conn);
 		Model tmp = null;
 		if (conn.containsModel(modelname)) {
-			//System.out.println("Opening existing model :" + modelname);
+			System.out.println("Opening existing model :" + modelname);
 			tmp = maker.openModel(modelname, true);
 		} else {
-			//System.out.println("Creating new model :" + modelname);
+			System.out.println("Creating new model :" + modelname);
 			tmp = maker.createModel(modelname, true);
 		}
 		OntModel mdb = ModelFactory.createOntologyModel(

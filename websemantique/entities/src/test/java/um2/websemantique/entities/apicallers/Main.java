@@ -13,7 +13,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		GetterBookAuthor get = new GetterBookAuthor();
-		get.find("yasmina khadra",SearchType.AUTHOR,5);
+		get.find("Yasmina Khadra",SearchType.ANY,10);
 		
 		for (Author author : get.getAuthors()) {
 			System.out.println(author.getLinkAbout());
