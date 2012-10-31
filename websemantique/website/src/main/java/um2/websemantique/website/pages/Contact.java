@@ -10,10 +10,6 @@ public class Contact {
 	
 	
 
-	public String getApiCall() {
-		GoogleBookApiCaller gg =new GoogleBookApiCaller();
-		return gg.findBooks("yasmina khadra");//*/
-	}
 	
 	
 }

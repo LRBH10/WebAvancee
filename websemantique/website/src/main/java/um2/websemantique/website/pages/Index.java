@@ -1,11 +1,11 @@
 package um2.websemantique.website.pages;
 
-import java.util.Date;
-import org.apache.tapestry5.annotations.*;
-import org.apache.tapestry5.ioc.annotations.*;
-import org.apache.tapestry5.corelib.components.*;
-import org.apache.tapestry5.SymbolConstants;
-import org.apache.tapestry5.alerts.AlertManager;
+import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.beaneditor.Validate;
+
+import um2.websemantique.entities.utils.SearchType;
+
 
 /**
  * Start page of application website.
@@ -20,10 +20,14 @@ public class Index {
 	@Persist
 	private String containts;
 
-	
+	@Property
+	@Persist
+	@Validate("required")
+	SearchType type;
+
 	void onValidateFromSearchForm() {
-		containts = search;
-		//return containts;
+		containts = search + type + SearchType.getValueFromType(type);
+		
 	}
 
 }

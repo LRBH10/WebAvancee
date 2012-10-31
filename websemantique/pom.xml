@@ -9,8 +9,8 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>website</module>
 		<module>entities</module>
 		<module>ontoligie</module>
+		<module>website</module>
 	</modules>
 </project>
