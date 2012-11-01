@@ -39,11 +39,11 @@ public class RDFFactory {
 	private OntClass bookClass;
 	private String bookNS = "http://fuck.JENA/book#";
 
-	public RDFFactory(){
-		this.base = SDBUtil.createOrGetModel(this.baseName);               
+	public RDFFactory() {
+		this.base = SDBUtil.createOrGetModel(this.baseName);
 		this.initFactoryClass();
 	}
-        
+
 	/**
 	 * This method is used to initialise the bookClass and the authorClass
 	 * attributes from the rdf base if they exists. If not it calls methods that
@@ -65,16 +65,16 @@ public class RDFFactory {
 				this.bookClass = x;
 			}
 		}
-                if (!existeAuthorClass) {
-                    System.out.println("creating author class");
-                        this.base.setNsPrefix("Author", this.authorNS);
+		if (!existeAuthorClass) {
+			System.out.println("creating author class");
+			this.base.setNsPrefix("Author", this.authorNS);
 			this.createAuhorClass();
 		}
 		if (!existBookClass) {
-                        System.out.println("creating book class");
-                        this.base.setNsPrefix("Book", this.bookNS);				
+			System.out.println("creating book class");
+			this.base.setNsPrefix("Book", this.bookNS);
 			this.createBookClass();
-		}		
+		}
 	}
 
 	public OntModel getBase() {
@@ -90,6 +90,7 @@ public class RDFFactory {
 		this.authorClass.addLabel("The  Author Class", "en");
 		this.authorClass.addComment("The class describint en author", "en");
 
+		addAuthorProperty("link").setDomain(XSD.xstring);
 		addAuthorProperty("id").setDomain(XSD.ID);
 		addAuthorProperty("name").setDomain(XSD.Name);
 		addAuthorProperty("fans_count").setDomain(XSD.xint);
@@ -127,39 +128,48 @@ public class RDFFactory {
 	}
 
 	public void generateRDFAuthorInstance(Author author) {
+
 		Individual instance = this.authorClass.createIndividual(author
-				.getGoodRead().getLink());
-                System.out.println("Adding instance properties !!!");
-		addPropertyToAuthorInstance("id", instance, author.getGoodRead()
-				.getId());
-		addPropertyToAuthorInstance("name", instance, author.getGoodRead()
-				.getName());
-		addPropertyToAuthorInstance("fans_count", instance, author
-				.getGoodRead().getFansCount());
-		addPropertyToAuthorInstance("image_uri", instance, author.getGoodRead()
-				.getImageUrl());
-		addPropertyToAuthorInstance("about", instance, author.getGoodRead()
-				.getAbout());
-		addPropertyToAuthorInstance("works_count", instance, author
-				.getGoodRead().getWorksCount());
-		addPropertyToAuthorInstance("gender", instance, author.getGoodRead()
-				.getGender());
-		addPropertyToAuthorInstance("home_town", instance, author.getGoodRead()
-				.getHometown());
-		addPropertyToAuthorInstance("born_at", instance, author.getGoodRead()
-				.getBornAt());
-		addPropertyToAuthorInstance("died_at", instance, author.getGoodRead()
-				.getDiedAt());
-		addPropertyToAuthorInstance("id_facebook", instance, author
-				.getFacebook().getId());
-		addPropertyToAuthorInstance("likes_facebook", instance, new String(""
-				+ author.getFacebook().getLikes()));
-		addPropertyToAuthorInstance("link_facebook", instance, author
-				.getFacebook().getLink());
-		addPropertyToAuthorInstance("talking_about_count_facebook", instance,
-				new String("" + author.getFacebook().getTalkingAboutCount()));
-		addPropertyToAuthorInstance("name_facebook", instance, author
-				.getFacebook().getName());
+				.getLinkAbout());
+		if (!author.isAuthorGoodReadNull()) {
+			System.out.println("Adding instance properties !!!");
+			addPropertyToAuthorInstance("id", instance, author.getGoodRead()
+					.getId());
+			addPropertyToAuthorInstance("link", instance, author.getGoodRead()
+					.getLink());
+			addPropertyToAuthorInstance("name", instance, author.getGoodRead()
+					.getName());
+			addPropertyToAuthorInstance("fans_count", instance, author
+					.getGoodRead().getFansCount());
+			addPropertyToAuthorInstance("image_uri", instance, author
+					.getGoodRead().getImageUrl());
+			addPropertyToAuthorInstance("about", instance, author.getGoodRead()
+					.getAbout());
+			addPropertyToAuthorInstance("works_count", instance, author
+					.getGoodRead().getWorksCount());
+			addPropertyToAuthorInstance("gender", instance, author
+					.getGoodRead().getGender());
+			addPropertyToAuthorInstance("home_town", instance, author
+					.getGoodRead().getHometown());
+			addPropertyToAuthorInstance("born_at", instance, author
+					.getGoodRead().getBornAt());
+			addPropertyToAuthorInstance("died_at", instance, author
+					.getGoodRead().getDiedAt());
+
+		}
+		if (!author.isAuthorFacebookNull()) {
+			addPropertyToAuthorInstance("id_facebook", instance, author
+					.getFacebook().getId());
+			addPropertyToAuthorInstance("likes_facebook", instance, new String(
+					"" + author.getFacebook().getLikes()));
+			addPropertyToAuthorInstance("link_facebook", instance, author
+					.getFacebook().getLink());
+			addPropertyToAuthorInstance("talking_about_count_facebook",
+					instance, new String(""
+							+ author.getFacebook().getTalkingAboutCount()));
+			addPropertyToAuthorInstance("name_facebook", instance, author
+					.getFacebook().getName());
+		}
 
 	}
 
@@ -175,7 +185,7 @@ public class RDFFactory {
 						"This is the class we use to create all book individuals",
 						"en");
 		this.bookClass.addLabel("The Book Class", "en");
-                
+
 		addBookProperty("id").setDomain(XSD.ID);
 		addBookProperty("self_link").setDomain(XSD.xstring);
 		addBookProperty("title").setDomain(XSD.xstring);
@@ -209,7 +219,7 @@ public class RDFFactory {
 		addBookProperty("web_reader_link").setDomain(XSD.xstring);
 		addBookProperty("text_snippet").setDomain(XSD.xstring);
 		addBookProperty("currency_code").setDomain(XSD.xstring);
-                
+
 	}
 
 	private OntProperty addBookProperty(String propertyName) {
