@@ -69,7 +69,7 @@ public class GetterRDFAuthorBook extends Thread {
 	 *            {@link SearchType}
 	 * @return {@link Response}
 	 */
-	private Response findSPRQL(String query, SearchType type) {
+	public Response findSPRQL(String query, SearchType type) {
 		Response ret = new Response();
 		ret.setContaints("OK");
 		ret.setOK(false);
@@ -81,7 +81,15 @@ public class GetterRDFAuthorBook extends Thread {
 	 */
 	@Override
 	public void run() {
-		
+		findFromWeb(key, typeS);
+	}
+	
+	/**
+	 * find from Web and pill the DATABASE
+	 * @param query 
+	 * @param type
+	 */
+	public void findFromWeb(String query, SearchType type){
 		progress = 25;
 		getweb.find(key, typeS);
 		progress = 50;
@@ -102,6 +110,5 @@ public class GetterRDFAuthorBook extends Thread {
 		}
 		
 		progress = 100;
-
 	}
 }

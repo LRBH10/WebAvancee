@@ -16,6 +16,16 @@
 					</t:form>
 					</div>
      </p:sidebar>
-
+	<div class="row">
+		<div class="span9" >8</div>
+		<div class="span2 well" >
+		<t:zone t:id="counterZone" id="counterZone" t:mixins="zonerefresh" t:period="1">
+			<div class="progress progress-info progress-striped">
+  				<div class="bar" style="width: ${clickCount}%">downloading</div>
+			</div>
+		</t:zone>
+			
+		</div>
+	</div>
 	${containts}
 </html>
