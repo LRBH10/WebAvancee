@@ -82,7 +82,8 @@ public class RDFFactory {
      */
     public static void generateRDFBookInstance(Book book) {
         OntClass bookClass = RDFOntology.getInstanceRDFOntology().getBookClass();
-        Individual instance = bookClass.createIndividual(book.getSelfLink());
+        Individual instance = bookClass.createIndividual(book.getCanonicalVolumeLink());
+        System.out.println(book.getSelfLink());
 
         addPropertyToBookInstance("id", instance, book.getId());
         addPropertyToBookInstance("title", instance, book.getTitle());
@@ -94,7 +95,7 @@ public class RDFFactory {
         addPropertyToBookInstance("language", instance, book.getLanguage());
         addPropertyToBookInstance("preview_link", instance,book.getPreviewLink());
         addPropertyToBookInstance("info_link", instance, book.getInfoLink());
-        addPropertyToBookInstance("canonical_volume_link", instance, book.getCanonicalVolumeLink());
+        addPropertyToBookInstance("link_json", instance, book.getSelfLink());
         addPropertyToBookInstance("average_raiting", instance, book.getAverageRating());
         addPropertyToBookInstance("raiting_count", instance, book.getRatingsCount());
         addPropertyToBookInstance("country", instance, book.getCountry());

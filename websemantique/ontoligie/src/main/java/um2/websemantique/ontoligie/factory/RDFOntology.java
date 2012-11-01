@@ -135,7 +135,7 @@ public class RDFOntology {
 		addBookProperty("language").setRange(XSD.language);
 		addBookProperty("preview_link").setRange(XSD.xstring);
 		addBookProperty("info_link").setRange(XSD.xstring);
-		addBookProperty("canonical_volume_link").setRange(XSD.xstring);
+		addBookProperty("link_json").setRange(XSD.xstring);
 		addBookProperty("category").setRange(XSD.xstring);
 		addBookProperty("average_raiting").setRange(XSD.xfloat);
 		addBookProperty("raiting_count").setRange(XSD.xint);

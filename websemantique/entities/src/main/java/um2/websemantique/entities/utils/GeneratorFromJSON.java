@@ -57,6 +57,12 @@ public class GeneratorFromJSON {
 		accessInfo = json_object.optJSONObject("accessInfo");
 
 		/**
+		 * for all
+		 */
+		book.setSelfLink(getStrFromJSON(json_object, "selfLink"));
+		book.setId(getStrFromJSON(json_object, "id"));
+		
+		/**
 		 * Volume info
 		 */
 		book.setInfoLink(getStrFromJSON(volumeinfo, "infoLink"));

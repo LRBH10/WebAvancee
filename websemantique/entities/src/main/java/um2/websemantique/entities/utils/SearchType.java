@@ -31,11 +31,13 @@ public enum SearchType {
 		int res  = 0;
 		switch (type) {
 		case AUTHOR:
-			res = 40;
+			res = 20;
 			break;
 
 		case ANY :
 			res = 5;
+			break;
+			
 		default:
 			res = 10;
 			break;
