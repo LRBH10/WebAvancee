@@ -75,6 +75,6 @@ public class GetterRDFAuthorBook extends Thread {
 		/**
 		 * To Do
 		 */
-		System.out.println(key  + typeS);
+		
 	}
 }

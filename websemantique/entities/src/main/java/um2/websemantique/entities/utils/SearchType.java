@@ -26,4 +26,21 @@ public enum SearchType {
 
 		return res;
 	}
+	
+	public static int getMaxValueOf(SearchType type){
+		int res  = 0;
+		switch (type) {
+		case AUTHOR:
+			res = 40;
+			break;
+
+		case ANY :
+			res = 5;
+		default:
+			res = 10;
+			break;
+		}
+		
+		return res;
+	}
 }

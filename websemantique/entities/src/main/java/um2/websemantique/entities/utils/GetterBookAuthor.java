@@ -26,9 +26,9 @@ public class GetterBookAuthor {
 	 *            max book calculed
 	 */
 
-	public void find(String query, SearchType type, int maxResults) {
+	public void find(String query, SearchType type) {
 		GoogleBookApiCaller g = new GoogleBookApiCaller();
-		g.setMaxResults(maxResults);
+		g.setMaxResults(SearchType.getMaxValueOf(type));
 		g.setType(SearchType.getValueFromType(type));
 
 		progress = 0;
