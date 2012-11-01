@@ -1,6 +1,5 @@
 package um2.websemantique.website.pages;
 
-import org.apache.regexp.recompile;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
@@ -40,10 +39,16 @@ public class Index {
 		
 	}
 	
+
+	@Property 
+	@Persist
+	Book book;
 	
-	Book getBookAff(){
-		Book ss = new Book();
-		return ss;
+	
+	public Object getAlpha(){
+		book = new Book();
+		book.setTitle("Blazo");
+		return book;
 	}
 	
 	
@@ -55,7 +60,6 @@ public class Index {
 	private Zone counterZone;
 
 	@OnEvent(value = EventConstants.REFRESH)
-
 	Object doFromClicker()
 	{
 	clickCount++;
