@@ -90,41 +90,45 @@ public class RDFFactory {
 		this.authorClass.addLabel("The  Author Class", "en");
 		this.authorClass.addComment("The class describint en author", "en");
 
-		addAuthorProperty("link").setDomain(XSD.xstring);
-		addAuthorProperty("id").setDomain(XSD.ID);
-		addAuthorProperty("name").setDomain(XSD.Name);
-		addAuthorProperty("fans_count").setDomain(XSD.xint);
-		addAuthorProperty("image_uri").setDomain(XSD.xstring);
-		addAuthorProperty("about").setDomain(XSD.xstring);
-		addAuthorProperty("works_count").setDomain(XSD.ID);
-		addAuthorProperty("gender").setDomain(XSD.xstring);
-		addAuthorProperty("home_town").setDomain(XSD.xstring);
-		addAuthorProperty("born_at").setDomain(XSD.xstring);
-		addAuthorProperty("died_at").setDomain(XSD.xstring);
-		addAuthorProperty("id_facebook").setDomain(XSD.ID);
-		addAuthorProperty("name_facebook").setDomain(XSD.xstring);
-		addAuthorProperty("likes_facebook").setDomain(XSD.xint);
-		addAuthorProperty("talking_about_count_facebook").setDomain(XSD.xint);
-		addAuthorProperty("link_facebook").setDomain(XSD.xstring);
+		addAuthorProperty("link").setRange(XSD.xstring);
+		addAuthorProperty("id").setRange(XSD.ID);
+		addAuthorProperty("name").setRange(XSD.Name);
+		addAuthorProperty("fans_count").setRange(XSD.xint);
+		addAuthorProperty("image_uri").setRange(XSD.xstring);
+		addAuthorProperty("about").setRange(XSD.xstring);
+		addAuthorProperty("works_count").setRange(XSD.ID);
+		addAuthorProperty("gender").setRange(XSD.xstring);
+		addAuthorProperty("home_town").setRange(XSD.xstring);
+		addAuthorProperty("born_at").setRange(XSD.xstring);
+		addAuthorProperty("died_at").setRange(XSD.xstring);
+		addAuthorProperty("id_facebook").setRange(XSD.ID);
+		addAuthorProperty("name_facebook").setRange(XSD.xstring);
+		addAuthorProperty("likes_facebook").setRange(XSD.xint);
+		addAuthorProperty("talking_about_count_facebook").setRange(XSD.xint);
+		addAuthorProperty("link_facebook").setRange(XSD.xstring);
 
 	}
 
 	private OntProperty addAuthorProperty(String propertyName) {
 		OntProperty property = this.base.createOntProperty(this.authorClass
 				.getNameSpace() + propertyName);
-		property.setDomain(this.authorClass);
+		property.setRange(this.authorClass);
 		return property;
 	}
 
 	private void addPropertyToAuthorInstance(String propertyName,
 			Individual instance, String literalValue) {
+            if(literalValue != null){
 		Iterator<OntProperty> i = this.authorClass.listDeclaredProperties();
-		while (i.hasNext()) {
+               	while (i.hasNext()) {
 			OntProperty property = i.next();
+                
 			if (property.getLocalName().equals(propertyName)) {
 				instance.addProperty(property, literalValue);
 			}
+              
 		}
+            }
 	}
 
 	public void generateRDFAuthorInstance(Author author) {
@@ -132,7 +136,6 @@ public class RDFFactory {
 		Individual instance = this.authorClass.createIndividual(author
 				.getLinkAbout());
 		if (!author.isAuthorGoodReadNull()) {
-			System.out.println("Adding instance properties !!!");
 			addPropertyToAuthorInstance("id", instance, author.getGoodRead()
 					.getId());
 			addPropertyToAuthorInstance("link", instance, author.getGoodRead()
@@ -186,46 +189,46 @@ public class RDFFactory {
 						"en");
 		this.bookClass.addLabel("The Book Class", "en");
 
-		addBookProperty("id").setDomain(XSD.ID);
-		addBookProperty("self_link").setDomain(XSD.xstring);
-		addBookProperty("title").setDomain(XSD.xstring);
-		addBookProperty("description").setDomain(XSD.xstring);
-		addBookProperty("publisher").setDomain(XSD.Name);
-		addBookProperty("published_date").setDomain(XSD.date);
-		addBookProperty("page_count").setDomain(XSD.xint);
-		addBookProperty("author").setDomain(XSD.Name);
-		addBookProperty("link_author").setDomain(this.authorClass);
-		addBookProperty("isbn_10").setDomain(XSD.xstring);
-		addBookProperty("isbn_13").setDomain(XSD.xstring);
-		addBookProperty("identifier").setDomain(XSD.xstring);
-		addBookProperty("image").setDomain(XSD.xstring);
-		addBookProperty("language").setDomain(XSD.language);
-		addBookProperty("preview_link").setDomain(XSD.xstring);
-		addBookProperty("info_link").setDomain(XSD.xstring);
-		addBookProperty("canonical_volume_link").setDomain(XSD.xstring);
-		addBookProperty("category").setDomain(XSD.xstring);
-		addBookProperty("average_raiting").setDomain(XSD.xfloat);
-		addBookProperty("raiting_count").setDomain(XSD.xint);
-		addBookProperty("country").setDomain(XSD.xstring);
-		addBookProperty("saleability").setDomain(XSD.xstring);
-		addBookProperty("is_ebook").setDomain(XSD.xstring);
-		addBookProperty("price").setDomain(XSD.xfloat);
-		addBookProperty("price_symbol").setDomain(XSD.xstring);
-		addBookProperty("buy_link").setDomain(XSD.xstring);
-		addBookProperty("viewability").setDomain(XSD.xstring);
-		addBookProperty("public_domain").setDomain(XSD.xstring);
-		addBookProperty("epub_link").setDomain(XSD.xstring);
-		addBookProperty("pdf_link").setDomain(XSD.xstring);
-		addBookProperty("web_reader_link").setDomain(XSD.xstring);
-		addBookProperty("text_snippet").setDomain(XSD.xstring);
-		addBookProperty("currency_code").setDomain(XSD.xstring);
+		addBookProperty("id").setRange(XSD.ID);
+		addBookProperty("self_link").setRange(XSD.xstring);
+		addBookProperty("title").setRange(XSD.xstring);
+		addBookProperty("description").setRange(XSD.xstring);
+		addBookProperty("publisher").setRange(XSD.Name);
+		addBookProperty("published_date").setRange(XSD.date);
+		addBookProperty("page_count").setRange(XSD.xint);
+		addBookProperty("author").setRange(XSD.Name);
+		addBookProperty("link_author").setRange(this.authorClass);
+		addBookProperty("isbn_10").setRange(XSD.xstring);
+		addBookProperty("isbn_13").setRange(XSD.xstring);
+		addBookProperty("identifier").setRange(XSD.xstring);
+		addBookProperty("image").setRange(XSD.xstring);
+		addBookProperty("language").setRange(XSD.language);
+		addBookProperty("preview_link").setRange(XSD.xstring);
+		addBookProperty("info_link").setRange(XSD.xstring);
+		addBookProperty("canonical_volume_link").setRange(XSD.xstring);
+		addBookProperty("category").setRange(XSD.xstring);
+		addBookProperty("average_raiting").setRange(XSD.xfloat);
+		addBookProperty("raiting_count").setRange(XSD.xint);
+		addBookProperty("country").setRange(XSD.xstring);
+		addBookProperty("saleability").setRange(XSD.xstring);
+		addBookProperty("is_ebook").setRange(XSD.xstring);
+		addBookProperty("price").setRange(XSD.xfloat);
+		addBookProperty("price_symbol").setRange(XSD.xstring);
+		addBookProperty("buy_link").setRange(XSD.xstring);
+		addBookProperty("viewability").setRange(XSD.xstring);
+		addBookProperty("public_domain").setRange(XSD.xstring);
+		addBookProperty("epub_link").setRange(XSD.xstring);
+		addBookProperty("pdf_link").setRange(XSD.xstring);
+		addBookProperty("web_reader_link").setRange(XSD.xstring);
+		addBookProperty("text_snippet").setRange(XSD.xstring);
+		addBookProperty("currency_code").setRange(XSD.xstring);
 
 	}
 
 	private OntProperty addBookProperty(String propertyName) {
 		OntProperty property = this.base.createOntProperty(this.bookClass
 				.getNameSpace() + propertyName);
-		property.setDomain(this.bookClass);
+		property.setRange(this.bookClass);
 		return property;
 	}
 

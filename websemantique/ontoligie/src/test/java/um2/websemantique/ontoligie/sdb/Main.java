@@ -28,17 +28,16 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		try {
-                    SDBUtil.openConnection();
+                    SDBUtil.openConnection().cleanDB();
                     RDFFactory factory = new RDFFactory();
                     
-                     System.out.println("AFTER factory construcs");
+                    System.out.println("AFTER factory construcs");
                     GetterBookAuthor get = new GetterBookAuthor();
                     get.find("Yasmina Khadra",SearchType.ANY,10);
                     System.out.println("before for!!!");
                     for (Author author : get.getAuthors()) {
-                        if(author != null )
-                            System.out.println(author.getGoodRead().getName());
-			//factory.generateRDFAuthorInstance(author);
+                        
+			factory.generateRDFAuthorInstance(author);
                     }
                     System.out.println("Not DONE !!!");
                     factory.getBase().write(System.out, "RDF/XML-ABBREV");
@@ -52,7 +51,7 @@ public class Main {
 
 			OntClass c = mdb.createClass(ns+"simple");
 			OntProperty p =mdb.createOntProperty(ns+"has");
-			p.setDomain(c);
+			p.setRange(c);
 			p.setRange(XSD.Name);
 			
 			
