@@ -5,6 +5,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.beaneditor.Validate;
 
 import um2.websemantique.entities.utils.SearchType;
+import um2.websemantique.ontoligie.factory.GetterRDFAuthorBook;
 
 
 /**
@@ -26,6 +27,9 @@ public class Index {
 	SearchType type;
 
 	void onValidateFromSearchForm() {
+		
+		GetterRDFAuthorBook g = new  GetterRDFAuthorBook();
+		g.find(search, type);
 		containts = search + type + SearchType.getValueFromType(type);
 		
 	}
