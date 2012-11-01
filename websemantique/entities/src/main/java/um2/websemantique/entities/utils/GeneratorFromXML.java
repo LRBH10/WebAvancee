@@ -52,10 +52,9 @@ public class GeneratorFromXML {
 					.getChild("id");
 			res = id.getValue();
 		} catch (NullPointerException e) {
-			res ="0";
+			res = "0";
 		}
 
-		
 		return res;
 	}
 
@@ -97,6 +96,11 @@ public class GeneratorFromXML {
 	 * @return {@link String}
 	 */
 	public static String getSCFE(Element element, String child) {
-		return element.getChild(child).getValue();
+		String res = null;
+		String val = element.getChild(child).getValue();
+		if (!val.equals("")) {
+			res = val;
+		}
+		return res;
 	}
 }
