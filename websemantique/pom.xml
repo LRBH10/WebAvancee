@@ -13,4 +13,21 @@
 		<module>ontoligie</module>
 		<module>website</module>
 	</modules>
+	<build>
+		<!-- To define the plugin version in your parent POM -->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.5.1</version>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+						<optimize>true</optimize>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>
