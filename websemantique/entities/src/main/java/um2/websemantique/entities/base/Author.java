@@ -1,5 +1,6 @@
 package um2.websemantique.entities.base;
 
+import um2.websemantique.entities.apicallers.ApiCaller;
 import um2.websemantique.entities.apicallers.FacebookAuthorApiCaller;
 import um2.websemantique.entities.apicallers.GoodReadApiCaller;
 import um2.websemantique.entities.utils.GeneratorFromJSON;
@@ -68,7 +69,7 @@ public class Author {
 		} else if (facebook != null) {
 			res = facebook.getLink();
 		} else {
-			res = "www.google.com?q=" + key;
+			res = "www.google.com?q=" + ApiCaller.urlEncode(key).toString();
 		}
 
 		return res;
@@ -106,7 +107,7 @@ public class Author {
 		}
 		return x;
 	}
-	
+
 	public boolean isAuthorGoodReadNull() {
 		boolean x = false;
 		if (this.goodRead == null) {
