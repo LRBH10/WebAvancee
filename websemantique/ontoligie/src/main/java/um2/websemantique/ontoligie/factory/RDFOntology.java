@@ -12,32 +12,33 @@ import com.hp.hpl.jena.vocabulary.XSD;
 import um2.websemantique.ontoligie.sdb.SDBUtil;
 
 /**
- *  A Singleton class that generate our ontology i.e. all classes with their
+ * A Singleton class that generate our ontology i.e. all classes with their
  * properties
+ * 
  * @author GoceDelcev
  */
 public class RDFOntology {
-        private static RDFOntology singleton = null;
-        private String baseName = "base_rdf";
+	private static RDFOntology singleton = null;
+	private String baseName = "base_rdf";
 	private OntModel base;
 	private OntClass authorClass;
 	private String authorNS = "http://fuck.JENA/author#";
 	private OntClass bookClass;
 	private String bookNS = "http://fuck.JENA/book#";
-        
-        public static RDFOntology getInstanceRDFOntology(){
-            if(singleton ==null){
-                singleton = new RDFOntology();
-            }
-            return singleton;
-        }
+
+	public synchronized static RDFOntology getInstanceRDFOntology() {
+		if (singleton == null) {
+			singleton = new RDFOntology();
+		}
+		return singleton;
+	}
 
 	private RDFOntology() {
 		this.base = SDBUtil.createOrGetModel(this.baseName);
 		this.initFactoryClass();
 	}
-        
-        /**
+
+	/**
 	 * This method is used to initialise the bookClass and the authorClass
 	 * attributes from the rdf base if they exists. If not it calls methods that
 	 * will create the 2 classes and make the init after
@@ -70,8 +71,7 @@ public class RDFOntology {
 		}
 	}
 
-        
-        /**
+	/**
 	 * This method creates the Author Class with it's properties
 	 */
 	private void createAuhorClass() {
@@ -105,8 +105,8 @@ public class RDFOntology {
 		property.setRange(this.authorClass);
 		return property;
 	}
-        
-        /**
+
+	/**
 	 * This method creates the Author Class with it's properties
 	 */
 	private void createBookClass() {
@@ -161,21 +161,20 @@ public class RDFOntology {
 		property.setRange(this.bookClass);
 		return property;
 	}
-        
-        
-        public OntModel getModel() {
+
+	public OntModel getModel() {
 		return this.base;
 	}
-        
-        public OntClass getBookClass(){
-            return bookClass;
-        }
-        
-        public OntClass getAuthorClass(){
-            return authorClass;
-        }
-        
-        public void databaseToString(){
-            this.base.write(System.out, "RDF/XML-ABBREV");
-        }
+
+	public OntClass getBookClass() {
+		return bookClass;
+	}
+
+	public OntClass getAuthorClass() {
+		return authorClass;
+	}
+
+	public void databaseToString() {
+		this.base.write(System.out, "RDF/XML-ABBREV");
+	}
 }

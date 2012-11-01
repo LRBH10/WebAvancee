@@ -1,0 +1,27 @@
+<html t:type="layoutWS" title="website Index" t:sidebarTitle="Framework Version"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+	<!-- Most of the page content, including <head>, <body>, etc. tags, comes 
+		from Layout.tml -->
+
+
+	<p:sidebar>
+		<div class="well">
+			<t:form t:id="searchForm" class="form-search">
+				<input t:type="textfield" t:value="search" t:id="search" />
+				<br />
+				<t:select t:id="type" />
+				<br />
+				<br />
+
+				<t:submit t:id="submit" class="btn btn-inverse" style="width: 98%;"
+					value="Recherche" />
+			</t:form>
+		</div>
+	</p:sidebar>
+
+	<div class="row show-grid">
+		<div class="span9" >9</div>
+		<div class="span2">2</div>
+	</div>
+	${containts}
+</html>

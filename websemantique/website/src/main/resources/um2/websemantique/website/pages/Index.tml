@@ -27,5 +27,7 @@
 			
 		</div>
 	</div>
+	
+	<t:beandisplay object="bookaff"/>
 	${containts}
 </html>

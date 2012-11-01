@@ -1,5 +1,6 @@
 package um2.websemantique.website.pages;
 
+import org.apache.regexp.recompile;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
@@ -8,6 +9,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.corelib.components.Zone;
 
+import um2.websemantique.entities.base.Book;
 import um2.websemantique.entities.utils.SearchType;
 import um2.websemantique.ontoligie.factory.GetterRDFAuthorBook;
 
@@ -38,6 +40,11 @@ public class Index {
 		
 	}
 	
+	
+	Book getBookAff(){
+		Book ss = new Book();
+		return ss;
+	}
 	
 	
 	@Property

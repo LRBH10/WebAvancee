@@ -1,16 +1,19 @@
 package um2.websemantique.ontoligie.factory;
 
+import java.util.ArrayList;
+
 import um2.websemantique.entities.base.Author;
 import um2.websemantique.entities.base.Book;
 import um2.websemantique.entities.utils.GetterBookAuthor;
 import um2.websemantique.entities.utils.SearchType;
 import um2.websemantique.ontoligie.utils.Response;
 
-public class GetterRDFAuthorBook extends Thread {
+public class GetterRDFAuthorBook implements Runnable {
 	private String key;
 	private SearchType typeS;
 	private GetterBookAuthor getweb = new GetterBookAuthor();
 	private int progress = 0;
+	//ArrayList<Thread> thrds = new ArrayList<Thread>();
 
 	public int getProgress() {
 		return progress;
@@ -54,7 +57,8 @@ public class GetterRDFAuthorBook extends Thread {
 		if (res.isOK()) {
 			resultat = res.getContaints();
 		} else {
-			this.start();
+			Thread x = new Thread(this);
+			x.start();
 		}
 
 		return resultat;
@@ -79,7 +83,6 @@ public class GetterRDFAuthorBook extends Thread {
 	/**
 	 * get the information into data base
 	 */
-	@Override
 	public void run() {
 		findFromWeb(key, typeS);
 	}
@@ -89,7 +92,7 @@ public class GetterRDFAuthorBook extends Thread {
 	 * @param query 
 	 * @param type
 	 */
-	public void findFromWeb(String query, SearchType type){
+	public synchronized void findFromWeb(String query, SearchType type){
 		progress = 25;
 		getweb.find(key, typeS);
 		progress = 50;
