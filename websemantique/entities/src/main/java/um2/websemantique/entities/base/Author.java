@@ -69,7 +69,7 @@ public class Author {
 		} else if (facebook != null) {
 			res = facebook.getLink();
 		} else {
-			res = "www.google.com?q=" + ApiCaller.urlEncode(key).toString();
+			res = "http://www.google.com?q=" + ApiCaller.urlEncode(key).toString(); 
 		}
 
 		return res;

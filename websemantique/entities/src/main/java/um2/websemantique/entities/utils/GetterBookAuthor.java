@@ -10,7 +10,11 @@ import um2.websemantique.entities.base.Book;
 public class GetterBookAuthor {
 	ArrayList<Author> authors = new ArrayList<Author>();
 	ArrayList<Book> books = new ArrayList<Book>();
+	private int progress;
 
+	public int getProgress() {
+		return progress;
+	}
 	/**
 	 * find all book for an author given
 	 * 
@@ -27,10 +31,16 @@ public class GetterBookAuthor {
 		g.setMaxResults(maxResults);
 		g.setType(SearchType.getValueFromType(type));
 
+		progress = 0;
+		
 		books = GeneratorFromJSON.createBooks(g.findBooks(query));
 		Author origin = null;
 
+		int x = 0;
 		for (Book book : books) {
+			x++;
+			progress =  x * 100 / books.size();
+
 			if (origin == null || origin.isNull()) {
 				origin = new Author(book.getAuthors().get(0));
 				authors.add(origin);
@@ -53,6 +63,7 @@ public class GetterBookAuthor {
 					}
 				}
 			}
+			progress = 100;
 		}
 	}
 
