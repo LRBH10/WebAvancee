@@ -95,4 +95,20 @@ public class Author {
 		}
 		return ret;
 	}
+
+	public boolean isAuthorFacebookNull() {
+		boolean x = false;
+		if (this.facebook == null) {
+			x = true;
+		}
+		return x;
+	}
+	
+	public boolean isAuthorGoodReadNull() {
+		boolean x = false;
+		if (this.goodRead == null) {
+			x = true;
+		}
+		return x;
+	}
 }
