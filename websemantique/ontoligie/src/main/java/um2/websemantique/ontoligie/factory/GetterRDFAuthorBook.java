@@ -45,21 +45,18 @@ public class GetterRDFAuthorBook implements Runnable {
 	 *            {@link SearchType}
 	 * @return result of query
 	 */
-	public String find(String query, SearchType type) {
+	public ResponseQuery find(String query, SearchType type) {
 		key = query;
 		typeS = type;
 
 		ResponseQuery res = findSPRQL(query, type);
 
-		String resultat = "";
-		if (res.isOk()) {
-			resultat = "sss";
-		} else {
+		if(!res.isOk()){
 			Thread x = new Thread(this);
 			x.start();
 		}
 
-		return resultat;
+		return res;
 	}
 
 	/**

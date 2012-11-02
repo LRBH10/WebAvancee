@@ -6,20 +6,15 @@
     <p:sidebar>
     <div class="well">
     
-    <div class="tabbable"> <!-- Only required for left/right tabs -->
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
-    <li><a href="#tab2" data-toggle="tab">Section 2</a></li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
-      <p>I'm in Section 1.</p>
-    </div>
-    <div class="tab-pane" id="tab2">
-      <p>Howdy, I'm in Section 2.</p>
-    </div>
-  </div>
-</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="nav-header ">Search</div>
     <center>
     <t:form t:id="searchForm" class="form-search">
@@ -36,7 +31,51 @@
 			
      </p:sidebar>
 	<div class="row">
-		<div class="span9" ><t:beandisplay object="Alpha" exclude="${Alpha.excludes},excludes"/></div>
+		<div class="span9" >
+		
+		<t:jquery.tabs  t:tabs="TabsDemoTabs1,TabsDemoTabs2,TabsDemoTabs3,TabsDemoTabs4" 
+    t:activePanelId="1">
+    
+    <p:TabsDemoTabs1>
+        <h3>Panel 1</h3>
+        <hr/>
+        content from block 1
+    </p:TabsDemoTabs1>
+    
+    <p:TabsDemoTabs2>
+        <h3>Panel 2</h3>
+        <hr/>    
+        content from block 2
+    </p:TabsDemoTabs2>
+    
+    <p:TabsDemoTabs3>
+        <h3>Panel 3</h3>
+        <hr/>
+        content from block 3
+    </p:TabsDemoTabs3>
+    
+    <p:TabsDemoTabs4>
+       ssss
+    </p:TabsDemoTabs4>
+</t:jquery.tabs>
+    
+    
+    
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<t:beandisplay object="Alpha" exclude="${Alpha.excludes},excludes"/></div>
 		<div class="span2 well" >
 		<t:zone t:id="counterZone" id="counterZone" t:mixins="zonerefresh" t:period="1">
 			<div class="progress progress-info progress-striped">
