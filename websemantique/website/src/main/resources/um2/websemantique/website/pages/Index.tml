@@ -3,10 +3,9 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter">
         <!-- Most of the page content, including <head>, <body>, etc. tags, comes from Layout.tml -->
-
-    
     <p:sidebar>
     <div class="well">
+    <div class="nav-header ">Search</div>
     <t:form t:id="searchForm" class="form-search">
 						<input t:type="textfield" t:value="search" t:id="search" class ="search-query"
 						placeholder="Your Query" /><br/> <br/>
