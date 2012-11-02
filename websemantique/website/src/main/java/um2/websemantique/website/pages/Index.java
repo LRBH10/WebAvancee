@@ -45,9 +45,10 @@ public class Index {
 	Book book;
 	
 	
-	public Object getAlpha(){
+	public Book getAlpha(){
 		book = new Book();
 		book.setTitle("Blazo");
+		book.setBuyLink("ssss");
 		return book;
 	}
 	

@@ -8,16 +8,16 @@
     <p:sidebar>
     <div class="well">
     <t:form t:id="searchForm" class="form-search">
-						<input t:type="textfield" t:value="search" t:id="search"/><br/> 
-						    <t:select t:id="type"/><br/> <br/>
-						 
-							 <t:submit t:id="submit" class="btn btn-inverse" style="width: 98%;"
+						<input t:type="textfield" t:value="search" t:id="search" class ="search-query"
+						placeholder="Your Query" /><br/> <br/>
+						    <t:select t:id="type"/><br/> <br/> <br/>
+						 	 <t:submit t:id="submit" class="btn btn-inverse" style="width: 98%;"
 							value="Recherche" />
 					</t:form>
 					</div>
      </p:sidebar>
 	<div class="row">
-		<div class="span9" ><t:beandisplay object="Alpha"/></div>
+		<div class="span9" ><t:beandisplay object="Alpha" exclude="${Alpha.excludes},excludes"/></div>
 		<div class="span2 well" >
 		<t:zone t:id="counterZone" id="counterZone" t:mixins="zonerefresh" t:period="1">
 			<div class="progress progress-info progress-striped">

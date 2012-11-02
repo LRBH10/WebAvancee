@@ -322,14 +322,14 @@ public class Book {
 	public String getExcludes(){
 		String res ="";
 		if(this.authors.size() == 0){
-			res = "authors";
+			res = "authors,";
 		}
 		if(this.authorslink.size() == 0){
-			res = "authorslink";
+			res = "authorslink,";
 		}
 	
 		if(this.categories.size() == 0){
-			res = "categories";
+			res = "categories,";
 		}
 	
 		res += isExcluded(this.averageRating,"averageRating");
@@ -366,7 +366,7 @@ public class Book {
 	private String isExcluded(String attribute, String name) {
 		String ret ="";
 		if(attribute == null){
-			ret = name;
+			ret = ","+ name;
 		}
 		return ret;
 	}
