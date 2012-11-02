@@ -11,6 +11,7 @@
 	<modules>
 		<module>entities</module>
 		<module>ontoligie</module>
+		<module>webservice</module>
 		<module>website</module>
 	</modules>
 	<build>
