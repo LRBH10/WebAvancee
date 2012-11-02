@@ -1,7 +1,5 @@
 package um2.websemantique.ontoligie.factory;
 
-import java.util.ArrayList;
-
 import um2.websemantique.entities.base.Author;
 import um2.websemantique.entities.base.Book;
 import um2.websemantique.entities.utils.GetterBookAuthor;
