@@ -4,7 +4,7 @@ import um2.websemantique.entities.base.Author;
 import um2.websemantique.entities.base.Book;
 import um2.websemantique.entities.utils.GetterBookAuthor;
 import um2.websemantique.entities.utils.SearchType;
-import um2.websemantique.ontoligie.utils.Response;
+import um2.websemantique.ontoligie.utils.ResponseQuery;
 
 public class GetterRDFAuthorBook implements Runnable {
 	private String key;
@@ -49,11 +49,11 @@ public class GetterRDFAuthorBook implements Runnable {
 		key = query;
 		typeS = type;
 
-		Response res = findSPRQL(query, type);
+		ResponseQuery res = findSPRQL(query, type);
 
 		String resultat = "";
-		if (res.isOK()) {
-			resultat = res.getContaints();
+		if (res.isOk()) {
+			resultat = "sss";
 		} else {
 			Thread x = new Thread(this);
 			x.start();
@@ -69,12 +69,11 @@ public class GetterRDFAuthorBook implements Runnable {
 	 *            that the client want to get
 	 * @param type
 	 *            {@link SearchType}
-	 * @return {@link Response}
+	 * @return {@link ResponseQuery}
 	 */
-	public Response findSPRQL(String query, SearchType type) {
-		Response ret = new Response();
-		ret.setContaints("OK");
-		ret.setOK(false);
+	public ResponseQuery findSPRQL(String query, SearchType type) {
+		ResponseQuery ret = new ResponseQuery();
+		ret.setOk(false);
 		return ret;
 	}
 

@@ -61,7 +61,7 @@ public class GeneratorFromJSON {
 		 */
 		book.setSelfLink(getStrFromJSON(json_object, "selfLink"));
 		book.setId(getStrFromJSON(json_object, "id"));
-		
+
 		/**
 		 * Volume info
 		 */
@@ -213,13 +213,9 @@ public class GeneratorFromJSON {
 		author.setLink(getStrFromJSON(json_object, "link"));
 		author.setName(getStrFromJSON(json_object, "name"));
 
-		if (json_object.has("likes")) {
-			author.setLikes(json_object.optInt("likes"));
-		}
-		if (json_object.has("talking_about_count")) {
-			author.setTalkingAboutCount(json_object
-					.optInt("talking_about_count"));
-		}
+		author.setLikes(getStrFromJSON(json_object, "likes"));
+		author.setTalkingAboutCount(getStrFromJSON(json_object,
+				"talking_about_count"));
 
 		return author;
 	}

@@ -3,9 +3,9 @@ package um2.websemantique.entities.base;
 public class AuthorFacebook {
 
 	private String name;
-	private int likes;
+	private String likes;
 	private String id;
-	private int talkingAboutCount;
+	private String talkingAboutCount;
 	private String link;
 
 	public String getName() {
@@ -20,7 +20,7 @@ public class AuthorFacebook {
 		return id;
 	}
 
-	public int getLikes() {
+	public String getLikes() {
 		return likes;
 	}
 
@@ -28,11 +28,11 @@ public class AuthorFacebook {
 		return link;
 	}
 
-	public int getTalkingAboutCount() {
+	public String getTalkingAboutCount() {
 		return talkingAboutCount;
 	}
 
-	public void setTalkingAboutCount(int talkingAboutCount) {
+	public void setTalkingAboutCount(String talkingAboutCount) {
 		this.talkingAboutCount = talkingAboutCount;
 	}
 
@@ -40,7 +40,7 @@ public class AuthorFacebook {
 		this.id = id;
 	}
 
-	public void setLikes(int likes) {
+	public void setLikes(String likes) {
 		this.likes = likes;
 	}
 

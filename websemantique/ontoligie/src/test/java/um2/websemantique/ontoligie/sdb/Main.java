@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import um2.websemantique.entities.utils.SearchType;
 
 import um2.websemantique.ontoligie.factory.RDFOntology;
-import um2.websemantique.ontoligie.factory.SPARQLquerry;
+import um2.websemantique.ontoligie.factory.SPARQLQuery;
 
 public class Main {
 
@@ -18,6 +18,6 @@ public class Main {
 
 		
 		 SDBUtil.openConnection();
-		 SPARQLquerry.responseSparqlQuerry("Isabelle Eberhardt", SearchType.AUTHOR);
+		 SPARQLQuery.responseSparqlQuerry("Isabelle Eberhardt", SearchType.AUTHOR);
 	}
 }
