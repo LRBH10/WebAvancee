@@ -318,4 +318,58 @@ public class Book {
 	public String toString() {
 		return super.toString();
 	}
+	
+	public String getExcludes(){
+		String res ="";
+		if(this.authors.size() == 0){
+			res = "authors";
+		}
+		if(this.authorslink.size() == 0){
+			res = "authorslink";
+		}
+	
+		if(this.categories.size() == 0){
+			res = "categories";
+		}
+	
+		res += isExcluded(this.averageRating,"averageRating");
+		res += isExcluded(this.buyLink,"buyLink");
+		res += isExcluded(this.canonicalVolumeLink,"canonicalVolumeLink");
+		res += isExcluded(this.country,"country");
+		res += isExcluded(this.currencyCode,"currencyCode");
+		res += isExcluded(this.description,"description");
+		res += isExcluded(this.Ebook,"Ebook");
+		res += isExcluded(this.epubLink,"epubLink");
+		res += isExcluded(this.id,"id");
+		res += isExcluded(this.infoLink,"infoLink");
+		res += isExcluded(this.language,"language");
+		res += isExcluded(this.pageCount,"pageCount");
+		res += isExcluded(this.pdfLink,"pdfLink");
+		res += isExcluded(this.previewLink,"previewLink");
+		res += isExcluded(this.price,"price");
+		res += isExcluded(this.priceSymbol,"priceSymbol");
+		res += isExcluded(this.publicDomain,"publicDomain");
+		res += isExcluded(this.publishedDate,"publishedDate");
+		res += isExcluded(this.publisher,"publisher");
+		res += isExcluded(this.ratingsCount,"ratingsCount");
+		res += isExcluded(this.saleability,"saleability");
+		res += isExcluded(this.selfLink,"selfLink");
+		res += isExcluded(this.textSnippet,"textSnippet");
+		res += isExcluded(this.thumbnail,"thumbnail");
+		res += isExcluded(this.title,"title");
+		res += isExcluded(this.viewability,"viewability");
+		res += isExcluded(this.webReaderLink,"webReaderLink");
+		
+		return res;
+	}
+
+	private String isExcluded(String attribute, String name) {
+		String ret ="";
+		if(attribute == null){
+			ret = name;
+		}
+		return ret;
+	}
+	
+	
 }
