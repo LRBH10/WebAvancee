@@ -4,27 +4,25 @@
  */
 package um2.websemantique.ontoligie.factory;
 
-import com.hp.hpl.jena.graph.query.Query;
-import com.hp.hpl.jena.ontology.Individual;
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.QueryExecutionFactory;
-import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.QuerySolution;
-import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
 import java.util.ArrayList;
+
 import org.openjena.atlas.io.IndentedWriter;
+
 import um2.websemantique.entities.base.Author;
 import um2.websemantique.entities.base.AuthorFacebook;
 import um2.websemantique.entities.base.AuthorGoodRead;
 import um2.websemantique.entities.base.Book;
 import um2.websemantique.entities.utils.SearchType;
-import um2.websemantique.ontoligie.sdb.SDBUtil;
 import um2.websemantique.ontoligie.utils.ResponseQuery;
+
+import com.hp.hpl.jena.query.QueryExecution;
+import com.hp.hpl.jena.query.QueryExecutionFactory;
+import com.hp.hpl.jena.query.QueryFactory;
+import com.hp.hpl.jena.query.QuerySolution;
+import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 /**
  * 
