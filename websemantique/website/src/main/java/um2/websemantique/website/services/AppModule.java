@@ -2,7 +2,7 @@ package um2.websemantique.website.services;
 
 import java.io.IOException;
 
-import org.apache.tapestry5.*;
+import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
@@ -11,6 +11,7 @@ import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.RequestFilter;
 import org.apache.tapestry5.services.RequestHandler;
 import org.apache.tapestry5.services.Response;
+import org.got5.tapestry5.jquery.JQuerySymbolConstants;;
 import org.slf4j.Logger;
 
 /**
@@ -51,6 +52,8 @@ public class AppModule
         // the first locale name is the default when there's no reasonable match).
         configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en");
         configuration.add (SymbolConstants.DEFAULT_STYLESHEET, "context:layoutWS/css/defaultImageau.css");
+        configuration.add (JQuerySymbolConstants.JQUERY_ALIAS, "$imageauQuery");
+        configuration.add (JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "false");
         
     }
 

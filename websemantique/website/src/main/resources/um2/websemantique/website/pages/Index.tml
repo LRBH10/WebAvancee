@@ -5,15 +5,35 @@
         <!-- Most of the page content, including <head>, <body>, etc. tags, comes from Layout.tml -->
     <p:sidebar>
     <div class="well">
+    
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
+    <li><a href="#tab2" data-toggle="tab">Section 2</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <p>I'm in Section 1.</p>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <p>Howdy, I'm in Section 2.</p>
+    </div>
+  </div>
+</div>
     <div class="nav-header ">Search</div>
+    <center>
     <t:form t:id="searchForm" class="form-search">
 						<input t:type="textfield" t:value="search" t:id="search" class ="search-query"
 						placeholder="Your Query" /><br/> <br/>
 						    <t:select t:id="type"/><br/> <br/> <br/>
-						 	 <t:submit t:id="submit" class="btn btn-inverse" style="width: 98%;"
+						 	 
+						 	 <t:submit t:id="submit" class="btn btn-inverse"  style ="width : 50%"
 							value="Recherche" />
 					</t:form>
+				</center>
+			
 					</div>
+			
      </p:sidebar>
 	<div class="row">
 		<div class="span9" ><t:beandisplay object="Alpha" exclude="${Alpha.excludes},excludes"/></div>

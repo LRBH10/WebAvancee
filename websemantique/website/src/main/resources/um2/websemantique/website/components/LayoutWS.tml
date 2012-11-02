@@ -50,11 +50,11 @@
 
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<aside class="span2">
+				<aside class="span3">
 					<!--Sidebar content -->
 					<t:delegate to="sidebar" />
 				</aside>
-				<div class="span10">
+				<div class="span8">
 					<!--Body content -->
 					<t:alerts />
 					<t:body />
