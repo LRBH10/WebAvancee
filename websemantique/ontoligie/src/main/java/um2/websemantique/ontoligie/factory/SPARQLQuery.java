@@ -50,7 +50,7 @@ public class SPARQLQuery {
         for(String query : querys){
             resultExec.addAll(executeSPARQLQuery(query));
         }        
-        return null;
+        return dispatchClasses(resultExec);
     }
     
     private static ResponseQuery dispatchClasses(ArrayList<Resource> listRes ){
