@@ -19,12 +19,12 @@ public class SDBUtil {
 	 * for openning Connection
 	 */
 	public static IDBConnection openConnection() {
+		if (conn == null) {
+			JDBC.loadDriverMySQL();
+			String jdbcURL = "jdbc:mysql://localhost:3306/rdf_base";
 
-		JDBC.loadDriverMySQL();
-		String jdbcURL = "jdbc:mysql://localhost:3306/rdf_base";
-
-		conn = new DBConnection(jdbcURL, "root", "", "MySQL");
-
+			conn = new DBConnection(jdbcURL, "root", "rabah123", "MySQL");
+		}
 		return conn;
 	}
 
@@ -39,10 +39,12 @@ public class SDBUtil {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 *  create a new {@link OntModel} or getting an existing {@link OntModel}
-	 * @param modelname the name to save the Model
+	 * create a new {@link OntModel} or getting an existing {@link OntModel}
+	 * 
+	 * @param modelname
+	 *            the name to save the Model
 	 * @return {@link OntModel}
 	 */
 	public static OntModel createOrGetModel(String modelname) {
@@ -56,11 +58,10 @@ public class SDBUtil {
 			System.out.println("Creating new model :" + modelname);
 			tmp = maker.createModel(modelname, true);
 		}
-		OntModel mdb = ModelFactory.createOntologyModel(
-				OntModelSpec.OWL_MEM, tmp);
+		OntModel mdb = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM,
+				tmp);
 
 		return mdb;
 	}
-	
-	
+
 }

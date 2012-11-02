@@ -41,10 +41,7 @@ public class GetterBookAuthor {
 
 			} else {
 				for (String name : book.getAuthors()) {
-					if (!origin.isNull()
-							&& !name.toLowerCase().equals(
-									origin.getGoodRead().getName()
-											.toLowerCase())) {
+					if (!origin.isNull() && !name.toLowerCase().equals(	origin.getKey() .toLowerCase())) {
 						Author inter = new Author(name);
 						book.getAuthorslink().add(inter.getLinkAbout());
 						authors.add(inter);

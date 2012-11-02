@@ -11,11 +11,20 @@ public class GetterRDFAuthorBook implements Runnable {
 	private SearchType typeS;
 	private GetterBookAuthor getweb = new GetterBookAuthor();
 	private int progress = 0;
-	//ArrayList<Thread> thrds = new ArrayList<Thread>();
+	private int taille = 0;
+
+	public synchronized int getTaille() {
+		return taille;
+	}
+
+	private synchronized void setTaille(int taille) {
+		this.taille += taille;
+	}
 
 	public int getProgress() {
 		return progress;
 	}
+
 	public String getKey() {
 		return key;
 	}
@@ -51,7 +60,7 @@ public class GetterRDFAuthorBook implements Runnable {
 
 		ResponseQuery res = findSPRQL(query, type);
 
-		if(!res.isOk()){
+		if (!res.isOk()) {
 			Thread x = new Thread(this);
 			x.start();
 		}
@@ -80,32 +89,34 @@ public class GetterRDFAuthorBook implements Runnable {
 	public void run() {
 		findFromWeb(key, typeS);
 	}
-	
+
 	/**
 	 * find from Web and pill the DATABASE
-	 * @param query 
+	 * 
+	 * @param query
 	 * @param type
 	 */
-	public synchronized void findFromWeb(String query, SearchType type){
+	public synchronized void findFromWeb(String query, SearchType type) {
 		progress = 25;
 		getweb.find(key, typeS);
 		progress = 50;
 
-		int taille = getweb.getAuthors().size() + getweb.getBooks().size();
+		int taille_ = getweb.getAuthors().size() + getweb.getBooks().size();
+
+		setTaille(taille_);
 		int i = 0;
 
 		for (Author author : getweb.getAuthors()) {
-			progress = 50 + i * 50 / taille;
+			progress = 50 + i * 50 / getTaille();
 			RDFFactory.generateRDFAuthorInstance(author);
 			i++;
 		}
 
 		for (Book book : getweb.getBooks()) {
-			progress = 50 + i * 50 / taille;
+			progress = 50 + i * 50 / getTaille();
 			RDFFactory.generateRDFBookInstance(book);
 			i++;
 		}
-		
-		progress = 100;
+		progress = 0;
 	}
 }

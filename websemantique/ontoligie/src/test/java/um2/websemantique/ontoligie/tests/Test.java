@@ -17,9 +17,7 @@ public class Test {
 		SDBUtil.openConnection().cleanDB();
 		
 		GetterRDFAuthorBook g =new GetterRDFAuthorBook();
-		g.find("yasmina", SearchType.AUTHOR);
-		Thread.sleep(100);
-		g.find("blazo", SearchType.ANY);
+		g.find("azul", SearchType.AUTHOR);
 	}
 
 }

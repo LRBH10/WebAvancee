@@ -1,92 +1,47 @@
-<html t:type="layoutWS" title="website Index"
-      t:sidebarTitle="Framework Version"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
-      xmlns:p="tapestry:parameter">
-        <!-- Most of the page content, including <head>, <body>, etc. tags, comes from Layout.tml -->
-    <p:sidebar>
-    <div class="well">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="nav-header ">Search</div>
-    <center>
-    <t:form t:id="searchForm" class="form-search">
-						<input t:type="textfield" t:value="search" t:id="search" class ="search-query"
-						placeholder="Your Query" /><br/> <br/>
-						    <t:select t:id="type"/><br/> <br/> <br/>
-						 	 
-						 	 <t:submit t:id="submit" class="btn btn-inverse"  style ="width : 50%"
-							value="Recherche" />
-					</t:form>
-				</center>
-			
-					</div>
-			
-     </p:sidebar>
+<html t:type="layoutWS" title="website Index" t:sidebarTitle="Framework Version"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+	<!-- Most of the page content, including <head>, <body>, etc. tags, comes 
+		from Layout.tml -->
+	<p:sidebar>
+		<div class="well">
+
+			<div class="nav-header ">Search</div>
+			<center>
+				<t:form t:id="searchForm" class="form-search">
+					<input t:type="textfield" t:value="search" t:id="search"
+						class="search-query" placeholder="Your Query" />
+					<br />
+					<br />
+					<t:select t:id="type" />
+					<br />
+					<br />
+					<br />
+
+					<t:submit t:id="submit" class="btn btn-inverse" style="width : 50%"
+						value="Recherche" />
+				</t:form>
+			</center>
+
+		</div>
+
+	</p:sidebar>
 	<div class="row">
-		<div class="span9" >
-		
-		
-    
-    
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<t:beandisplay object="Alpha" exclude="${Alpha.excludes},excludes"/></div>
-		<div class="span2 well" >
-		<t:zone t:id="counterZone" id="counterZone" t:mixins="zonerefresh" t:period="1">
-			<div class="progress progress-info progress-striped">
-  				<div class="bar" style="width: ${clickCount}%">downloading</div>
-			</div>
+		<div class="span9">
+		<t:zone t:id="progressZone" id="progressZone" t:mixins="zonerefresh" t:period="1">
+			<t:if test="progress" class = "well">
+					<div class="progress progress-info progress-striped">
+						<div class="bar" style="width: ${progress}%">downloading from web </div>
+					</div>
+			</t:if>
 		</t:zone>
-			
+		
+		
+		
+			<t:beandisplay object="Alpha" exclude="${Alpha.excludes},excludes" />
 		</div>
 	</div>
-	
-	
-	<t:jquery.tabs  t:tabs="TabsDemoTabs1,TabsDemoTabs2,TabsDemoTabs3,TabsDemoTabs4" 
-    t:activePanelId="1">
-    
-    <p:TabsDemoTabs1>
-        <h3>Panel 1</h3>
-        <hr/>
-        content from block 1
-    </p:TabsDemoTabs1>
-    
-    <p:TabsDemoTabs2>
-        <h3>Panel 2</h3>
-        <hr/>    
-        content from block 2
-    </p:TabsDemoTabs2>
-    
-    <p:TabsDemoTabs3>
-        <h3>Panel 3</h3>
-        <hr/>
-        content from block 3
-    </p:TabsDemoTabs3>
-    
-    <p:TabsDemoTabs4>
-       ssss
-    </p:TabsDemoTabs4>
-</t:jquery.tabs>
-    
-	
+
+
+
+
 </html>

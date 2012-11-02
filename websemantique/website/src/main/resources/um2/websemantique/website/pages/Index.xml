@@ -2,26 +2,48 @@
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
 	<!-- Most of the page content, including <head>, <body>, etc. tags, comes 
 		from Layout.tml -->
-
-
 	<p:sidebar>
 		<div class="well">
-			<t:form t:id="searchForm" class="form-search">
-				<input t:type="textfield" t:value="search" t:id="search" />
-				<br />
-				<t:select t:id="type" />
-				<br />
-				<br />
 
-				<t:submit t:id="submit" class="btn btn-inverse" style="width: 98%;"
-					value="Recherche" />
-			</t:form>
+			<div class="nav-header ">Search</div>
+			<center>
+				<t:form t:id="searchForm" class="form-search">
+					<input t:type="textfield" t:value="search" t:id="search"
+						class="search-query" placeholder="Your Query" />
+					<br />
+					<br />
+					<t:select t:id="type" />
+					<br />
+					<br />
+					<br />
+
+					<t:submit t:id="submit" class="btn btn-inverse" style="width : 50%"
+						value="Recherche" />
+				</t:form>
+			</center>
+
 		</div>
-	</p:sidebar>
 
-	<div class="row show-grid">
-		<div class="span9" >9</div>
-		<div class="span2">2</div>
+	</p:sidebar>
+	<div class="row">
+		<div class="span9">
+			<t:beandisplay object="Alpha" exclude="${Alpha.excludes},excludes" />
+		</div>
+
+		<t:zone t:id="progressZone" id="progressZone" t:mixins="zonerefresh"
+			<t:if test="progress">
+				<div class="span2 well">
+					t:period="1">
+					<div class="progress progress-info progress-striped">
+						<div class="bar" style="width: ${progress}%">downloading from web </div>
+					</div>
+				</div>
+			</t:if>
+		</t:zone>
+
 	</div>
-	${containts}
+
+
+
+
 </html>
