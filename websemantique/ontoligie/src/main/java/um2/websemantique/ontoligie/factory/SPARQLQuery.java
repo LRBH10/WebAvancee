@@ -23,200 +23,235 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import um2.websemantique.entities.apicallers.GoodReadApiCaller;
+import um2.websemantique.ontoligie.utils.VocabularyAutheur;
+import um2.websemantique.ontoligie.utils.VocabularyBook;
 
 /**
- * 
+ *
  * @author GoceDelcev
  */
 public class SPARQLQuery {
 
-	public static final String NL = System.getProperty("line.separator");
+    public static final String NL = System.getProperty("line.separator");
 
-	public static ResponseQuery responseSparqlQuerry(String recherche,
-			SearchType typeResearch) {
+    public static ResponseQuery responseSPARQLQuerry(String recherche,
+            SearchType typeResearch) {
+        
+         
+        
 
-		if (typeResearch.equals(SearchType.AUTHOR)) {
-			createAuthorFromSPARQL(executeSPARQLQuery(createSparqlQuerry(
-					recherche, typeResearch)));
-		}
-		if (typeResearch.equals(SearchType.TITLE)) {
-			createBookFromSPARQL(executeSPARQLQuery(createSparqlQuerry(
-					recherche, typeResearch)));
-		}
-		// executeSPARQLQuery( createSparqlQuerry(recherche, typeResearch) ) ;
+        return null;
+    }
+    
+    public static ArrayList<String> createSPARQLQuerys(String recherche , SearchType type){
+        ArrayList<String> result = new ArrayList<String>(); 
+        String [] words = recherche.split(" ");
+        for(String word : words){
+            result.add( createSPARQLQuerry(word, type) );
+        }
+        return result;
+    }
 
-		return null;
-	}
+    /**
+     * Method that generates instance of book from a resource
+     *
+     * @param list the result from executeSPARQLquery
+     * @return the new generated book
+     */
+    public static Book createBookFromSPARQL(ArrayList<Resource> list) {
+        Resource res = list.get(0);
+        // Book result = new Book();
 
-	/**
-	 * Method that generates instance of book from a resource
-	 * 
-	 * @param list
-	 *            the result from executeSPARQLquery
-	 * @return the new generated book
-	 */
-	public static Book createBookFromSPARQL(ArrayList<Resource> list) {
-		Resource res = list.get(0);
-		// Book result = new Book();
+        StmtIterator i = res.listProperties();
+        while (i.hasNext()) {
+            System.out.println(i.next().getLiteral().getString());
+        }
 
-		StmtIterator i = res.listProperties();
-		while (i.hasNext()) {
-			System.out.println(i.next().getLiteral().getString());
-		}
+        return null;
+    }
 
-		return null;
-	}
+    /**
+     * Method that generates list of author instances from resources
+     *
+     * @param list the result from executeSPARQLquery
+     * @return the new generated author
+     */
+    public static ArrayList<Author> createAuthorFromSPARQL(ArrayList<Resource> list) {
+        ArrayList<Author> result = new ArrayList<Author>();
+        
+        for(Resource res : list){
+            result.add(new Author(createGoodreadAuthor( res ), createFacebookAuthor( res )));            
+        }
+        return result;
+    }
+    
+    /**
+     * Method that generates AuthorGoodRead instance from Resource
+     * 
+     * @param res the resource
+     * @return the new generated instance
+     */
+    private static AuthorGoodRead createGoodreadAuthor(Resource res){
+        
+        AuthorGoodRead grAuthor = new AuthorGoodRead();
+        StmtIterator i = res.listProperties();
+        while (i.hasNext()) {
+            Statement x = i.next();
+            String literalValue = x.getLiteral().getString();
+            String propertyValue = x.getPredicate().getLocalName();
+            System.out.println(propertyValue + " --- " + literalValue);
+            
+            if (propertyValue.equals(VocabularyAutheur.googreadIdAutheur)) {
+                grAuthor.setId(literalValue);
+            }
+            if (propertyValue.equals(VocabularyAutheur.googreadName)) {
+                grAuthor.setName(literalValue);
+            }
+            if (propertyValue.equals(VocabularyAutheur.goodreadLink)) {
+                grAuthor.setLink(literalValue);
+            }
+            if (propertyValue.equals(VocabularyAutheur.goodreadFansCount)) {
+                grAuthor.setFansCount(literalValue);
+            }
+            if (propertyValue.equals(VocabularyAutheur.goodreadImageUri)) {
+                grAuthor.setImageUrl(literalValue);
+            }
+            if (propertyValue.equals(VocabularyAutheur.goodreadAbout)) {
+                grAuthor.setAbout(literalValue);
+            }
+            if (propertyValue.equals(VocabularyAutheur.goodreadWorksCount)) {
+                grAuthor.setWorksCount(literalValue);
+            }
+            if (propertyValue.equals(VocabularyAutheur.goodreadSex)) {
+                grAuthor.setSex(literalValue);
+            }
+            if (propertyValue.equals(VocabularyAutheur.goodreadHomeTown)) {
+                grAuthor.setHometown(literalValue);
+            }
+            if (propertyValue.equals(VocabularyAutheur.goodreadBornAt)) {
+                grAuthor.setBornAt(literalValue);
+            }
+            if (propertyValue.equals(VocabularyAutheur.goodreadDiedAt)) {
+                grAuthor.setDiedAt(literalValue);
+            }
+        }
+        return grAuthor;
+    }
+    
+    /**
+     * Method that generates AuthorFacebook instance from Resource
+     * @param res the resource
+     * @return the new generated instance
+     */
+    private static AuthorFacebook createFacebookAuthor(Resource res){
+        AuthorFacebook fbAuthor = new AuthorFacebook();
+        
+        StmtIterator i = res.listProperties();
+        while (i.hasNext()) {
+            Statement x = i.next();
+            String literalValue = x.getLiteral().getString();
+            String propertyValue = x.getPredicate().getLocalName();
+            System.out.println(propertyValue + " --- " + literalValue);
+            
+            if (propertyValue.equals(VocabularyAutheur.facebookName)) {
+                fbAuthor.setName(literalValue);
+            }
+            if (propertyValue.equals(VocabularyAutheur.facebookLikes)) {
+                fbAuthor.setLikes(literalValue);
+            }
+            if (propertyValue.equals(VocabularyAutheur.facebookLink)) {
+                fbAuthor.setLink(literalValue);
+            }
+            if (propertyValue.equals(VocabularyAutheur.facebookIdAutheur)) {
+                fbAuthor.setId(literalValue);
+            }
 
-	/**
-	 * Method that generates instance of author from a resource
-	 * 
-	 * @param list
-	 *            the result from executeSPARQLquery
-	 * @return the new generated author
-	 */
-	public static Author createAuthorFromSPARQL(ArrayList<Resource> list) {
+            if (propertyValue.equals(VocabularyAutheur.facebookTalkingAboutCount)) {
+                fbAuthor.setTalkingAboutCount(literalValue);
+            }
+        }
+        return fbAuthor;
+    }
 
-		Resource res = list.get(0);
-		AuthorGoodRead grAuthor = new AuthorGoodRead();
-		AuthorFacebook fbAuthor = new AuthorFacebook();
+    /**
+     * Method that execute a SPARQL query passed by parameter
+     *
+     * @param queryString this is the SPARQL query that will be executed
+     * @return The generated list of Resources
+     */
+    public static ArrayList<Resource> executeSPARQLQuery(String queryString) {
 
-		StmtIterator i = res.listProperties();
-		while (i.hasNext()) {
-			Statement x = i.next();
-			String literalValue = x.getLiteral().getString();
-			String propertyValue = x.getPredicate().getLocalName();
-			System.out.println( propertyValue + " --- " + literalValue);
+        ArrayList<Resource> result = new ArrayList<Resource>();
+        com.hp.hpl.jena.query.Query query = QueryFactory.create(queryString);
+        query.serialize(new IndentedWriter(System.out, true));
+        System.out.println();
+        QueryExecution qexec = QueryExecutionFactory.create(query, RDFOntology
+                .getInstanceRDFOntology().getModel());
+        try {
+            ResultSet rs = qexec.execSelect();
+            for (; rs.hasNext();) {
+                QuerySolution rb = rs.nextSolution();
+                // Resource z = (Resource) rb.getResource("individu");
+                result.add((Resource) rb.getResource("individu"));
+                // System.out.println("Individual : "+z.getNameSpace());
+            }
+        } finally {
+            qexec.close();
+        }
+        return result;
+    }
 
-			if (propertyValue.equals("id")) {
-				grAuthor.setId(literalValue);
-			}
-			if (propertyValue.equals("name")) {
-				grAuthor.setName(literalValue);
-			}
-			if (propertyValue.equals("link")) {
-				grAuthor.setLink(literalValue);
-			}
-			if (propertyValue.equals("fans_count")) {
-				grAuthor.setFansCount(literalValue);
-			}
-			if (propertyValue.equals("image_uri")) {
-				grAuthor.setImageUrl(literalValue);
-			}
-			if (propertyValue.equals("about")) {
-				grAuthor.setAbout(literalValue);
-			}
-			if (propertyValue.equals("works_count")) {
-				grAuthor.setWorksCount(literalValue);
-			}
-			if (propertyValue.equals("gender")) {
-				grAuthor.setSex(literalValue);
-			}
-			if (propertyValue.equals("home_town")) {
-				grAuthor.setHometown(literalValue);
-			}
-			if (propertyValue.equals("born_at")) {
-				grAuthor.setBornAt(literalValue);
-			}
-			if (propertyValue.equals("died_at")) {
-				grAuthor.setDiedAt(literalValue);
-			}
-			if (propertyValue.equals("name_facebook")) {
-				fbAuthor.setName(literalValue);
-			}
-			if (propertyValue.equals("likes_facebook")) {
-				fbAuthor.setLikes(literalValue);
-			}
-			if (propertyValue.equals("link_facebook")) {
-				fbAuthor.setLink(literalValue);
-			}
-			if (propertyValue.equals("id_facebook")) {
-				fbAuthor.setId(literalValue);
-			}
+    /**
+     * Method that generate the SPARQL query
+     *
+     * @param content The content of the searched value
+     * @param typeResearch The type if the searched value
+     * @return The generated SPARQL query SPARQL
+     */
+    private static String createSPARQLQuerry(String content,
+            SearchType typeResearch) {
 
-			if (propertyValue.equals("talking_about_count_facebook")) {
-				fbAuthor.setTalkingAboutCount(literalValue);
-			}
+        String prefixBook = "PREFIX book: <"
+                + RDFOntology.getInstanceRDFOntology().getBookClass()
+                .getNameSpace() + ">";
+        String prefixAutheur = "PREFIX author: <"
+                + RDFOntology.getInstanceRDFOntology().getAuthorClass()
+                .getNameSpace() + ">";
+        String queryString = "";
+        switch (typeResearch) {
+            case AUTHOR:
+                queryString = prefixAutheur + NL
+                        + "SELECT ?individu  "
+                        + "WHERE {"
+                            + "{?individu author:" + VocabularyAutheur.googreadName + " ?name . "
+                            + "FILTER regex( ?name,\"" + content + "\" , \"i\" ) }"
+                                + "UNION"
+                            + "{?individu author:" + VocabularyAutheur.facebookName + " ?name . "
+                            + "FILTER regex( ?name,\"" + content + "\" , \"i\" ) }";
+                ;
+                break;
+            case ISBN:
+                queryString = prefixBook + NL
+                        + "SELECT ?individu  "
+                        + "WHERE {"
+                            + "{?individu book:"+VocabularyBook.isbn10+" ?isbn ."
+                            + "FILTER regex( ?isbn \""+ content + "\" , \"i\" ) }"
+                                + "UNION"
+                            +"{?individu book:"+VocabularyBook.isbn13+" ?isbn ."
+                            + "FILTER regex( ?isbn \""+ content + "\" , \"i\" ) }";
+                break;
+            case TITLE:
+                queryString = prefixBook + NL
+                        + "SELECT ?individu  WHERE {?individu book:"+VocabularyBook.title+" ?title"
+                        + "FILTER regex( ?title \""+ content + "\" , \"i\" ) }";
+                break;
+                
+            default: // FOR ANY
+                queryString = "";
+                break;
+        }
 
-		}
-
-		return new Author(grAuthor, fbAuthor);
-	}
-
-	/**
-	 * Method that execute a SPARQL query passed by parameter
-	 * 
-	 * @param queryString
-	 *            this is the SPARQL query that will be executed
-	 * @return The generated list of Resources
-	 */
-	public static ArrayList<Resource> executeSPARQLQuery(String queryString) {
-
-		ArrayList<Resource> result = new ArrayList<Resource>();
-		com.hp.hpl.jena.query.Query query = QueryFactory.create(queryString);
-		query.serialize(new IndentedWriter(System.out, true));
-		System.out.println();
-		QueryExecution qexec = QueryExecutionFactory.create(query, RDFOntology
-				.getInstanceRDFOntology().getModel());
-		try {
-			ResultSet rs = qexec.execSelect();
-			for (; rs.hasNext();) {
-				QuerySolution rb = rs.nextSolution();
-				// Resource z = (Resource) rb.getResource("individu");
-				result.add((Resource) rb.getResource("individu"));
-				// System.out.println("Individual : "+z.getNameSpace());
-			}
-		} finally {
-			qexec.close();
-		}
-		return result;
-	}
-
-	/**
-	 * Method that generate the SPARQL query
-	 * 
-	 * @param content
-	 *            The content of the searched value
-	 * @param typeResearch
-	 *            The type if the searched value
-	 * @return The generated SPARQL query SPARQL
-	 */
-	private static String createSparqlQuerry(String content,
-			SearchType typeResearch) {
-
-		String prefixBook = "PREFIX book: <"
-				+ RDFOntology.getInstanceRDFOntology().getBookClass()
-						.getNameSpace() + ">";
-		String prefixAutheur = "PREFIX author: <"
-				+ RDFOntology.getInstanceRDFOntology().getAuthorClass()
-						.getNameSpace() + ">";
-		String queryString = "";
-		switch (typeResearch) {
-		case AUTHOR:
-			queryString = prefixAutheur + NL
-					+ "SELECT ?individu  WHERE {?individu author:name \""
-					+ content + "\" }";
-			;
-			break;
-		case ISBN:
-			queryString = prefixBook + NL
-					+ "SELECT ?individu  WHERE {?individu book:isbn_10 \""
-					+ content + "\" }";
-			;
-			break;
-		case TITLE:
-			queryString = prefixBook + NL
-					+ "SELECT ?individu  WHERE {?individu book:title \""
-					+ content + "\" }";
-			break;
-		case SUBJECT:
-			queryString = "subject:";
-			break;
-
-		default: // FOR ANY
-			queryString = "";
-			break;
-		}
-
-		return queryString;
-	}
+        return queryString;
+    }
 }
