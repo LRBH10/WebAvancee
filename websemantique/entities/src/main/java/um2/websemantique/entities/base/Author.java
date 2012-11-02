@@ -34,7 +34,7 @@ public class Author {
 	 * @param fauthor
 	 *            {@link AuthorFacebook}
 	 */
-	Author(AuthorGoodRead gauthor, AuthorFacebook fauthor) {
+	public Author(AuthorGoodRead gauthor, AuthorFacebook fauthor) {
 		goodRead = gauthor;
 		facebook = fauthor;
 	}
