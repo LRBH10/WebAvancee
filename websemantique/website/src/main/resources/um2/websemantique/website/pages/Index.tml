@@ -33,32 +33,7 @@
 	<div class="row">
 		<div class="span9" >
 		
-		<t:jquery.tabs  t:tabs="TabsDemoTabs1,TabsDemoTabs2,TabsDemoTabs3,TabsDemoTabs4" 
-    t:activePanelId="1">
-    
-    <p:TabsDemoTabs1>
-        <h3>Panel 1</h3>
-        <hr/>
-        content from block 1
-    </p:TabsDemoTabs1>
-    
-    <p:TabsDemoTabs2>
-        <h3>Panel 2</h3>
-        <hr/>    
-        content from block 2
-    </p:TabsDemoTabs2>
-    
-    <p:TabsDemoTabs3>
-        <h3>Panel 3</h3>
-        <hr/>
-        content from block 3
-    </p:TabsDemoTabs3>
-    
-    <p:TabsDemoTabs4>
-       ssss
-    </p:TabsDemoTabs4>
-</t:jquery.tabs>
-    
+		
     
     
 		
@@ -87,5 +62,31 @@
 	</div>
 	
 	
-	${containts}
+	<t:jquery.tabs  t:tabs="TabsDemoTabs1,TabsDemoTabs2,TabsDemoTabs3,TabsDemoTabs4" 
+    t:activePanelId="1">
+    
+    <p:TabsDemoTabs1>
+        <h3>Panel 1</h3>
+        <hr/>
+        content from block 1
+    </p:TabsDemoTabs1>
+    
+    <p:TabsDemoTabs2>
+        <h3>Panel 2</h3>
+        <hr/>    
+        content from block 2
+    </p:TabsDemoTabs2>
+    
+    <p:TabsDemoTabs3>
+        <h3>Panel 3</h3>
+        <hr/>
+        content from block 3
+    </p:TabsDemoTabs3>
+    
+    <p:TabsDemoTabs4>
+       ssss
+    </p:TabsDemoTabs4>
+</t:jquery.tabs>
+    
+	
 </html>

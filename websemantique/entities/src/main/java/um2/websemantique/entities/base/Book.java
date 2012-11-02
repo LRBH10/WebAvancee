@@ -2,9 +2,9 @@ package um2.websemantique.entities.base;
 
 import java.util.ArrayList;
 
-import com.sun.istack.internal.NotNull;
-
 import um2.websemantique.entities.utils.IdentifierBook;
+
+
 
 public class Book {
 	private String id;
