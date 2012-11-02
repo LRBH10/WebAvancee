@@ -18,7 +18,7 @@ public class Main {
 		 SDBUtil.openConnection();
                  //GetterRDFAuthorBook g = new GetterRDFAuthorBook();
                  //g.find("Isabelle Eberhardt", SearchType.ANY);
-                     RDFOntology.getInstanceRDFOntology().databaseToString();
+                 //RDFOntology.getInstanceRDFOntology().databaseToString();
 		 //SPARQLQuery.responseSparqlQuerry("Isabelle Eberhardt", SearchType.AUTHOR);
                  /*
                  String test = "Blazo Nastov";
@@ -27,6 +27,6 @@ public class Main {
                      System.out.println(r);
                  }
                  */
-                 //SPARQLQuery.responseSparqlQuerry("Eberhardt Isabelle", SearchType.AUTHOR);
+                 SPARQLQuery.responseSPARQLQuerry("Eberhardt Isabelle", SearchType.AUTHOR);
 	}
 }

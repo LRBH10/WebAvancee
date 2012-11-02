@@ -22,7 +22,15 @@ public class ResponseQuery {
 		this.key = key;
 		this.type = type;
 	}
-
+        
+        public void setAuthors( ArrayList<Author> list ){
+            authors = list;
+        }
+        
+        public void setBooks(ArrayList<Book> list){
+            books = list;
+        }
+        
 	public boolean isOk() {
 		return ok;
 	}
