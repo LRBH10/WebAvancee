@@ -8,7 +8,7 @@ public class AuthorGoodRead {
 	private String imageUrl;
 	private String about;
 	private String worksCount;
-	private String gender;
+	private String sex;
 	private String hometown;
 	private String bornAt;
 	private String diedAt;
@@ -29,8 +29,8 @@ public class AuthorGoodRead {
 		return fansCount;
 	}
 
-	public String getGender() {
-		return gender;
+	public String getSex() {
+		return sex;
 	}
 
 	public String getHometown() {
@@ -73,8 +73,8 @@ public class AuthorGoodRead {
 		this.fansCount = fansCount;
 	}
 
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setSex(String gender) {
+		this.sex = gender;
 	}
 
 	public void setHometown(String hometown) {

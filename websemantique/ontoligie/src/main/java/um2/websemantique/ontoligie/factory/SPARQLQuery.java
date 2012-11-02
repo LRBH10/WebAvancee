@@ -87,7 +87,7 @@ public class SPARQLQuery {
 			Statement x = i.next();
 			String literalValue = x.getLiteral().getString();
 			String propertyValue = x.getPredicate().getLocalName();
-			// System.out.println( propertyValue + " --- " + literalValue);
+			System.out.println( propertyValue + " --- " + literalValue);
 
 			if (propertyValue.equals("id")) {
 				grAuthor.setId(literalValue);
@@ -111,7 +111,7 @@ public class SPARQLQuery {
 				grAuthor.setWorksCount(literalValue);
 			}
 			if (propertyValue.equals("gender")) {
-				grAuthor.setGender(literalValue);
+				grAuthor.setSex(literalValue);
 			}
 			if (propertyValue.equals("home_town")) {
 				grAuthor.setHometown(literalValue);

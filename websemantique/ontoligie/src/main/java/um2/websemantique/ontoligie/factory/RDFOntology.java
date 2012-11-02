@@ -10,6 +10,8 @@ import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.XSD;
 import um2.websemantique.ontoligie.sdb.SDBUtil;
+import um2.websemantique.ontoligie.utils.VocabularyAutheur;
+import um2.websemantique.ontoligie.utils.VocabularyBook;
 
 /**
  * A Singleton class that generate our ontology i.e. all classes with their
@@ -80,29 +82,31 @@ public class RDFOntology {
 		this.authorClass.addLabel("The  Author Class", "en");
 		this.authorClass.addComment("The class describint en author", "en");
 
-		addAuthorProperty("link").setRange(XSD.xstring);
-		addAuthorProperty("id").setRange(XSD.ID);
-		addAuthorProperty("name").setRange(XSD.Name);
-		addAuthorProperty("fans_count").setRange(XSD.xint);
-		addAuthorProperty("image_uri").setRange(XSD.xstring);
-		addAuthorProperty("about").setRange(XSD.xstring);
-		addAuthorProperty("works_count").setRange(XSD.ID);
-		addAuthorProperty("gender").setRange(XSD.xstring);
-		addAuthorProperty("home_town").setRange(XSD.xstring);
-		addAuthorProperty("born_at").setRange(XSD.xstring);
-		addAuthorProperty("died_at").setRange(XSD.xstring);
-		addAuthorProperty("id_facebook").setRange(XSD.ID);
-		addAuthorProperty("name_facebook").setRange(XSD.xstring);
-		addAuthorProperty("likes_facebook").setRange(XSD.xint);
-		addAuthorProperty("talking_about_count_facebook").setRange(XSD.xint);
-		addAuthorProperty("link_facebook").setRange(XSD.xstring);
+		addAuthorProperty(VocabularyAutheur.facebookIdAutheur);
+		addAuthorProperty(VocabularyAutheur.facebookLikes);
+		addAuthorProperty(VocabularyAutheur.facebookLink);
+		addAuthorProperty(VocabularyAutheur.facebookName);
+		addAuthorProperty(VocabularyAutheur.facebookTalkingAboutCount);
+                
+		addAuthorProperty(VocabularyAutheur.goodreadAbout);
+		addAuthorProperty(VocabularyAutheur.goodreadBornAt);
+		addAuthorProperty(VocabularyAutheur.goodreadDiedAt);
+		addAuthorProperty(VocabularyAutheur.goodreadFansCount);
+		addAuthorProperty(VocabularyAutheur.goodreadHomeTown);
+		addAuthorProperty(VocabularyAutheur.goodreadImageUri);
+		addAuthorProperty(VocabularyAutheur.goodreadLink);
+		addAuthorProperty(VocabularyAutheur.goodreadSex);
+		addAuthorProperty(VocabularyAutheur.goodreadWorksCount);
+		addAuthorProperty(VocabularyAutheur.googreadIdAutheur);
+		addAuthorProperty(VocabularyAutheur.googreadName);
 
 	}
 
 	private OntProperty addAuthorProperty(String propertyName) {
 		OntProperty property = this.base.createOntProperty(this.authorClass
 				.getNameSpace() + propertyName);
-		property.setRange(this.authorClass);
+		property.setDomain(this.authorClass);
+                property.setRange(XSD.xstring);
 		return property;
 	}
 
@@ -119,46 +123,55 @@ public class RDFOntology {
 						"en");
 		this.bookClass.addLabel("The Book Class", "en");
 
-		addBookProperty("id").setRange(XSD.ID);
-		addBookProperty("self_link").setRange(XSD.xstring);
-		addBookProperty("title").setRange(XSD.xstring);
-		addBookProperty("description").setRange(XSD.xstring);
-		addBookProperty("publisher").setRange(XSD.Name);
-		addBookProperty("published_date").setRange(XSD.date);
-		addBookProperty("page_count").setRange(XSD.xint);
-		addBookProperty("author").setRange(XSD.Name);
-		addBookProperty("link_author").setRange(this.authorClass);
-		addBookProperty("isbn_10").setRange(XSD.xstring);
-		addBookProperty("isbn_13").setRange(XSD.xstring);
-		addBookProperty("identifier").setRange(XSD.xstring);
-		addBookProperty("image").setRange(XSD.xstring);
-		addBookProperty("language").setRange(XSD.language);
-		addBookProperty("preview_link").setRange(XSD.xstring);
-		addBookProperty("info_link").setRange(XSD.xstring);
-		addBookProperty("link_json").setRange(XSD.xstring);
-		addBookProperty("category").setRange(XSD.xstring);
-		addBookProperty("average_raiting").setRange(XSD.xfloat);
-		addBookProperty("raiting_count").setRange(XSD.xint);
-		addBookProperty("country").setRange(XSD.xstring);
-		addBookProperty("saleability").setRange(XSD.xstring);
-		addBookProperty("is_ebook").setRange(XSD.xstring);
-		addBookProperty("price").setRange(XSD.xfloat);
-		addBookProperty("price_symbol").setRange(XSD.xstring);
-		addBookProperty("buy_link").setRange(XSD.xstring);
-		addBookProperty("viewability").setRange(XSD.xstring);
-		addBookProperty("public_domain").setRange(XSD.xstring);
-		addBookProperty("epub_link").setRange(XSD.xstring);
-		addBookProperty("pdf_link").setRange(XSD.xstring);
-		addBookProperty("web_reader_link").setRange(XSD.xstring);
-		addBookProperty("text_snippet").setRange(XSD.xstring);
-		addBookProperty("currency_code").setRange(XSD.xstring);
+		addBookProperty(VocabularyBook.author);
+		addBookProperty(VocabularyBook.averageRaiting);
+		addBookProperty(VocabularyBook.buyLink);
+		addBookProperty(VocabularyBook.category);
+		addBookProperty(VocabularyBook.country);
+		addBookProperty(VocabularyBook.currencyCode);
+		addBookProperty(VocabularyBook.description);
+		addBookProperty(VocabularyBook.epubLink);
+		addBookProperty(VocabularyBook.idBook);
+		addBookProperty(VocabularyBook.identifier);
+		addBookProperty(VocabularyBook.image);
+		addBookProperty(VocabularyBook.infoLink);
+		addBookProperty(VocabularyBook.isEbook);
+		addBookProperty(VocabularyBook.isbn10);
+		addBookProperty(VocabularyBook.isbn13);
+		addBookProperty(VocabularyBook.jsonLink);
+		addBookProperty(VocabularyBook.language);
+		addBookProperty(VocabularyBook.pageCount);
+		addBookProperty(VocabularyBook.pdfLink);
+		addBookProperty(VocabularyBook.previewLink);
+		addBookProperty(VocabularyBook.price);
+		addBookProperty(VocabularyBook.priceSymbol);
+		addBookProperty(VocabularyBook.publicDomain);
+		addBookProperty(VocabularyBook.publishedDate);
+		addBookProperty(VocabularyBook.publisher);
+		addBookProperty(VocabularyBook.raitingCount);
+		addBookProperty(VocabularyBook.saleability);
+		addBookProperty(VocabularyBook.selfLink);
+		addBookProperty(VocabularyBook.textSnippet);
+		addBookProperty(VocabularyBook.title);
+		addBookProperty(VocabularyBook.viewability);
+		addBookProperty(VocabularyBook.webReaderLink);
+                
+                addBookAutheurLinkProperty(VocabularyBook.authorLink);
 
 	}
-
+        
+        private OntProperty addBookAutheurLinkProperty(String propertyName){
+                OntProperty property = this.base.createOntProperty(this.bookClass
+				.getNameSpace() + propertyName);
+                property.setDomain(this.bookClass);
+                property.setRange(this.authorClass);
+                return property;
+        }
 	private OntProperty addBookProperty(String propertyName) {
 		OntProperty property = this.base.createOntProperty(this.bookClass
 				.getNameSpace() + propertyName);
-		property.setRange(this.bookClass);
+		property.setDomain(this.bookClass);
+                property.setRange(XSD.xstring);
 		return property;
 	}
 

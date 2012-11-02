@@ -23,6 +23,8 @@ import um2.websemantique.entities.base.Author;
 import um2.websemantique.entities.base.Book;
 import um2.websemantique.entities.utils.IdentifierBook;
 import um2.websemantique.ontoligie.sdb.SDBUtil;
+import um2.websemantique.ontoligie.utils.VocabularyAutheur;
+import um2.websemantique.ontoligie.utils.VocabularyBook;
 
 /**
  * The class RDFFactory will generate the ontology of the rdf base. It generate
@@ -39,24 +41,24 @@ public class RDFFactory {
         Individual instance = authorClass.createIndividual(author.getLinkAbout());
 
         if (!author.isAuthorGoodReadNull()) {
-            addPropertyToAuthorInstance("id", instance, author.getGoodRead().getId());
-            addPropertyToAuthorInstance("link", instance, author.getGoodRead().getLink());
-            addPropertyToAuthorInstance("name", instance, author.getGoodRead().getName());
-            addPropertyToAuthorInstance("fans_count", instance, author.getGoodRead().getFansCount());
-            addPropertyToAuthorInstance("image_uri", instance, author.getGoodRead().getImageUrl());
-            addPropertyToAuthorInstance("about", instance, author.getGoodRead().getAbout());
-            addPropertyToAuthorInstance("works_count", instance, author.getGoodRead().getWorksCount());
-            addPropertyToAuthorInstance("gender", instance, author.getGoodRead().getGender());
-            addPropertyToAuthorInstance("home_town", instance, author.getGoodRead().getHometown());
-            addPropertyToAuthorInstance("born_at", instance, author.getGoodRead().getBornAt());
-            addPropertyToAuthorInstance("died_at", instance, author.getGoodRead().getDiedAt());
+            addPropertyToAuthorInstance(VocabularyAutheur.googreadIdAutheur, instance, author.getGoodRead().getId());
+            addPropertyToAuthorInstance(VocabularyAutheur.goodreadLink, instance, author.getGoodRead().getLink());
+            addPropertyToAuthorInstance(VocabularyAutheur.googreadName, instance, author.getGoodRead().getName());
+            addPropertyToAuthorInstance(VocabularyAutheur.goodreadFansCount, instance, author.getGoodRead().getFansCount());
+            addPropertyToAuthorInstance(VocabularyAutheur.goodreadImageUri, instance, author.getGoodRead().getImageUrl());
+            addPropertyToAuthorInstance(VocabularyAutheur.goodreadAbout, instance, author.getGoodRead().getAbout());
+            addPropertyToAuthorInstance(VocabularyAutheur.goodreadWorksCount, instance, author.getGoodRead().getWorksCount());
+            addPropertyToAuthorInstance(VocabularyAutheur.goodreadSex, instance, author.getGoodRead().getSex());
+            addPropertyToAuthorInstance(VocabularyAutheur.goodreadHomeTown, instance, author.getGoodRead().getHometown());
+            addPropertyToAuthorInstance(VocabularyAutheur.goodreadBornAt, instance, author.getGoodRead().getBornAt());
+            addPropertyToAuthorInstance(VocabularyAutheur.goodreadDiedAt, instance, author.getGoodRead().getDiedAt());
         }
         if (!author.isAuthorFacebookNull()) {
-            addPropertyToAuthorInstance("id_facebook", instance, author.getFacebook().getId());
-            addPropertyToAuthorInstance("likes_facebook", instance, new String("" + author.getFacebook().getLikes()));
-            addPropertyToAuthorInstance("link_facebook", instance, author.getFacebook().getLink());
-            addPropertyToAuthorInstance("talking_about_count_facebook", instance, new String("" + author.getFacebook().getTalkingAboutCount()));
-            addPropertyToAuthorInstance("name_facebook", instance, author.getFacebook().getName());
+            addPropertyToAuthorInstance(VocabularyAutheur.facebookIdAutheur, instance, author.getFacebook().getId());
+            addPropertyToAuthorInstance(VocabularyAutheur.facebookLikes, instance, new String("" + author.getFacebook().getLikes()));
+            addPropertyToAuthorInstance(VocabularyAutheur.facebookLink, instance, author.getFacebook().getLink());
+            addPropertyToAuthorInstance(VocabularyAutheur.facebookTalkingAboutCount, instance, new String("" + author.getFacebook().getTalkingAboutCount()));
+            addPropertyToAuthorInstance(VocabularyAutheur.facebookName, instance, author.getFacebook().getName());
         }
     }
     
@@ -85,32 +87,32 @@ public class RDFFactory {
         Individual instance = bookClass.createIndividual(book.getCanonicalVolumeLink());
         System.out.println(book.getSelfLink());
 
-        addPropertyToBookInstance("id", instance, book.getId());
-        addPropertyToBookInstance("title", instance, book.getTitle());
-        addPropertyToBookInstance("description", instance, book.getDescription());
-        addPropertyToBookInstance("publisher", instance, book.getPublisher());
-        addPropertyToBookInstance("published_date", instance, book.getPublishedDate());
-        addPropertyToBookInstance("page_count", instance, book.getPageCount());
-        addPropertyToBookInstance("image", instance, book.getThumbnail());
-        addPropertyToBookInstance("language", instance, book.getLanguage());
-        addPropertyToBookInstance("preview_link", instance,book.getPreviewLink());
-        addPropertyToBookInstance("info_link", instance, book.getInfoLink());
-        addPropertyToBookInstance("link_json", instance, book.getSelfLink());
-        addPropertyToBookInstance("average_raiting", instance, book.getAverageRating());
-        addPropertyToBookInstance("raiting_count", instance, book.getRatingsCount());
-        addPropertyToBookInstance("country", instance, book.getCountry());
-        addPropertyToBookInstance("saleability", instance, book.getSaleability());
-        addPropertyToBookInstance("is_ebook", instance, book.isEbook());
-        addPropertyToBookInstance("price", instance, book.getPrice());
-        addPropertyToBookInstance("price_symbol", instance, book.getPriceSymbol());
-        addPropertyToBookInstance("buy_link", instance, book.getBuyLink());
-        addPropertyToBookInstance("viewability", instance, book.getViewability());
-        addPropertyToBookInstance("public_domain", instance, book.getPublicDomain());
-        addPropertyToBookInstance("epub_link", instance, book.getEpubLink());
-        addPropertyToBookInstance("pdf_link", instance, book.getPdfLink());
-        addPropertyToBookInstance("web_reader_link", instance, book.getWebReaderLink());
-        addPropertyToBookInstance("text_snippet", instance, book.getTextSnippet());
-        addPropertyToBookInstance("currency_code", instance, book.getCurrencyCode());
+        addPropertyToBookInstance(VocabularyBook.idBook, instance, book.getId());
+        addPropertyToBookInstance(VocabularyBook.title, instance, book.getTitle());
+        addPropertyToBookInstance(VocabularyBook.description, instance, book.getDescription());
+        addPropertyToBookInstance(VocabularyBook.publisher, instance, book.getPublisher());
+        addPropertyToBookInstance(VocabularyBook.publishedDate, instance, book.getPublishedDate());
+        addPropertyToBookInstance(VocabularyBook.pageCount, instance, book.getPageCount());
+        addPropertyToBookInstance(VocabularyBook.image, instance, book.getThumbnail());
+        addPropertyToBookInstance(VocabularyBook.language, instance, book.getLanguage());
+        addPropertyToBookInstance(VocabularyBook.previewLink, instance,book.getPreviewLink());
+        addPropertyToBookInstance(VocabularyBook.infoLink, instance, book.getInfoLink());
+        addPropertyToBookInstance(VocabularyBook.jsonLink, instance, book.getSelfLink());
+        addPropertyToBookInstance(VocabularyBook.averageRaiting, instance, book.getAverageRating());
+        addPropertyToBookInstance(VocabularyBook.raitingCount, instance, book.getRatingsCount());
+        addPropertyToBookInstance(VocabularyBook.country, instance, book.getCountry());
+        addPropertyToBookInstance(VocabularyBook.saleability, instance, book.getSaleability());
+        addPropertyToBookInstance(VocabularyBook.isEbook, instance, book.isEbook());
+        addPropertyToBookInstance(VocabularyBook.price, instance, book.getPrice());
+        addPropertyToBookInstance(VocabularyBook.priceSymbol, instance, book.getPriceSymbol());
+        addPropertyToBookInstance(VocabularyBook.buyLink, instance, book.getBuyLink());
+        addPropertyToBookInstance(VocabularyBook.viewability, instance, book.getViewability());
+        addPropertyToBookInstance(VocabularyBook.publicDomain, instance, book.getPublicDomain());
+        addPropertyToBookInstance(VocabularyBook.epubLink, instance, book.getEpubLink());
+        addPropertyToBookInstance(VocabularyBook.pdfLink, instance, book.getPdfLink());
+        addPropertyToBookInstance(VocabularyBook.webReaderLink, instance, book.getWebReaderLink());
+        addPropertyToBookInstance(VocabularyBook.textSnippet, instance, book.getTextSnippet());
+        addPropertyToBookInstance(VocabularyBook.currencyCode, instance, book.getCurrencyCode());
 
         addIdentifierToBook(book.getIndustryIdentifiers(), instance);
         addCategoryToBook(book.getCategories(), instance);
@@ -153,15 +155,15 @@ public class RDFFactory {
             Individual instance) {
         for (IdentifierBook item : identifierList) {
             if (item.getType().equals(IdentifierBook.ISBN10)) {
-                addPropertyToBookInstance("isbn_10", instance,
+                addPropertyToBookInstance(VocabularyBook.isbn10, instance,
                         item.getContaints());
             }
             if (item.getType().equals(IdentifierBook.ISBN13)) {
-                addPropertyToBookInstance("isbn_13", instance,
+                addPropertyToBookInstance(VocabularyBook.isbn13, instance,
                         item.getContaints());
             }
             if (item.getType().equals(IdentifierBook.OTHER)) {
-                addPropertyToBookInstance("identifier", instance,
+                addPropertyToBookInstance(VocabularyBook.identifier, instance,
                         item.getContaints());
             }
         }
@@ -177,7 +179,7 @@ public class RDFFactory {
             Individual instance) {
 
         for (String item : listCategory) {
-            addPropertyToBookInstance("category", instance, item);
+            addPropertyToBookInstance(VocabularyBook.category, instance, item);
         }
     }
 
@@ -185,13 +187,13 @@ public class RDFFactory {
             Individual instance) {
 
         for (String item : listsLinkAuthor) {
-            addPropertyToBookInstance("link_author", instance, item);
+            addPropertyToBookInstance(VocabularyBook.authorLink, instance, item);
         }
     }
 
     private static void addAuthorToBook(ArrayList<String> authors, Individual instance) {
         for (String item : authors) {
-            addPropertyToBookInstance("author", instance, item);
+            addPropertyToBookInstance(VocabularyBook.author, instance, item);
         }
     }
 }

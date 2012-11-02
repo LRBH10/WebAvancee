@@ -76,7 +76,7 @@ public class GeneratorFromXML {
 
 		res.setDiedAt(getSCFE(author, "died_at"));
 		res.setFansCount(getSCFE(author, "fans_count"));
-		res.setGender(getSCFE(author, "gender"));
+		res.setSex(getSCFE(author, "gender"));
 		res.setHometown(getSCFE(author, "hometown"));
 		res.setId(getSCFE(author, "id"));
 		res.setImageUrl(getSCFE(author, "image_url"));
