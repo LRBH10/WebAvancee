@@ -100,4 +100,24 @@ public class AuthorGoodRead {
 	public void setWorksCount(String worksCount) {
 		this.worksCount = worksCount;
 	}
+
+	public String getExcludes() {
+		String res ="";
+		
+		res += ExcludeNullProperty.isExcluded(this.about, "about");
+		res += ExcludeNullProperty.isExcluded(this.bornAt, "bornAt");
+		res += ExcludeNullProperty.isExcluded(this.diedAt, "diedAt");
+		res += ExcludeNullProperty.isExcluded(this.fansCount, "fansCount");
+		res += ExcludeNullProperty.isExcluded(this.hometown, "hometown");
+		res += ExcludeNullProperty.isExcluded(this.id, "id");
+		res += ExcludeNullProperty.isExcluded(this.imageUrl, "imageUrl");
+		res += ExcludeNullProperty.isExcluded(this.link, "link");
+		res += ExcludeNullProperty.isExcluded(this.name, "name");
+		res += ExcludeNullProperty.isExcluded(this.sex, "sex");
+		res += ExcludeNullProperty.isExcluded(this.worksCount, "worksCount");
+		
+		return res;
+		
+	}
+
 }

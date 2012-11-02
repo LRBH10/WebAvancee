@@ -2,6 +2,8 @@ package um2.websemantique.entities.base;
 
 import java.util.ArrayList;
 
+import com.sun.istack.internal.NotNull;
+
 import um2.websemantique.entities.utils.IdentifierBook;
 
 public class Book {
@@ -319,6 +321,7 @@ public class Book {
 		return super.toString();
 	}
 	
+	
 	public String getExcludes(){
 		String res ="";
 		if(this.authors.size() == 0){
@@ -332,44 +335,38 @@ public class Book {
 			res = "categories,";
 		}
 	
-		res += isExcluded(this.averageRating,"averageRating");
-		res += isExcluded(this.buyLink,"buyLink");
-		res += isExcluded(this.canonicalVolumeLink,"canonicalVolumeLink");
-		res += isExcluded(this.country,"country");
-		res += isExcluded(this.currencyCode,"currencyCode");
-		res += isExcluded(this.description,"description");
-		res += isExcluded(this.Ebook,"Ebook");
-		res += isExcluded(this.epubLink,"epubLink");
-		res += isExcluded(this.id,"id");
-		res += isExcluded(this.infoLink,"infoLink");
-		res += isExcluded(this.language,"language");
-		res += isExcluded(this.pageCount,"pageCount");
-		res += isExcluded(this.pdfLink,"pdfLink");
-		res += isExcluded(this.previewLink,"previewLink");
-		res += isExcluded(this.price,"price");
-		res += isExcluded(this.priceSymbol,"priceSymbol");
-		res += isExcluded(this.publicDomain,"publicDomain");
-		res += isExcluded(this.publishedDate,"publishedDate");
-		res += isExcluded(this.publisher,"publisher");
-		res += isExcluded(this.ratingsCount,"ratingsCount");
-		res += isExcluded(this.saleability,"saleability");
-		res += isExcluded(this.selfLink,"selfLink");
-		res += isExcluded(this.textSnippet,"textSnippet");
-		res += isExcluded(this.thumbnail,"thumbnail");
-		res += isExcluded(this.title,"title");
-		res += isExcluded(this.viewability,"viewability");
-		res += isExcluded(this.webReaderLink,"webReaderLink");
+		res += ExcludeNullProperty.isExcluded(this.averageRating,"averageRating");
+		res += ExcludeNullProperty.isExcluded(this.buyLink,"buyLink");
+		res += ExcludeNullProperty.isExcluded(this.canonicalVolumeLink,"canonicalVolumeLink");
+		res += ExcludeNullProperty.isExcluded(this.country,"country");
+		res += ExcludeNullProperty.isExcluded(this.currencyCode,"currencyCode");
+		res += ExcludeNullProperty.isExcluded(this.description,"description");
+		res += ExcludeNullProperty.isExcluded(this.Ebook,"Ebook");
+		res += ExcludeNullProperty.isExcluded(this.epubLink,"epubLink");
+		res += ExcludeNullProperty.isExcluded(this.id,"id");
+		res += ExcludeNullProperty.isExcluded(this.infoLink,"infoLink");
+		res += ExcludeNullProperty.isExcluded(this.language,"language");
+		res += ExcludeNullProperty.isExcluded(this.pageCount,"pageCount");
+		res += ExcludeNullProperty.isExcluded(this.pdfLink,"pdfLink");
+		res += ExcludeNullProperty.isExcluded(this.previewLink,"previewLink");
+		res += ExcludeNullProperty.isExcluded(this.price,"price");
+		res += ExcludeNullProperty.isExcluded(this.priceSymbol,"priceSymbol");
+		res += ExcludeNullProperty.isExcluded(this.publicDomain,"publicDomain");
+		res += ExcludeNullProperty.isExcluded(this.publishedDate,"publishedDate");
+		res += ExcludeNullProperty.isExcluded(this.publisher,"publisher");
+		res += ExcludeNullProperty.isExcluded(this.ratingsCount,"ratingsCount");
+		res += ExcludeNullProperty.isExcluded(this.saleability,"saleability");
+		res += ExcludeNullProperty.isExcluded(this.selfLink,"selfLink");
+		res += ExcludeNullProperty.isExcluded(this.textSnippet,"textSnippet");
+		res += ExcludeNullProperty.isExcluded(this.thumbnail,"thumbnail");
+		res += ExcludeNullProperty.isExcluded(this.title,"title");
+		res += ExcludeNullProperty.isExcluded(this.viewability,"viewability");
+		res += ExcludeNullProperty.isExcluded(this.webReaderLink,"webReaderLink");
 		
 		return res;
 	}
 
-	private String isExcluded(String attribute, String name) {
-		String ret ="";
-		if(attribute == null){
-			ret = ","+ name;
-		}
-		return ret;
-	}
+	
 	
 	
 }

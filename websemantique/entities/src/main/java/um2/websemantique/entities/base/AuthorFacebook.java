@@ -48,4 +48,17 @@ public class AuthorFacebook {
 		this.link = link;
 	}
 
+	public String getExcludes() {
+		String res = "";
+
+		res += ExcludeNullProperty.isExcluded(this.id, "id");
+		res += ExcludeNullProperty.isExcluded(this.likes, "likes");
+		res += ExcludeNullProperty.isExcluded(this.link, "link");
+		res += ExcludeNullProperty.isExcluded(this.name, "name");
+		res += ExcludeNullProperty.isExcluded(this.talkingAboutCount,
+				"talkingAboutCount");
+
+		return res;
+
+	}
 }
