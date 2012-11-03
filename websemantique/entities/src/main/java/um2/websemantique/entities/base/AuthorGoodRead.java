@@ -1,17 +1,18 @@
 package um2.websemantique.entities.base;
 
 public class AuthorGoodRead {
-	private String id;
-	private String name;
-	private String link;
-	private String fansCount;
-	private String imageUrl;
-	private String about;
-	private String worksCount;
-	private String sex;
-	private String hometown;
-	private String bornAt;
-	private String diedAt;
+
+	private String	id;
+	private String	name;
+	private String	link;
+	private String	fansCount;
+	private String	imageUrl;
+	private String	about;
+	private String	worksCount;
+	private String	sex;
+	private String	hometown;
+	private String	bornAt;
+	private String	diedAt;
 
 	public String getAbout() {
 		return about;
@@ -25,12 +26,27 @@ public class AuthorGoodRead {
 		return diedAt;
 	}
 
-	public String getFansCount() {
-		return fansCount;
+	public String getExcludes() {
+		String res = "";
+
+		res += ExcludeNullProperty.isExcluded (this.about, "about");
+		res += ExcludeNullProperty.isExcluded (this.bornAt, "bornAt");
+		res += ExcludeNullProperty.isExcluded (this.diedAt, "diedAt");
+		res += ExcludeNullProperty.isExcluded (this.fansCount, "fansCount");
+		res += ExcludeNullProperty.isExcluded (this.hometown, "hometown");
+		res += ExcludeNullProperty.isExcluded (this.id, "id");
+		res += ExcludeNullProperty.isExcluded (this.imageUrl, "imageUrl");
+		res += ExcludeNullProperty.isExcluded (this.link, "link");
+		res += ExcludeNullProperty.isExcluded (this.name, "name");
+		res += ExcludeNullProperty.isExcluded (this.sex, "sex");
+		res += ExcludeNullProperty.isExcluded (this.worksCount, "worksCount");
+
+		return res;
+
 	}
 
-	public String getSex() {
-		return sex;
+	public String getFansCount() {
+		return fansCount;
 	}
 
 	public String getHometown() {
@@ -53,6 +69,10 @@ public class AuthorGoodRead {
 		return name;
 	}
 
+	public String getSex() {
+		return sex;
+	}
+
 	public String getWorksCount() {
 		return worksCount;
 	}
@@ -71,10 +91,6 @@ public class AuthorGoodRead {
 
 	public void setFansCount(String fansCount) {
 		this.fansCount = fansCount;
-	}
-
-	public void setSex(String gender) {
-		this.sex = gender;
 	}
 
 	public void setHometown(String hometown) {
@@ -97,27 +113,12 @@ public class AuthorGoodRead {
 		this.name = name;
 	}
 
-	public void setWorksCount(String worksCount) {
-		this.worksCount = worksCount;
+	public void setSex(String gender) {
+		this.sex = gender;
 	}
 
-	public String getExcludes() {
-		String res ="";
-		
-		res += ExcludeNullProperty.isExcluded(this.about, "about");
-		res += ExcludeNullProperty.isExcluded(this.bornAt, "bornAt");
-		res += ExcludeNullProperty.isExcluded(this.diedAt, "diedAt");
-		res += ExcludeNullProperty.isExcluded(this.fansCount, "fansCount");
-		res += ExcludeNullProperty.isExcluded(this.hometown, "hometown");
-		res += ExcludeNullProperty.isExcluded(this.id, "id");
-		res += ExcludeNullProperty.isExcluded(this.imageUrl, "imageUrl");
-		res += ExcludeNullProperty.isExcluded(this.link, "link");
-		res += ExcludeNullProperty.isExcluded(this.name, "name");
-		res += ExcludeNullProperty.isExcluded(this.sex, "sex");
-		res += ExcludeNullProperty.isExcluded(this.worksCount, "worksCount");
-		
-		return res;
-		
+	public void setWorksCount(String worksCount) {
+		this.worksCount = worksCount;
 	}
 
 }

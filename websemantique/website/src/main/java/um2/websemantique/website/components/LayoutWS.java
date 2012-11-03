@@ -6,7 +6,8 @@ import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 
 public class LayoutWS {
-	   @Property
-	   @Parameter(defaultPrefix = BindingConstants.LITERAL)
-	   private Block sidebar;
+
+	@Property
+	@Parameter(defaultPrefix = BindingConstants.LITERAL)
+	private Block	sidebar;
 }

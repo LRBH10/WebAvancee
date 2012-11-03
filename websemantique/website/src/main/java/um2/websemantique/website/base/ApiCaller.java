@@ -12,25 +12,25 @@ public abstract class ApiCaller {
 		URL url = null;
 		InputStream is = null;
 		try {
-			url = new URL(url_);
-			is = url.openConnection().getInputStream();
+			url = new URL (url_);
+			is = url.openConnection ().getInputStream ();
 
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch ( IOException e ) {
+			e.printStackTrace ();
 		}
 
-		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+		BufferedReader reader = new BufferedReader (new InputStreamReader (is));
 
 		String result = "";
 		String line = null;
 		try {
-			while ((line = reader.readLine()) != null) {
+			while ((line = reader.readLine ()) != null) {
 				result += line + "\n";
 			}
-			reader.close();
-		} catch (IOException e) {
+			reader.close ();
+		} catch ( IOException e ) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printStackTrace ();
 		}
 
 		return result;

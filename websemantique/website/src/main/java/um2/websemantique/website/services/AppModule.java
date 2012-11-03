@@ -20,6 +20,7 @@ import org.slf4j.Logger;
  * service definitions.
  */
 public class AppModule {
+
 	public static void bind(ServiceBinder binder) {
 		// binder.bind(MyServiceInterface.class, MyServiceImpl.class);
 
@@ -29,24 +30,7 @@ public class AppModule {
 		// invoking the constructor.
 	}
 
-	public static void contributeFactoryDefaults(
-			MappedConfiguration<String, Object> configuration) {
-		// The application version number is incorprated into URLs for some
-		// assets. Web browsers will cache assets because of the far future
-		// expires
-		// header. If existing assets are changed, the version number should
-		// also
-		// change, to force the browser to download new versions. This overrides
-		// Tapesty's default
-		// (a random hexadecimal number), but may be further overriden by
-		// DevelopmentModule or
-		// QaModule.
-		configuration.override(SymbolConstants.APPLICATION_VERSION,
-				"1.0-SNAPSHOT");
-	}
-
-	public static void contributeApplicationDefaults(
-			MappedConfiguration<String, Object> configuration) {
+	public static void contributeApplicationDefaults(MappedConfiguration<String, Object> configuration) {
 		// Contributions to ApplicationDefaults will override any contributions
 		// to
 		// FactoryDefaults (with the same key). Here we're restricting the
@@ -57,12 +41,25 @@ public class AppModule {
 		// locale names;
 		// the first locale name is the default when there's no reasonable
 		// match).
-		configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en");
-		configuration.add(SymbolConstants.DEFAULT_STYLESHEET,
-				"context:layoutWS/css/defaultImageau.css");
-		configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "$we");
-		configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "false");
+		configuration.add (SymbolConstants.SUPPORTED_LOCALES, "en");
+		configuration.add (SymbolConstants.DEFAULT_STYLESHEET, "context:layoutWS/css/defaultImageau.css");
+		configuration.add (JQuerySymbolConstants.JQUERY_ALIAS, "$we");
+		configuration.add (JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "false");
 
+	}
+
+	public static void contributeFactoryDefaults(MappedConfiguration<String, Object> configuration) {
+		// The application version number is incorprated into URLs for some
+		// assets. Web browsers will cache assets because of the far future
+		// expires
+		// header. If existing assets are changed, the version number should
+		// also
+		// change, to force the browser to download new versions. This overrides
+		// Tapesty's default
+		// (a random hexadecimal number), but may be further overriden by
+		// DevelopmentModule or
+		// QaModule.
+		configuration.override (SymbolConstants.APPLICATION_VERSION, "1.0-SNAPSHOT");
 	}
 
 	/**
@@ -85,10 +82,12 @@ public class AppModule {
 	 * service id that we can reference inside the contribution method.
 	 */
 	public RequestFilter buildTimingFilter(final Logger log) {
-		return new RequestFilter() {
-			public boolean service(Request request, Response response,
-					RequestHandler handler) throws IOException {
-				long startTime = System.currentTimeMillis();
+		return new RequestFilter () {
+
+			@Override
+			public boolean service(Request request, Response response, RequestHandler handler)
+					throws IOException {
+				long startTime = System.currentTimeMillis ();
 
 				try {
 					// The responsibility of a filter is to invoke the
@@ -97,11 +96,11 @@ public class AppModule {
 					// each filter
 					// received a handler that is a bridge to the next filter.
 
-					return handler.service(request, response);
+					return handler.service (request, response);
 				} finally {
-					long elapsed = System.currentTimeMillis() - startTime;
+					long elapsed = System.currentTimeMillis () - startTime;
 
-					log.info(String.format("Request time: %d ms", elapsed));
+					log.info (String.format ("Request time: %d ms", elapsed));
 				}
 			}
 		};
@@ -115,15 +114,13 @@ public class AppModule {
 	 * module. Without @Local, there would be an error due to the other
 	 * service(s) that implement RequestFilter (defined in other modules).
 	 */
-	public void contributeRequestHandler(
-			OrderedConfiguration<RequestFilter> configuration,
-			@Local RequestFilter filter) {
+	public void contributeRequestHandler(OrderedConfiguration<RequestFilter> configuration, @Local RequestFilter filter) {
 		// Each contribution to an ordered configuration has a name, When
 		// necessary, you may
 		// set constraints to precisely control the invocation order of the
 		// contributed filter
 		// within the pipeline.
 
-		configuration.add("Timing", filter);
+		configuration.add ("Timing", filter);
 	}
 }

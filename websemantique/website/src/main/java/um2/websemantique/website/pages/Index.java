@@ -21,60 +21,60 @@ public class Index {
 
 	@Property
 	@Persist
-	private String search;
+	private String		search;
 
 	@Property
 	@Persist
 	@Validate("required")
-	SearchType type;
+	SearchType			type;
 
 	@Property
 	@Persist
-	GetterRDFAuthorBook query;
+	GetterRDFAuthorBook	query;
 
 	@Property
 	@Persist
-	ResponseQuery response;
+	ResponseQuery		response;
+
+	@Property
+	@Persist
+	Book				book;
+
+	@Property
+	@Persist
+	private int			progress;
+
+	@InjectComponent
+	private Zone		progressZone;
+
+	@OnEvent(value = EventConstants.REFRESH)
+	Object doFromClicker() {
+		if ( query != null ) {
+			progress = query.getProgress ();
+		}
+
+		return progressZone.getBody ();
+	}
+
+	public Book getAlpha() {
+		book = new Book ();
+		book.setTitle ("Blazo");
+		book.setBuyLink ("ssss");
+		return book;
+	}
 
 	public void onActivate() {
-		if (query == null) {
-			query = new GetterRDFAuthorBook();
+		if ( query == null ) {
+			query = new GetterRDFAuthorBook ();
 		}
 		progress = 0;
 	}
 
 	void onValidateFromSearchForm() {
-		SDBUtil.openConnection();
-		System.out.println(search + " "+ type+"\n\n\n\n\n\n");
-		response = query.find(search, type);
+		SDBUtil.openConnection ();
+		System.out.println (search + " " + type + "\n\n\n\n\n\n");
+		response = query.find (search, type);
 		// return this;
-	}
-
-	@Property
-	@Persist
-	Book book;
-
-	public Book getAlpha() {
-		book = new Book();
-		book.setTitle("Blazo");
-		book.setBuyLink("ssss");
-		return book;
-	}
-
-	@Property
-	@Persist
-	private int progress;
-
-	@InjectComponent
-	private Zone progressZone;
-
-	@OnEvent(value = EventConstants.REFRESH)
-	Object doFromClicker() {
-		if (query != null) {
-			progress = query.getProgress();
-		}
-
-		return progressZone.getBody();
 	}
 
 }

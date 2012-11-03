@@ -8,12 +8,12 @@ import um2.websemantique.entities.utils.SearchType;
 
 public class ResponseQuery {
 
-	boolean ok;
-	String key;
-	SearchType type;
+	boolean				ok;
+	String				key;
+	SearchType			type;
 
-	ArrayList<Book> books = new ArrayList<Book>();
-	ArrayList<Author> authors = new ArrayList<Author>();
+	ArrayList<Book>		books	= new ArrayList<Book> ();
+	ArrayList<Author>	authors	= new ArrayList<Author> ();
 
 	public ResponseQuery() {
 	}
@@ -22,21 +22,25 @@ public class ResponseQuery {
 		this.key = key;
 		this.type = type;
 	}
-        
-        public void setAuthors( ArrayList<Author> list ){
-            authors = list;
-        }
-        
-        public void setBooks(ArrayList<Book> list){
-            books = list;
-        }
-        
-	public boolean isOk() {
-		return ok;
+
+	/**
+	 * to add an author to {@link ResponseQuery}
+	 * 
+	 * @param author
+	 *            {@link Author} to add
+	 */
+	public void addAuthor(Author author) {
+		authors.add (author);
 	}
 
-	public void setType(SearchType type) {
-		this.type = type;
+	/**
+	 * to add a book to {@link ResponseQuery}
+	 * 
+	 * @param book
+	 *            {@link Book}
+	 */
+	public void addBook(Book book) {
+		books.add (book);
 	}
 
 	public ArrayList<Author> getAuthors() {
@@ -55,6 +59,18 @@ public class ResponseQuery {
 		return type;
 	}
 
+	public boolean isOk() {
+		return ok;
+	}
+
+	public void setAuthors(ArrayList<Author> list) {
+		authors = list;
+	}
+
+	public void setBooks(ArrayList<Book> list) {
+		books = list;
+	}
+
 	public void setKey(String key) {
 		this.key = key;
 	}
@@ -63,24 +79,8 @@ public class ResponseQuery {
 		this.ok = ok;
 	}
 
-	/**
-	 * to add a book to {@link ResponseQuery}
-	 * 
-	 * @param book
-	 *            {@link Book}
-	 */
-	public void addBook(Book book) {
-		books.add(book);
-	}
-
-	/**
-	 * to add an author to {@link ResponseQuery}
-	 * 
-	 * @param author
-	 *            {@link Author} to add
-	 */
-	public void addAuthor(Author author) {
-		authors.add(author);
+	public void setType(SearchType type) {
+		this.type = type;
 	}
 
 }

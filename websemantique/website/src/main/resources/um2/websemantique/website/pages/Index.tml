@@ -36,7 +36,6 @@
 		</t:zone>
 		
 		
-		
 			<t:beandisplay object="Alpha" exclude="${Alpha.excludes},excludes" />
 		</div>
 	</div>

@@ -13,30 +13,17 @@ import com.hp.hpl.jena.sdb.sql.JDBC;
 
 public class SDBUtil {
 
-	private static IDBConnection conn = null;
-
-	/**
-	 * for openning Connection
-	 */
-	public static IDBConnection openConnection() {
-		if (conn == null) {
-			JDBC.loadDriverMySQL();
-			String jdbcURL = "jdbc:mysql://localhost:3306/rdf_base";
-
-			conn = new DBConnection(jdbcURL, "root", "rabah123", "MySQL");
-		}
-		return conn;
-	}
+	private static IDBConnection	conn	= null;
 
 	/**
 	 * closing connection
 	 */
 	public static void closeConnection() {
 		try {
-			conn.close();
-		} catch (SQLException e) {
+			SDBUtil.conn.close ();
+		} catch ( SQLException e ) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printStackTrace ();
 		}
 	}
 
@@ -49,19 +36,32 @@ public class SDBUtil {
 	 */
 	public static OntModel createOrGetModel(String modelname) {
 
-		ModelMaker maker = ModelFactory.createModelRDBMaker(conn);
+		ModelMaker maker = ModelFactory.createModelRDBMaker (SDBUtil.conn);
 		Model tmp = null;
-		if (conn.containsModel(modelname)) {
-			System.out.println("Opening existing model :" + modelname);
-			tmp = maker.openModel(modelname, true);
+		if ( SDBUtil.conn.containsModel (modelname) ) {
+			System.out.println ("Opening existing model :" + modelname);
+			tmp = maker.openModel (modelname, true);
 		} else {
-			System.out.println("Creating new model :" + modelname);
-			tmp = maker.createModel(modelname, true);
+			System.out.println ("Creating new model :" + modelname);
+			tmp = maker.createModel (modelname, true);
 		}
-		OntModel mdb = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM,
-				tmp);
+		OntModel mdb = ModelFactory.createOntologyModel (OntModelSpec.OWL_MEM, tmp);
 
 		return mdb;
+	}
+
+	/**
+	 * for openning Connection
+	 */
+	public static IDBConnection openConnection() {
+		if ( SDBUtil.conn == null ) {
+			JDBC.loadDriverMySQL ();
+			String jdbcURL = "jdbc:mysql://localhost:3306/rdf_base";
+
+			SDBUtil.conn = new DBConnection (jdbcURL, "root", "rabah123",
+					"MySQL");
+		}
+		return SDBUtil.conn;
 	}
 
 }

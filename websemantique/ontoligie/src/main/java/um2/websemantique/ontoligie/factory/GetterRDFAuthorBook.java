@@ -7,43 +7,12 @@ import um2.websemantique.entities.utils.SearchType;
 import um2.websemantique.ontoligie.utils.ResponseQuery;
 
 public class GetterRDFAuthorBook implements Runnable {
-	private String key;
-	private SearchType typeS;
-	private GetterBookAuthor getweb = new GetterBookAuthor();
-	private int progress = 0;
-	private int taille = 0;
 
-	public synchronized int getTaille() {
-		return taille;
-	}
-
-	private synchronized void setTaille(int taille) {
-		this.taille += taille;
-	}
-
-	public int getProgress() {
-		return progress;
-	}
-
-	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
-	}
-
-	public SearchType getTypeS() {
-		return typeS;
-	}
-
-	public void setTypeS(SearchType typeS) {
-		this.typeS = typeS;
-	}
-
-	public GetterBookAuthor getGetweb() {
-		return getweb;
-	}
+	private String				key;
+	private SearchType			typeS;
+	private GetterBookAuthor	getweb		= new GetterBookAuthor ();
+	private int					progress	= 0;
+	private int					taille		= 0;
 
 	/**
 	 * find a query with type given from database or from web
@@ -58,14 +27,44 @@ public class GetterRDFAuthorBook implements Runnable {
 		key = query;
 		typeS = type;
 
-		ResponseQuery res = findSPRQL(query, type);
+		ResponseQuery res = findSPRQL (query, type);
 
-		if (!res.isOk()) {
-			Thread x = new Thread(this);
-			x.start();
+		if ( !res.isOk () ) {
+			Thread x = new Thread (this);
+			x.start ();
 		}
 
 		return res;
+	}
+
+	/**
+	 * find from Web and pill the DATABASE
+	 * 
+	 * @param query
+	 * @param type
+	 */
+	public synchronized void findFromWeb(String query, SearchType type) {
+		progress = 25;
+		getweb.find (key, typeS);
+		progress = 50;
+
+		int taille_ = getweb.getAuthors ().size () + getweb.getBooks ().size ();
+
+		setTaille (taille_);
+		int i = 0;
+
+		for ( Author author : getweb.getAuthors () ) {
+			progress = 50 + i * 50 / getTaille ();
+			RDFFactory.generateRDFAuthorInstance (author);
+			i++;
+		}
+
+		for ( Book book : getweb.getBooks () ) {
+			progress = 50 + i * 50 / getTaille ();
+			RDFFactory.generateRDFBookInstance (book);
+			i++;
+		}
+		progress = 0;
 	}
 
 	/**
@@ -78,45 +77,48 @@ public class GetterRDFAuthorBook implements Runnable {
 	 * @return {@link ResponseQuery}
 	 */
 	public ResponseQuery findSPRQL(String query, SearchType type) {
-		ResponseQuery ret = new ResponseQuery();
-		ret.setOk(false);
+		ResponseQuery ret = new ResponseQuery ();
+		ret.setOk (false);
 		return ret;
+	}
+
+	public GetterBookAuthor getGetweb() {
+		return getweb;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public int getProgress() {
+		return progress;
+	}
+
+	public synchronized int getTaille() {
+		return taille;
+	}
+
+	public SearchType getTypeS() {
+		return typeS;
 	}
 
 	/**
 	 * get the information into data base
 	 */
+	@Override
 	public void run() {
-		findFromWeb(key, typeS);
+		findFromWeb (key, typeS);
 	}
 
-	/**
-	 * find from Web and pill the DATABASE
-	 * 
-	 * @param query
-	 * @param type
-	 */
-	public synchronized void findFromWeb(String query, SearchType type) {
-		progress = 25;
-		getweb.find(key, typeS);
-		progress = 50;
+	public void setKey(String key) {
+		this.key = key;
+	}
 
-		int taille_ = getweb.getAuthors().size() + getweb.getBooks().size();
+	private synchronized void setTaille(int taille) {
+		this.taille += taille;
+	}
 
-		setTaille(taille_);
-		int i = 0;
-
-		for (Author author : getweb.getAuthors()) {
-			progress = 50 + i * 50 / getTaille();
-			RDFFactory.generateRDFAuthorInstance(author);
-			i++;
-		}
-
-		for (Book book : getweb.getBooks()) {
-			progress = 50 + i * 50 / getTaille();
-			RDFFactory.generateRDFBookInstance(book);
-			i++;
-		}
-		progress = 0;
+	public void setTypeS(SearchType typeS) {
+		this.typeS = typeS;
 	}
 }

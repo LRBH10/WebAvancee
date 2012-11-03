@@ -34,27 +34,24 @@ import com.sun.jersey.api.container.grizzly2.GrizzlyServerFactory;
 import com.sun.jersey.api.core.PackagesResourceConfig;
 import com.sun.jersey.api.core.ResourceConfig;
 
-public class Main
-{
-   public static void main (String[] args) throws IOException
-   {
-      try {
-         java.util.logging.LogManager.getLogManager ().readConfiguration (
-               Main.class.getClassLoader ().getResourceAsStream ("logging.properties"));
-      }
-      catch (SecurityException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace ();
-      }
-      catch (IOException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace ();
-      }
+public class Main {
 
-      ResourceConfig rc = new PackagesResourceConfig ("um2.websemantique.webservice.resources");
-      HttpServer httpServer = GrizzlyServerFactory.createHttpServer ("http://0.0.0.0:9998/", rc);
-      System.out.println ("L'application de WebService est sur le Port http://localhost:9998/");
-      System.in.read ();
-      httpServer.stop ();
-   }
+	public static void main(String [] args) throws IOException {
+		try {
+			java.util.logging.LogManager.getLogManager ().readConfiguration (Main.class.getClassLoader ().getResourceAsStream ("logging.properties"));
+		} catch ( SecurityException e ) {
+			// TODO Auto-generated catch block
+			e.printStackTrace ();
+		} catch ( IOException e ) {
+			// TODO Auto-generated catch block
+			e.printStackTrace ();
+		}
+
+		ResourceConfig rc = new PackagesResourceConfig (
+				"um2.websemantique.webservice.resources");
+		HttpServer httpServer = GrizzlyServerFactory.createHttpServer ("http://0.0.0.0:9998/", rc);
+		System.out.println ("L'application de WebService est sur le Port http://localhost:9998/");
+		System.in.read ();
+		httpServer.stop ();
+	}
 }

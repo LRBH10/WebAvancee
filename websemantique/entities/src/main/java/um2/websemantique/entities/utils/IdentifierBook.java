@@ -1,12 +1,13 @@
 package um2.websemantique.entities.utils;
 
 public class IdentifierBook {
-	public static final String ISBN10 = "ISBN_10";
-	public static final String ISBN13 = "ISBN_13";
-	public static final String OTHER = "OTHER";
 
-	private String type;
-	private String containts;
+	public static final String	ISBN10	= "ISBN_10";
+	public static final String	ISBN13	= "ISBN_13";
+	public static final String	OTHER	= "OTHER";
+
+	private String				type;
+	private String				containts;
 
 	public IdentifierBook() {
 	}
