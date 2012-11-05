@@ -18,7 +18,7 @@ public class Test {
 		SDBUtil.openConnection ();
 
 		GetterRDFAuthorBook g = new GetterRDFAuthorBook ();
-		g.find ("loubia", SearchType.AUTHOR);//*/
+		g.find ("alo", SearchType.TITLE);//*/
 	}
 
 }

@@ -41,7 +41,7 @@ public class AppModule {
 		// locale names;
 		// the first locale name is the default when there's no reasonable
 		// match).
-		configuration.add (SymbolConstants.SUPPORTED_LOCALES, "en");
+		configuration.add (SymbolConstants.SUPPORTED_LOCALES, "en,fr,ar");
 		configuration.add (SymbolConstants.DEFAULT_STYLESHEET, "context:layoutWS/css/defaultImageau.css");
 		configuration.add (JQuerySymbolConstants.JQUERY_ALIAS, "$j");
 		configuration.add (JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "false");

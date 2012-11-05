@@ -32,10 +32,14 @@
       					</div>
 						</li>
 							<li>
-								<a href="/website/about">Qui Nous somme?</a>
+								<a href="/website/about/book">Livre</a>
 							</li>
 							<li>
-								<a href="/website/contact">Nous Contacter</a>
+								<a href="/website/about/Author">Auteur</a>
+							</li>
+							
+							<li>
+								<a href="/website/contact">Qui Nous somme?</a>
 							</li>
 						</ul>
 					</div><!-- /.nav-collapse -->

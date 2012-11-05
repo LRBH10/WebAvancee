@@ -1,7 +1,7 @@
 <html t:type="layoutWS" title="web site Index"
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
 
-	<t:jquery.accordion panels="" t:activeElementId="1"/>
+	<t:jquery.accordion panels="" t:activeElementId="1" />
 	<script>
 		jQuery(function() {
 		jQuery( "#results" ).accordion({
@@ -9,11 +9,12 @@
 		"content"
 		});
 		});
+		jQuery( ".selector" ).accordion({ active: 0 });
 	</script>
 	<p:sidebar>
 		<div class="well">
 
-			<div class="nav-header ">Search</div>
+			<div class="nav-header ">Recherche</div>
 			<center>
 				<t:form t:id="searchForm" class="form-search">
 					<input t:type="textfield" t:value="search" t:id="search"
@@ -26,7 +27,7 @@
 					<br />
 
 					<t:submit t:id="submit" class="btn btn-inverse" style="width : 50%"
-						value="Recherche" />
+						value="Rechercher" />
 				</t:form>
 			</center>
 
@@ -45,20 +46,12 @@
 			</t:zone>
 
 
-			<div id="results">
+			<div id="results" class ="dl-horizontal">
 				<t:if test="response">
-					<t:if test="response.books">
-						<t:loop source="response.books" value="book">
-							<h3>${book.title}</h3>
-							<t:beandisplay object="book" exclude="${book.excludes},excludes" />
-						</t:loop>
-					</t:if>
 
-					<br />
-					<br />
 					<t:if test="response.authors">
 						<h3>Auteurs</h3>
-						<div>Authors Results</div>
+						<div></div>
 						<t:loop source="response.authors" value="author">
 							<h3>${author.LinkAbout}</h3>
 							<div class="dl-horizontal">
@@ -73,6 +66,20 @@
 							</div>
 						</t:loop>
 					</t:if>
+
+
+					<br />
+					<br />
+
+					<t:if test="response.books">
+						<h3>Livres</h3>
+						<div></div>
+						<t:loop source="response.books" value="book">
+							<h3>${book.title}</h3>
+							<t:beandisplay object="book" exclude="${book.excludes},excludes" />
+						</t:loop>
+					</t:if>
+
 				</t:if>
 
 			</div>
