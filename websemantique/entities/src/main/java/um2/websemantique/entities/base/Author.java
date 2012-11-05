@@ -42,7 +42,7 @@ public class Author {
 
 	public String getExcludes() {
 		String res = "";
-		res += this.facebook.getExcludes () + this.goodRead.getExcludes ();
+		res += this.facebook.getExcludes () + this.goodRead.getExcludes () +",AuthorFacebookNull(),isAuthorGoodReadNull,key,Null";
 		return res;
 
 	}
@@ -123,5 +123,7 @@ public class Author {
 	public void setGoodRead(AuthorGoodRead goodRead) {
 		this.goodRead = goodRead;
 	}
+	
+	
 
 }

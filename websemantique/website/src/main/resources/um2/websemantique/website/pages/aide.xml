@@ -47,12 +47,12 @@
 				<br />
 				<t:if test="response.authors">
 					<t:loop source="response.authors" value="author">
-						<t:beandisplay object="author" exclude="${author.excludes}">
+						<t:beandisplay object="author" exclude="${author.excludes},excludes" >
 							<p:goodRead>
-								<t:beandisplay object="author.goodRead" exclude="${author.goodRead.excludes}" />
+								<t:beandisplay object="author.goodRead" exclude="${author.goodRead.excludes}" >
 							</p:goodRead>
 							<p:facebook>
-								<t:beandisplay object="author.facebook" exclude="${author.facebook.excludes}" />
+								<t:beandisplay object="author.facebook" exclude="${author.facebook.excludes}" >
 							</p:facebook>
 						</t:beandisplay>
 					</t:loop>
