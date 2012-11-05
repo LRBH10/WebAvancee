@@ -108,14 +108,17 @@ public class JSONResponse {
 
 		try {
 			res = SPARQLQuery.responseSPARQLQueryFromService (query);
-			ret = gson.toJson (res);
+			//ret = gson.toJson (res);
 
 		} catch ( QueryParseException e ) {
-			ret = "{ queryparseexception :" + gson.toJson (e) + "\n}";
+			e.printStackTrace ();
+			System.out.println (e);
+			//ret = "{ queryparseexception :" + gson.toJson (e) + "\n}";
 
 		} catch ( Exception e ) {
-
-			ret = "{ exception :" + gson.toJson (e) + "\n}";
+			System.out.println (e);
+			e.printStackTrace ();
+			//ret = "{ exception :" + gson.toJson (e) + "\n}";
 		}
 
 		return ret + "\n";

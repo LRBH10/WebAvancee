@@ -23,17 +23,18 @@ public class Index {
 
 	@Property
 	@Persist(PersistenceConstants.FLASH)
+	@Validate("required,minlength=2")
 	private String		search;
-	
+
 	@Property
 	@Persist(PersistenceConstants.FLASH)
+	@Validate("required,minlength=2")
 	private String		searchInterne;
 
-	
 	@Property
 	@Persist(PersistenceConstants.FLASH)
+	@Validate("required,minlength=2")
 	private String		searchWeb;
-
 
 	@Property
 	@Persist
@@ -42,10 +43,12 @@ public class Index {
 
 	@Property
 	@Persist
+	@Validate("required")
 	SearchType			typeInterne;
 
 	@Property
 	@Persist
+	@Validate("required")
 	SearchType			typeWeb;
 
 	@Property
@@ -72,7 +75,9 @@ public class Index {
 		return progressZone.getBody ();
 	}
 
-	
+	/**
+	 * when the page is selected
+	 */
 	public void onActivate() {
 		if ( query == null ) {
 			query = new GetterRDFAuthorBook ();
@@ -80,30 +85,50 @@ public class Index {
 		progress = 0;
 	}
 
-	void onValidateFromSearchForm() {
+	/**
+	 * Search Interne and in Web
+	 * 
+	 * @return {@link Zone}
+	 */
+	Object onValidateFromSearchForm() {
 		SDBUtil.openConnection ();
 		System.out.println (search + " " + type + "\n\n\n\n\n\n");
 		response = query.find (search, type);
+		return this;
 	}
 
-	void onValidateFromSearchFormInterne() {
+	/**
+	 * Search Internal
+	 * 
+	 * @return {@link Zone}
+	 */
+	Object onValidateFromSearchFormInterne() {
+
 		SDBUtil.openConnection ();
-		System.out.println (search + " " + type + "\n\n\n\n\n\n");
-		response = query.find (search, type);
+		response = query.findSPRQL (searchInterne, typeInterne);
+		return this;
 	}
 
-	void onValidateFromSearchFormWeb() {
+	/**
+	 * Search in Web
+	 * 
+	 * @return {@link Zone}
+	 * @throws {@link InterruptedException} if probleme in waiting
+	 */
+	Object onValidateFromSearchFormWeb() throws InterruptedException {
+
 		SDBUtil.openConnection ();
-		System.out.println (search + " " + type + "\n\n\n\n\n\n");
-		response = query.find (search, type);
+		response = query.find (searchWeb, typeWeb);
+		while (progress != 0) {
+			Thread.sleep (100);
+		}
+		return this;
 	}
-
-	
 
 	@Property
-	Book			book;
+	Book	book;
 
 	@Property
-	Author			author;
+	Author	author;
 
 }

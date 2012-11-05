@@ -77,44 +77,46 @@
 				</t:if>
 			</t:zone>
 
+			
+				<div id="results" class="dl-horizontal">
+					<t:if test="response">
 
-			<div id="results" class="dl-horizontal">
-				<t:if test="response">
+						<t:if test="response.authors">
+							<t:loop source="response.authors" value="author">
+								<h3>${author.LinkAbout}</h3>
+								<div class="dl-horizontal">
+									<t:if test="author.goodRead">
+										<t:beandisplay object="author.goodRead"
+											exclude="${author.goodRead.excludes},excludes" />
+									</t:if>
+									<t:if test="author.facebook">
+										<t:beandisplay object="author.facebook"
+											exclude="${author.facebook.excludes},excludes" />
+									</t:if>
+								</div>
+							</t:loop>
+						</t:if>
+						<br />
+						<br />
 
-					<t:if test="response.authors">
-						<t:loop source="response.authors" value="author">
-							<h3>${author.LinkAbout}</h3>
-							<div class="dl-horizontal">
-								<t:if test="author.goodRead">
-									<t:beandisplay object="author.goodRead"
-										exclude="${author.goodRead.excludes},excludes" />
-								</t:if>
-								<t:if test="author.facebook">
-									<t:beandisplay object="author.facebook"
-										exclude="${author.facebook.excludes},excludes" />
-								</t:if>
-							</div>
-						</t:loop>
+						<br />
+						<br />
+
+						<t:if test="response.books">
+							<t:loop source="response.books" value="book">
+								<h3>${book.title}</h3>
+								<t:beandisplay object="book" exclude="${book.excludes},excludes" />
+							</t:loop>
+						</t:if>
+						<p:else>
+							<h1>Pas de Resultat</h1>
+						</p:else>
 					</t:if>
-					<br />
-					<br />
 
-					<br />
-					<br />
+				</div>
 
-					<t:if test="response.books">
-						<t:loop source="response.books" value="book">
-							<h3>${book.title}</h3>
-							<t:beandisplay object="book" exclude="${book.excludes},excludes" />
-						</t:loop>
-					</t:if>
-
-				</t:if>
-
-			</div>
 		</div>
 	</div>
-
 
 
 
