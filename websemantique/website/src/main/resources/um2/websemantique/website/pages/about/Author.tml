@@ -1,17 +1,94 @@
 <html t:type="layoutWS" title="Class Author"
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+	<title>Explorateur des Livres et des Auteur RDF</title>
+	<script
+		src="/website/assets/1.0-SNAPSHOT-DEV/jquery/jquery_core/jquery-1.7.2.js"
+		type="text/javascript"></script>
+	<script
+		src="/website/assets/1.0-SNAPSHOT-DEV/jquery/ui_1_8_19/jquery.ui.core.js"
+		type="text/javascript"></script>
+	<script
+		src="/website/assets/1.0-SNAPSHOT-DEV/jquery/ui_1_8_19/jquery.ui.position.js"
+		type="text/javascript"></script>
+	<script
+		src="/website/assets/1.0-SNAPSHOT-DEV/jquery/ui_1_8_19/jquery.ui.widget.js"
+		type="text/javascript"></script>
+	<script
+		src="/website/assets/1.0-SNAPSHOT-DEV/jquery/ui_1_8_19/jquery.effects.core.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/jquery/jquery.json-2.2.js"
+		type="text/javascript"></script>
+	<script
+		src="/website/assets/1.0-SNAPSHOT-DEV/jquery/ui_1_8_19/jquery.effects.highlight.js"
+		type="text/javascript"></script>
+	<script
+		src="/website/assets/1.0-SNAPSHOT-DEV/jquery/jquery.effects.show.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/jquery/noconflict.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/core/underscore_1_3_3.js"
+		type="text/javascript"></script>
+	<script
+		src="/website/assets/1.0-SNAPSHOT-DEV/core/scriptaculous_1_9_0/prototype.js"
+		type="text/javascript"></script>
+	<script
+		src="/website/assets/1.0-SNAPSHOT-DEV/core/scriptaculous_1_9_0/scriptaculous.js"
+		type="text/javascript"></script>
+	<script
+		src="/website/assets/1.0-SNAPSHOT-DEV/core/scriptaculous_1_9_0/effects.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/core/t5-core.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/core/t5-spi.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/core/t5-prototype.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/core/t5-init.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/core/t5-pubsub.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/core/t5-events.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/core/t5-dom.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/core/t5-console.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/core/t5-ajax.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/core/t5-formfragment.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/core/t5-alerts.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/core/tapestry.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/core/tapestry-console.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/core/tree.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/core/tapestry-messages.js"
+		type="text/javascript"></script>
+	<script src="/website/assets/1.0-SNAPSHOT-DEV/jquery/jquery-noconflict.js"
+		type="text/javascript"></script>
+	<script
+		src="/website/assets/1.0-SNAPSHOT-DEV/jquery/ui_1_8_19/jquery.ui.accordion.js"
+		type="text/javascript"></script>
+	<script
+		src="/website/assets/1.0-SNAPSHOT-DEV/jquery/assets/components/accordion/accordion.js"
+		type="text/javascript"></script>
+	<style type="text/css"></style>
 
 	<p:sidebar>
 		Author
 	</p:sidebar>
-
-	<link rel="stylesheet"
-		href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
-	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-	<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+	
+	<link type="text/css" rel="stylesheet"
+		href="/website/assets/1.0-SNAPSHOT-DEV/jquery/themes/ui-lightness/jquery-ui-1.8.19.custom.css" />
+	<script
+		src="/website/assets/1.0-SNAPSHOT-DEV/jquery/assets/components/accordion/accordion.js"
+		type="text/javascript"></script>
 	<script>
-		$(function() {
-		$( "#accordion" ).accordion({
+		jQuery(function() {
+		jQuery( "#accordion" ).accordion({
 		heightStyle:
 		"content"
 		});
@@ -23,9 +100,18 @@
 			<li class="nav-header">Class Author</li>
 			<li>
 				<ul class="unstyled">
-					<li>Name&nbsp; : &nbsp; ${details.localname}</li>
-					<li>Label&nbsp; : &nbsp; ${labelClass}</li>
-					<li>Comment&nbsp; : &nbsp; ${commentClass}</li>
+					<li>Name&nbsp;
+						: &nbsp;
+						${details.localname}
+					</li>
+					<li>Label&nbsp;
+						: &nbsp;
+						${labelClass}
+					</li>
+					<li>Comment&nbsp;
+						: &nbsp;
+						${commentClass}
+					</li>
 				</ul>
 			</li>
 

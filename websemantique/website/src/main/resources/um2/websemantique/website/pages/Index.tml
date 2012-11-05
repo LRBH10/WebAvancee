@@ -1,5 +1,15 @@
 <html t:type="layoutWS" title="web site Index"
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+
+	<t:jquery.accordion panels="" t:activeElementId="1"/>
+	<script>
+		jQuery(function() {
+		jQuery( "#results" ).accordion({
+		heightStyle:
+		"content"
+		});
+		});
+	</script>
 	<p:sidebar>
 		<div class="well">
 
@@ -34,33 +44,41 @@
 				</t:if>
 			</t:zone>
 
-			<t:if test="response">
 
-				<t:if test="response.books">
-					<t:loop source="response.books" value="book">
-						<t:beandisplay object="book" exclude="${book.excludes},excludes" />
-					</t:loop>
+			<div id="results">
+				<t:if test="response">
+					<t:if test="response.books">
+						<t:loop source="response.books" value="book">
+							<h3>${book.title}</h3>
+							<t:beandisplay object="book" exclude="${book.excludes},excludes" />
+						</t:loop>
+					</t:if>
+
+					<br />
+					<br />
+					<t:if test="response.authors">
+						<h3>Auteurs</h3>
+						<div>Authors Results</div>
+						<t:loop source="response.authors" value="author">
+							<h3>${author.LinkAbout}</h3>
+							<div class="dl-horizontal">
+								<t:if test="author.goodRead">
+									<t:beandisplay object="author.goodRead"
+										exclude="${author.goodRead.excludes},excludes" />
+								</t:if>
+								<t:if test="author.facebook">
+									<t:beandisplay object="author.facebook"
+										exclude="${author.facebook.excludes},excludes" />
+								</t:if>
+							</div>
+						</t:loop>
+					</t:if>
 				</t:if>
 
-				<br />
-				-----------------------------------------------------------------------------------------------------------------------
-				<br />
-				<t:if test="response.authors">
-					<t:loop source="response.authors" value="author">
-						<t:beandisplay object="author" exclude="${author.excludes}">
-							<p:goodRead>
-								<t:beandisplay object="author.goodRead" exclude="${author.goodRead.excludes}" />
-							</p:goodRead>
-							<p:facebook>
-								<t:beandisplay object="author.facebook" exclude="${author.facebook.excludes}" />
-							</p:facebook>
-						</t:beandisplay>
-					</t:loop>
-				</t:if>
-			</t:if>
-
+			</div>
 		</div>
 	</div>
+
 
 
 

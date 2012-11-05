@@ -1,9 +1,6 @@
 package um2.websemantique.website.pages;
 
-import java.util.List;
-
 import org.apache.tapestry5.EventConstants;
-import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
@@ -56,13 +53,7 @@ public class Index {
 		return progressZone.getBody ();
 	}
 
-	public Book getAlpha() {
-		book = new Book ();
-		book.setTitle ("Blazo");
-		book.setBuyLink ("ssss");
-		return book;
-	}
-
+	
 	public void onActivate() {
 		if ( query == null ) {
 			query = new GetterRDFAuthorBook ();

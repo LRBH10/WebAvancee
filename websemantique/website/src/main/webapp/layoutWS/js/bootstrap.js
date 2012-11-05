@@ -20,7 +20,7 @@
 
 !function ($) {
 
- $imageauQuery(function () {
+ JQuery(function () {
 
     "use strict"; // jshint ;_;
 
@@ -88,11 +88,11 @@
 
   var dismiss = '[data-dismiss="alert"]'
     , Alert = function (el) {
-       $imageauQuery(el).on('click', dismiss, this.close)
+       JQuery(el).on('click', dismiss, this.close)
       }
 
   Alert.prototype.close = function (e) {
-    var $this =$imageauQuery(this)
+    var $this =JQuery(this)
       , selector = $this.attr('data-target')
       , $parent
 
@@ -101,7 +101,7 @@
       selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
     }
 
-    $parent =$imageauQuery(selector)
+    $parent =JQuery(selector)
 
     e && e.preventDefault()
 
@@ -130,7 +130,7 @@
 
   $.fn.alert = function (option) {
     return this.each(function () {
-      var $this =$imageauQuery(this)
+      var $this =JQuery(this)
         , data = $this.data('alert')
       if (!data) $this.data('alert', (data = new Alert(this)))
       if (typeof option == 'string') data[option].call($this)
@@ -143,8 +143,8 @@
  /* ALERT DATA-API
   * ============== */
 
- $imageauQuery(function () {
-   $imageauQuery('body').on('click.alert.data-api', dismiss, Alert.prototype.close)
+ JQuery(function () {
+   JQuery('body').on('click.alert.data-api', dismiss, Alert.prototype.close)
   })
 
 }(window.jQuery);/* ============================================================
@@ -176,7 +176,7 @@
   * ============================== */
 
   var Button = function (element, options) {
-    this.$element =$imageauQuery(element)
+    this.$element =JQuery(element)
     this.options = $.extend({}, $.fn.button.defaults, options)
   }
 
@@ -215,7 +215,7 @@
 
   $.fn.button = function (option) {
     return this.each(function () {
-      var $this =$imageauQuery(this)
+      var $this =JQuery(this)
         , data = $this.data('button')
         , options = typeof option == 'object' && option
       if (!data) $this.data('button', (data = new Button(this, options)))
@@ -234,9 +234,9 @@
  /* BUTTON DATA-API
   * =============== */
 
- $imageauQuery(function () {
-   $imageauQuery('body').on('click.button.data-api', '[data-toggle^=button]', function ( e ) {
-      var $btn =$imageauQuery(e.target)
+ JQuery(function () {
+   JQuery('body').on('click.button.data-api', '[data-toggle^=button]', function ( e ) {
+      var $btn =JQuery(e.target)
       if (!$btn.hasClass('btn')) $btn = $btn.closest('.btn')
       $btn.button('toggle')
     })
@@ -271,7 +271,7 @@
   * ========================= */
 
   var Carousel = function (element, options) {
-    this.$element =$imageauQuery(element)
+    this.$element =JQuery(element)
     this.options = options
     this.options.slide && this.slide(this.options.slide)
     this.options.pause == 'hover' && this.$element
@@ -307,7 +307,7 @@
         return this.pause().cycle()
       }
 
-      return this.slide(pos > activePos ? 'next' : 'prev',$imageauQuery(children[pos]))
+      return this.slide(pos > activePos ? 'next' : 'prev',JQuery(children[pos]))
     }
 
   , pause: function (e) {
@@ -379,7 +379,7 @@
 
   $.fn.carousel = function (option) {
     return this.each(function () {
-      var $this =$imageauQuery(this)
+      var $this =JQuery(this)
         , data = $this.data('carousel')
         , options = $.extend({}, $.fn.carousel.defaults, typeof option == 'object' && option)
       if (!data) $this.data('carousel', (data = new Carousel(this, options)))
@@ -400,10 +400,10 @@
  /* CAROUSEL DATA-API
   * ================= */
 
- $imageauQuery(function () {
-   $imageauQuery('body').on('click.carousel.data-api', '[data-slide]', function ( e ) {
-      var $this =$imageauQuery(this), href
-        , $target =$imageauQuery($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
+ JQuery(function () {
+   JQuery('body').on('click.carousel.data-api', '[data-slide]', function ( e ) {
+      var $this =JQuery(this), href
+        , $target =JQuery($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
         , options = !$target.data('modal') && $.extend({}, $target.data(), $this.data())
       $target.carousel(options)
       e.preventDefault()
@@ -439,11 +439,11 @@
   * ================================ */
 
   var Collapse = function (element, options) {
-    this.$element =$imageauQuery(element)
+    this.$element =JQuery(element)
     this.options = $.extend({}, $.fn.collapse.defaults, options)
 
     if (this.options.parent) {
-      this.$parent =$imageauQuery(this.options.parent)
+      this.$parent =JQuery(this.options.parent)
     }
 
     this.options.toggle && this.toggle()
@@ -537,7 +537,7 @@
 
   $.fn.collapse = function (option) {
     return this.each(function () {
-      var $this =$imageauQuery(this)
+      var $this =JQuery(this)
         , data = $this.data('collapse')
         , options = typeof option == 'object' && option
       if (!data) $this.data('collapse', (data = new Collapse(this, options)))
@@ -555,14 +555,14 @@
  /* COLLAPSIBLE DATA-API
   * ==================== */
 
- $imageauQuery(function () {
-   $imageauQuery('body').on('click.collapse.data-api', '[data-toggle=collapse]', function ( e ) {
-      var $this =$imageauQuery(this), href
+ JQuery(function () {
+   JQuery('body').on('click.collapse.data-api', '[data-toggle=collapse]', function ( e ) {
+      var $this =JQuery(this), href
         , target = $this.attr('data-target')
           || e.preventDefault()
           || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') //strip for ie7
-        , option =$imageauQuery(target).data('collapse') ? 'toggle' : $this.data()
-     $imageauQuery(target).collapse(option)
+        , option =JQuery(target).data('collapse') ? 'toggle' : $this.data()
+     JQuery(target).collapse(option)
     })
   })
 
@@ -596,8 +596,8 @@
 
   var toggle = '[data-toggle="dropdown"]'
     , Dropdown = function (element) {
-        var $el =$imageauQuery(element).on('click.dropdown.data-api', this.toggle)
-       $imageauQuery('html').on('click.dropdown.data-api', function () {
+        var $el =JQuery(element).on('click.dropdown.data-api', this.toggle)
+       JQuery('html').on('click.dropdown.data-api', function () {
           $el.parent().removeClass('open')
         })
       }
@@ -607,7 +607,7 @@
     constructor: Dropdown
 
   , toggle: function (e) {
-      var $this =$imageauQuery(this)
+      var $this =JQuery(this)
         , $parent
         , selector
         , isActive
@@ -621,7 +621,7 @@
         selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
       }
 
-      $parent =$imageauQuery(selector)
+      $parent =JQuery(selector)
       $parent.length || ($parent = $this.parent())
 
       isActive = $parent.hasClass('open')
@@ -636,7 +636,7 @@
   }
 
   function clearMenus() {
-   $imageauQuery(toggle).parent().removeClass('open')
+   JQuery(toggle).parent().removeClass('open')
   }
 
 
@@ -645,7 +645,7 @@
 
   $.fn.dropdown = function (option) {
     return this.each(function () {
-      var $this =$imageauQuery(this)
+      var $this =JQuery(this)
         , data = $this.data('dropdown')
       if (!data) $this.data('dropdown', (data = new Dropdown(this)))
       if (typeof option == 'string') data[option].call($this)
@@ -658,9 +658,9 @@
   /* APPLY TO STANDARD DROPDOWN ELEMENTS
    * =================================== */
 
- $imageauQuery(function () {
-   $imageauQuery('html').on('click.dropdown.data-api', clearMenus)
-   $imageauQuery('body')
+ JQuery(function () {
+   JQuery('html').on('click.dropdown.data-api', clearMenus)
+   JQuery('body')
       .on('click.dropdown', '.dropdown form', function (e) { e.stopPropagation() })
       .on('click.dropdown.data-api', toggle, Dropdown.prototype.toggle)
   })
@@ -695,7 +695,7 @@
 
   var Modal = function (content, options) {
     this.options = options
-    this.$element =$imageauQuery(content)
+    this.$element =JQuery(content)
       .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
   }
 
@@ -715,7 +715,7 @@
 
         if (this.isShown || e.isDefaultPrevented()) return
 
-       $imageauQuery('body').addClass('modal-open')
+       JQuery('body').addClass('modal-open')
 
         this.isShown = true
 
@@ -756,7 +756,7 @@
 
         this.isShown = false
 
-       $imageauQuery('body').removeClass('modal-open')
+       JQuery('body').removeClass('modal-open')
 
         escape.call(this)
 
@@ -801,7 +801,7 @@
     if (this.isShown && this.options.backdrop) {
       var doAnimate = $.support.transition && animate
 
-      this.$backdrop =$imageauQuery('<div class="modal-backdrop ' + animate + '" />')
+      this.$backdrop =JQuery('<div class="modal-backdrop ' + animate + '" />')
         .appendTo(document.body)
 
       if (this.options.backdrop != 'static') {
@@ -836,11 +836,11 @@
   function escape() {
     var that = this
     if (this.isShown && this.options.keyboard) {
-     $imageauQuery(document).on('keyup.dismiss.modal', function ( e ) {
+     JQuery(document).on('keyup.dismiss.modal', function ( e ) {
         e.which == 27 && that.hide()
       })
     } else if (!this.isShown) {
-     $imageauQuery(document).off('keyup.dismiss.modal')
+     JQuery(document).off('keyup.dismiss.modal')
     }
   }
 
@@ -850,7 +850,7 @@
 
   $.fn.modal = function (option) {
     return this.each(function () {
-      var $this =$imageauQuery(this)
+      var $this =JQuery(this)
         , data = $this.data('modal')
         , options = $.extend({}, $.fn.modal.defaults, $this.data(), typeof option == 'object' && option)
       if (!data) $this.data('modal', (data = new Modal(this, options)))
@@ -871,10 +871,10 @@
  /* MODAL DATA-API
   * ============== */
 
- $imageauQuery(function () {
-   $imageauQuery('body').on('click.modal.data-api', '[data-toggle="modal"]', function ( e ) {
-      var $this =$imageauQuery(this), href
-        , $target =$imageauQuery($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
+ JQuery(function () {
+   JQuery('body').on('click.modal.data-api', '[data-toggle="modal"]', function ( e ) {
+      var $this =JQuery(this), href
+        , $target =JQuery($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
         , option = $target.data('modal') ? 'toggle' : $.extend({}, $target.data(), $this.data())
 
       e.preventDefault()
@@ -924,7 +924,7 @@
         , eventOut
 
       this.type = type
-      this.$element =$imageauQuery(element)
+      this.$element =JQuery(element)
       this.options = this.getOptions(options)
       this.enabled = true
 
@@ -954,7 +954,7 @@
     }
 
   , enter: function (e) {
-      var self =$imageauQuery(e.currentTarget)[this.type](this._options).data(this.type)
+      var self =JQuery(e.currentTarget)[this.type](this._options).data(this.type)
 
       if (!self.options.delay || !self.options.delay.show) return self.show()
 
@@ -966,7 +966,7 @@
     }
 
   , leave: function (e) {
-      var self =$imageauQuery(e.currentTarget)[this.type](this._options).data(this.type)
+      var self =JQuery(e.currentTarget)[this.type](this._options).data(this.type)
 
       if (this.timeout) clearTimeout(this.timeout)
       if (!self.options.delay || !self.options.delay.hide) return self.hide()
@@ -1101,7 +1101,7 @@
     }
 
   , tip: function () {
-      return this.$tip = this.$tip ||$imageauQuery(this.options.template)
+      return this.$tip = this.$tip ||JQuery(this.options.template)
     }
 
   , validate: function () {
@@ -1136,7 +1136,7 @@
 
   $.fn.tooltip = function ( option ) {
     return this.each(function () {
-      var $this =$imageauQuery(this)
+      var $this =JQuery(this)
         , data = $this.data('tooltip')
         , options = typeof option == 'object' && option
       if (!data) $this.data('tooltip', (data = new Tooltip(this, options)))
@@ -1225,7 +1225,7 @@
 
   , tip: function () {
       if (!this.$tip) {
-        this.$tip =$imageauQuery(this.options.template)
+        this.$tip =JQuery(this.options.template)
       }
       return this.$tip
     }
@@ -1238,7 +1238,7 @@
 
   $.fn.popover = function (option) {
     return this.each(function () {
-      var $this =$imageauQuery(this)
+      var $this =JQuery(this)
         , data = $this.data('popover')
         , options = typeof option == 'object' && option
       if (!data) $this.data('popover', (data = new Popover(this, options)))
@@ -1284,14 +1284,14 @@
 
   function ScrollSpy( element, options) {
     var process = $.proxy(this.process, this)
-      , $element =$imageauQuery(element).is('body') ?$imageauQuery(window) :$imageauQuery(element)
+      , $element =JQuery(element).is('body') ?JQuery(window) :JQuery(element)
       , href
     this.options = $.extend({}, $.fn.scrollspy.defaults, options)
     this.$scrollElement = $element.on('scroll.scroll.data-api', process)
     this.selector = (this.options.target
-      || ((href =$imageauQuery(element).attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
+      || ((href =JQuery(element).attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
       || '') + ' .nav li > a'
-    this.$body =$imageauQuery('body')
+    this.$body =JQuery('body')
     this.refresh()
     this.process()
   }
@@ -1304,15 +1304,15 @@
         var self = this
           , $targets
 
-        this.offsets =$imageauQuery([])
-        this.targets =$imageauQuery([])
+        this.offsets =JQuery([])
+        this.targets =JQuery([])
 
         $targets = this.$body
           .find(this.selector)
           .map(function () {
-            var $el =$imageauQuery(this)
+            var $el =JQuery(this)
               , href = $el.data('target') || $el.attr('href')
-              , $href = /^#\w/.test(href) &&$imageauQuery(href)
+              , $href = /^#\w/.test(href) &&JQuery(href)
             return ( $href
               && href.length
               && [[ $href.position().top, href ]] ) || null
@@ -1352,7 +1352,7 @@
 
         this.activeTarget = target
 
-       $imageauQuery(this.selector)
+       JQuery(this.selector)
           .parent('.active')
           .removeClass('active')
 
@@ -1360,7 +1360,7 @@
           + '[data-target="' + target + '"],'
           + this.selector + '[href="' + target + '"]'
 
-        active =$imageauQuery(selector)
+        active =JQuery(selector)
           .parent('li')
           .addClass('active')
 
@@ -1379,7 +1379,7 @@
 
   $.fn.scrollspy = function ( option ) {
     return this.each(function () {
-      var $this =$imageauQuery(this)
+      var $this =JQuery(this)
         , data = $this.data('scrollspy')
         , options = typeof option == 'object' && option
       if (!data) $this.data('scrollspy', (data = new ScrollSpy(this, options)))
@@ -1397,9 +1397,9 @@
  /* SCROLLSPY DATA-API
   * ================== */
 
- $imageauQuery(function () {
-   $imageauQuery('[data-spy="scroll"]').each(function () {
-      var $spy =$imageauQuery(this)
+ JQuery(function () {
+   JQuery('[data-spy="scroll"]').each(function () {
+      var $spy =JQuery(this)
       $spy.scrollspy($spy.data())
     })
   })
@@ -1433,7 +1433,7 @@
   * ==================== */
 
   var Tab = function ( element ) {
-    this.element =$imageauQuery(element)
+    this.element =JQuery(element)
   }
 
   Tab.prototype = {
@@ -1465,7 +1465,7 @@
 
       if (e.isDefaultPrevented()) return
 
-      $target =$imageauQuery(selector)
+      $target =JQuery(selector)
 
       this.activate($this.parent('li'), $ul)
       this.activate($target, $target.parent(), function () {
@@ -1518,7 +1518,7 @@
 
   $.fn.tab = function ( option ) {
     return this.each(function () {
-      var $this =$imageauQuery(this)
+      var $this =JQuery(this)
         , data = $this.data('tab')
       if (!data) $this.data('tab', (data = new Tab(this)))
       if (typeof option == 'string') data[option]()
@@ -1531,10 +1531,10 @@
  /* TAB DATA-API
   * ============ */
 
- $imageauQuery(function () {
-   $imageauQuery('body').on('click.tab.data-api', '[data-toggle="tab"], [data-toggle="pill"]', function (e) {
+ JQuery(function () {
+   JQuery('body').on('click.tab.data-api', '[data-toggle="tab"], [data-toggle="pill"]', function (e) {
       e.preventDefault()
-     $imageauQuery(this).tab('show')
+     JQuery(this).tab('show')
     })
   })
 
@@ -1567,13 +1567,13 @@
   * ================================= */
 
   var Typeahead = function (element, options) {
-    this.$element =$imageauQuery(element)
+    this.$element =JQuery(element)
     this.options = $.extend({}, $.fn.typeahead.defaults, options)
     this.matcher = this.options.matcher || this.matcher
     this.sorter = this.options.sorter || this.sorter
     this.highlighter = this.options.highlighter || this.highlighter
     this.updater = this.options.updater || this.updater
-    this.$menu =$imageauQuery(this.options.menu).appendTo('body')
+    this.$menu =JQuery(this.options.menu).appendTo('body')
     this.source = this.options.source
     this.shown = false
     this.listen()
@@ -1669,8 +1669,8 @@
   , render: function (items) {
       var that = this
 
-      items =$imageauQuery(items).map(function (i, item) {
-        i =$imageauQuery(that.options.item).attr('data-value', item)
+      items =JQuery(items).map(function (i, item) {
+        i =JQuery(that.options.item).attr('data-value', item)
         i.find('a').html(that.highlighter(item))
         return i[0]
       })
@@ -1685,7 +1685,7 @@
         , next = active.next()
 
       if (!next.length) {
-        next =$imageauQuery(this.$menu.find('li')[0])
+        next =JQuery(this.$menu.find('li')[0])
       }
 
       next.addClass('active')
@@ -1781,7 +1781,7 @@
 
   , mouseenter: function (e) {
       this.$menu.find('.active').removeClass('active')
-     $imageauQuery(e.currentTarget).addClass('active')
+     JQuery(e.currentTarget).addClass('active')
     }
 
   }
@@ -1792,7 +1792,7 @@
 
   $.fn.typeahead = function (option) {
     return this.each(function () {
-      var $this =$imageauQuery(this)
+      var $this =JQuery(this)
         , data = $this.data('typeahead')
         , options = typeof option == 'object' && option
       if (!data) $this.data('typeahead', (data = new Typeahead(this, options)))
@@ -1813,9 +1813,9 @@
  /* TYPEAHEAD DATA-API
   * ================== */
 
- $imageauQuery(function () {
-   $imageauQuery('body').on('focus.typeahead.data-api', '[data-provide="typeahead"]', function (e) {
-      var $this =$imageauQuery(this)
+ JQuery(function () {
+   JQuery('body').on('focus.typeahead.data-api', '[data-provide="typeahead"]', function (e) {
+      var $this =JQuery(this)
       if ($this.data('typeahead')) return
       e.preventDefault()
       $this.typeahead($this.data())

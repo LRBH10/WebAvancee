@@ -13,8 +13,8 @@ import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
-
 public abstract class Details {
+
 	@Property
 	OntClass			details;
 
@@ -42,15 +42,16 @@ public abstract class Details {
 	}
 
 	protected abstract OntClass init();
+
 	@Log
 	public void onActivate() {
 		if ( Properties == null || details == null ) {
 			Properties = new ArrayList<OntProperty> ();
-			
+
 			SDBUtil.openConnection ();
-			
-			details = init();
-			
+
+			details = init ();
+
 			ExtendedIterator<OntProperty> lst = details.listDeclaredProperties ();
 			while (lst.hasNext ()) {
 				OntProperty p = lst.next ();
@@ -61,4 +62,6 @@ public abstract class Details {
 		}
 		System.out.println (Properties.size ());
 	}
+
+	
 }

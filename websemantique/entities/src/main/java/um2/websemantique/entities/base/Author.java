@@ -44,7 +44,6 @@ public class Author {
 		String res = "";
 		res += this.facebook.getExcludes () + this.goodRead.getExcludes () +",AuthorFacebookNull(),isAuthorGoodReadNull,key,Null";
 		return res;
-
 	}
 
 	public AuthorFacebook getFacebook() {

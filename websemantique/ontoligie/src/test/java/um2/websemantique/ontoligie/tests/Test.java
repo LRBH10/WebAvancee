@@ -15,10 +15,10 @@ public class Test {
 	 */
 	public static void main(String [] args) throws InterruptedException,
 			SQLException {
-		SDBUtil.openConnection ().cleanDB ();
+		SDBUtil.openConnection ();
 
 		GetterRDFAuthorBook g = new GetterRDFAuthorBook ();
-		g.find ("yasmina khadra", SearchType.AUTHOR);//*/
+		g.find ("loubia", SearchType.AUTHOR);//*/
 	}
 
 }

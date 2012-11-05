@@ -168,9 +168,10 @@ public class GeneratorFromJSON {
 	public static ArrayList<Book> createBooks(String json_text) {
 		JSONArray array = GeneratorFromJSON.createJSONObject (json_text).optJSONArray ("items");
 		ArrayList<Book> books = new ArrayList<Book> ();
-
-		for ( int i = 0 ; i < array.length () ; i++ ) {
-			books.add (GeneratorFromJSON.createBook (array.optJSONObject (i)));
+		if ( array != null ) {
+			for ( int i = 0 ; i < array.length () ; i++ ) {
+				books.add (GeneratorFromJSON.createBook (array.optJSONObject (i)));
+			}
 		}
 		return books;
 	}

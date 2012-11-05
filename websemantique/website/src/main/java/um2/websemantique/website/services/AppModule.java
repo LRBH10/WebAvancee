@@ -43,7 +43,7 @@ public class AppModule {
 		// match).
 		configuration.add (SymbolConstants.SUPPORTED_LOCALES, "en");
 		configuration.add (SymbolConstants.DEFAULT_STYLESHEET, "context:layoutWS/css/defaultImageau.css");
-		configuration.add (JQuerySymbolConstants.JQUERY_ALIAS, "$we");
+		configuration.add (JQuerySymbolConstants.JQUERY_ALIAS, "$j");
 		configuration.add (JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "false");
 
 	}
