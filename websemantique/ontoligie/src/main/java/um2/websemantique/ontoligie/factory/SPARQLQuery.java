@@ -46,9 +46,6 @@ public class SPARQLQuery {
     private static ResponseQuery dispatch(String recherche, SearchType type) {
         ResponseQuery result = new ResponseQuery();
         ArrayList<String> querys = createSPARQLQuerys(recherche, type);
-        for (String x : querys) {
-            System.out.println(x);
-        }
         ArrayList<Resource> resultExec = new ArrayList<Resource>();
         for (String query : querys) {
             resultExec.addAll(executeSPARQLQuery(query));
@@ -274,12 +271,10 @@ private static AuthorGoodRead createGoodreadAuthor(Resource res) {
         AuthorGoodRead grAuthor = new AuthorGoodRead();
         List<Statement> list = res.listProperties().toList();
         
-        System.out.println(list.size());
         for(int i=0 ; i<list.size() - 1; i++) {         
             
             String literalValue = list.get(i).getLiteral().getString();
             String propertyValue = list.get(i).getPredicate().getLocalName();
-            System.out.println(propertyValue + " --- " + literalValue);
 
             if (propertyValue.equals(VocabularyAutheur.googreadIdAutheur)) {
                 grAuthor.setId(literalValue);
@@ -332,7 +327,6 @@ private static AuthorGoodRead createGoodreadAuthor(Resource res) {
         {
             String literalValue = list.get(i).getLiteral().getString();
             String propertyValue = list.get(i).getPredicate().getLocalName();
-            //System.out.println(propertyValue + " --- " + literalValue);
 
             if (propertyValue.equals(VocabularyAutheur.facebookName)) {
                 fbAuthor.setName(literalValue);
@@ -372,9 +366,7 @@ private static AuthorGoodRead createGoodreadAuthor(Resource res) {
             ResultSet rs = qexec.execSelect();
             for (; rs.hasNext();) {
                 QuerySolution rb = rs.nextSolution();
-                // Resource z = (Resource) rb.getResource("individu");
                 result.add((Resource) rb.getResource("individu"));
-                // System.out.println("Individual : "+z.getNameSpace());
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -433,7 +425,23 @@ private static AuthorGoodRead createGoodreadAuthor(Resource res) {
                 break;
                 
             default: // FOR ANY
-                queryString = "";
+                queryString = prefixAutheur + NL + prefixBook + NL 
+                        + "SELECT DISTINCT ?individu  "
+                        + "WHERE {"
+                        + "{?individu author:" + VocabularyAutheur.googreadName + " ?name . "
+                        + "FILTER regex( ?name,\"" + content + "\" , \"i\" ) }"
+                        + NL + "UNION" + NL
+                        + "{?individu author:" + VocabularyAutheur.facebookName + " ?name . "
+                        + "FILTER regex( ?name,\"" + content + "\" , \"i\" ) }"
+                        + NL + "UNION" + NL
+                        + "{?individu book:" + VocabularyBook.title + " ?title . "
+                        + "FILTER regex( ?title,\"" + content + "\" , \"i\" ) }"
+                        + NL + "UNION" + NL
+                        + "{?individu book:" + VocabularyBook.isbn10 + " ?isbn ."
+                        + "FILTER regex( ?isbn,\"" + content + "\" , \"i\" ) }"
+                        + NL + "UNION" + NL
+                        + "{?individu book:" + VocabularyBook.isbn13 + " ?isbn ."
+                        + "FILTER regex( ?isbn,\"" + content + "\" , \"i\" ) }}";
                 break;
         }
 
