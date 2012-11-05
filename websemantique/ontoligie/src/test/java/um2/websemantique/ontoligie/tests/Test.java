@@ -18,7 +18,7 @@ public class Test {
 		SDBUtil.openConnection ().cleanDB ();
 
 		GetterRDFAuthorBook g = new GetterRDFAuthorBook ();
-		g.find ("azul", SearchType.AUTHOR);
+		g.find ("yasmina khadra", SearchType.AUTHOR);//*/
 	}
 
 }

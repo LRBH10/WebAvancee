@@ -1,6 +1,9 @@
 package um2.websemantique.website.pages;
 
+import java.util.List;
+
 import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
@@ -8,6 +11,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.corelib.components.Zone;
 
+import um2.websemantique.entities.base.Author;
 import um2.websemantique.entities.base.Book;
 import um2.websemantique.entities.utils.SearchType;
 import um2.websemantique.ontoligie.factory.GetterRDFAuthorBook;
@@ -35,10 +39,6 @@ public class Index {
 	@Property
 	@Persist
 	ResponseQuery		response;
-
-	@Property
-	@Persist
-	Book				book;
 
 	@Property
 	@Persist
@@ -74,7 +74,14 @@ public class Index {
 		SDBUtil.openConnection ();
 		System.out.println (search + " " + type + "\n\n\n\n\n\n");
 		response = query.find (search, type);
-		// return this;
 	}
+
+	
+
+	@Property
+	Book			book;
+
+	@Property
+	Author			author;
 
 }

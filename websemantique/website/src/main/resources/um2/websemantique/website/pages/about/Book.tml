@@ -1,12 +1,54 @@
-<html t:type="layoutWS" title="Book Class" 
+<html t:type="layoutWS" title="Class Book"
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
-	
+
 	<p:sidebar>
-	Author
+		Author
 	</p:sidebar>
-	
-	Author
 
+	<link rel="stylesheet"
+		href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+	<script>
+		$(function() {
+		$( "#accordion" ).accordion({
+		heightStyle:
+		"content"
+		});
+		});
+	</script>
 
+	<p:sidebar>
+		<ul class="well nav-list unstyled">
+			<li class="nav-header">Class Author</li>
+			<li>
+				<ul class="unstyled">
+					<li>Name&nbsp; : &nbsp; ${details.localname}</li>
+					<li>Label&nbsp; : &nbsp; ${labelClass}</li>
+					<li>Comment&nbsp; : &nbsp; ${commentClass}</li>
+				</ul>
+			</li>
 
+			<li class="divider"></li>
+			<li class="nav-header">Developper Par</li>
+			<li>
+				<ul class="list-style">
+					<li class="">NESTOV Blazo</li>
+					<li>LAOUADI Rabah</li>
+				</ul>
+			</li>
+
+		</ul>
+	</p:sidebar>
+	<div id="accordion">
+		<t:loop source="Properties" value="p">
+			<h3 id="${p.LocalName}">${p.LocalName}</h3>
+			<div>
+				<strong>${label} :</strong>
+				<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${comment}
+				<br />
+			</div>
+		</t:loop>
+	</div>
 </html>

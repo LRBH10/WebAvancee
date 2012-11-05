@@ -1,49 +1,54 @@
-<html t:type="layoutWS" title="website Index" t:sidebarTitle="Framework Version"
+<html t:type="layoutWS" title="Author Class"
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
-	<!-- Most of the page content, including <head>, <body>, etc. tags, comes 
-		from Layout.tml -->
+
 	<p:sidebar>
-		<div class="well">
-
-			<div class="nav-header ">Search</div>
-			<center>
-				<t:form t:id="searchForm" class="form-search">
-					<input t:type="textfield" t:value="search" t:id="search"
-						class="search-query" placeholder="Your Query" />
-					<br />
-					<br />
-					<t:select t:id="type" />
-					<br />
-					<br />
-					<br />
-
-					<t:submit t:id="submit" class="btn btn-inverse" style="width : 50%"
-						value="Recherche" />
-				</t:form>
-			</center>
-
-		</div>
-
+		Author
 	</p:sidebar>
-	<div class="row">
-		<div class="span9">
-			<t:beandisplay object="Alpha" exclude="${Alpha.excludes},excludes" />
-		</div>
 
-		<t:zone t:id="progressZone" id="progressZone" t:mixins="zonerefresh"
-			<t:if test="progress">
-				<div class="span2 well">
-					t:period="1">
-					<div class="progress progress-info progress-striped">
-						<div class="bar" style="width: ${progress}%">downloading from web </div>
-					</div>
-				</div>
-			</t:if>
-		</t:zone>
+	<link rel="stylesheet"
+		href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+	<script>
+		$(function() {
+		$( "#accordion" ).accordion({
+		heightStyle:
+		"content"
+		});
+		});
+	</script>
 
+	<p:sidebar>
+		<ul class="well nav-list unstyled">
+			<li class="nav-header">Class Author</li>
+			<li>
+				<ul class="unstyled">
+					<li>Name&nbsp; : &nbsp; ${details.localname}</li>
+					<li>Label&nbsp; : &nbsp; ${labelClass}</li>
+					<li>Comment&nbsp; : &nbsp; ${commentClass}</li>
+				</ul>
+			</li>
+
+			<li class="divider"></li>
+			<li class="nav-header">Developper Par</li>
+			<li>
+				<ul class="list-style">
+					<li class="">NESTOV Blazo</li>
+					<li>LAOUADI Rabah</li>
+				</ul>
+			</li>
+
+		</ul>
+	</p:sidebar>
+	<div id="accordion">
+		<t:loop source="authorPro" value="p">
+			<h3 id="${p.LocalName}">${p.LocalName}</h3>
+			<div>
+				<strong>${label} :</strong>
+				<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${comment}
+				<br />
+			</div>
+		</t:loop>
 	</div>
-
-
-
-
 </html>

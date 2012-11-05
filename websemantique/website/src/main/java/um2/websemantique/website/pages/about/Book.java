@@ -1,6 +1,17 @@
 package um2.websemantique.website.pages.about;
 
+import com.hp.hpl.jena.ontology.OntClass;
 
-public class Book {
+import um2.websemantique.ontoligie.factory.RDFOntology;
+import um2.websemantique.website.base.Details;
 
+
+
+public class Book extends Details {
+
+	@Override
+	protected OntClass init() {
+		return RDFOntology.getInstanceRDFOntology ().getBookClass ();
+	}
+	
 }

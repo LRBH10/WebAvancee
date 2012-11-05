@@ -1,7 +1,5 @@
-<html t:type="layoutWS" title="website Index" t:sidebarTitle="Framework Version"
+<html t:type="layoutWS" title="web site Index"
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
-	<!-- Most of the page content, including <head>, <body>, etc. tags, comes 
-		from Layout.tml -->
 	<p:sidebar>
 		<div class="well">
 
@@ -27,16 +25,33 @@
 	</p:sidebar>
 	<div class="row">
 		<div class="span9">
-		<t:zone t:id="progressZone" id="progressZone" t:mixins="zonerefresh" t:period="1">
-			<t:if test="progress" class = "well">
+			<t:zone t:id="progressZone" id="progressZone" t:mixins="zonerefresh"
+				t:period="1">
+				<t:if test="progress" class="well">
 					<div class="progress progress-info progress-striped">
 						<div class="bar" style="width: ${progress}%">downloading from web </div>
 					</div>
+				</t:if>
+			</t:zone>
+
+			<t:if test="response">
+
+				<t:if test="response.books">
+					<t:loop source="response.books" value="book">
+						<t:beandisplay object="book" exclude="${book.excludes},excludes" />
+					</t:loop>
+				</t:if>
+
+				<br />
+				-----------------------------------------------------------------------------------------------------------------------
+				<br />
+				<t:if test="response.authors">
+					<t:loop source="response.authors" value="author">
+						<t:beandisplay object="author" exclude="${author.excludes},excludes" />
+					</t:loop>
+				</t:if>
 			</t:if>
-		</t:zone>
-		
-		
-			<t:beandisplay object="Alpha" exclude="${Alpha.excludes},excludes" />
+
 		</div>
 	</div>
 

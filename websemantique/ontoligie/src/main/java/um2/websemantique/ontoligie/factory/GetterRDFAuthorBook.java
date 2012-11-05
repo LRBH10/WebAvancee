@@ -33,7 +33,6 @@ public class GetterRDFAuthorBook implements Runnable {
 			Thread x = new Thread (this);
 			x.start ();
 		}
-
 		return res;
 	}
 
@@ -77,8 +76,7 @@ public class GetterRDFAuthorBook implements Runnable {
 	 * @return {@link ResponseQuery}
 	 */
 	public ResponseQuery findSPRQL(String query, SearchType type) {
-		ResponseQuery ret = new ResponseQuery ();
-		ret.setOk (false);
+		ResponseQuery ret = SPARQLQuery.responseSPARQLQuerry (query, type);
 		return ret;
 	}
 
