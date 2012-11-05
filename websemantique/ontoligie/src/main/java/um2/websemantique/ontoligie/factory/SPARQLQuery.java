@@ -64,6 +64,9 @@ public class SPARQLQuery {
         if (result.getBooks().size() + result.getAuthors().size() <= 0) {
             result.setOk(false);
         }
+        else{
+            result.setOk(true);
+        }
         return result;
     }
 
@@ -415,17 +418,20 @@ private static AuthorGoodRead createGoodreadAuthor(Resource res) {
                         + "SELECT DISTINCT ?individu  "
                         + "WHERE {"
                         + "{?individu book:" + VocabularyBook.isbn10 + " ?isbn ."
-                        + "FILTER regex( ?isbn \"" + content + "\" , \"i\" ) }"
+                        + "FILTER regex( ?isbn,\"" + content + "\" , \"i\" ) }"
                         + "UNION"
                         + "{?individu book:" + VocabularyBook.isbn13 + " ?isbn ."
-                        + "FILTER regex( ?isbn \"" + content + "\" , \"i\" ) }}";
+                        + "FILTER regex( ?isbn,\"" + content + "\" , \"i\" ) }}";
                 break;
             case TITLE:
                 queryString = prefixBook + NL
-                        + "SELECT ?individu  WHERE {?individu book:" + VocabularyBook.title + " ?title"
-                        + "FILTER regex( ?title \"" + content + "\" , \"i\" ) }";
+                        + "SELECT DISTINCT ?individu  "
+                        + "WHERE "
+                        + "{?individu book:" + VocabularyBook.title + " ?title . "
+                        + "FILTER regex( ?title,\"" + content + "\" , \"i\" ) }";
+                                  
                 break;
-
+                
             default: // FOR ANY
                 queryString = "";
                 break;
