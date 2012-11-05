@@ -102,27 +102,23 @@ public class JSONResponse {
 	@POST
 	@Path("post/excuteSPARQL/")
 	public String excuteSPRQLPost(@FormParam("query") String query) {
-		String res = "";
-		ArrayList<Resource> rs = null;
+		String ret = "";
+		ResponseQuery res;
 		Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
 
 		try {
-			rs = SPARQLQuery.executeSPARQLQuery (query);
-
-			res = "{\nsize:\"" + rs.size () + "\"items:";
-			res = gson.toJson (rs, Resource.class);
-			res = "\n}";
+			res = SPARQLQuery.responseSPARQLQueryFromService (query);
+			ret = gson.toJson (res);
 
 		} catch ( QueryParseException e ) {
-			res = "{ queryparseexception :" + gson.toJson (e) + "\n}";
+			ret = "{ queryparseexception :" + gson.toJson (e) + "\n}";
 
 		} catch ( Exception e ) {
 
-			res = "{ exception :" + gson.toJson (e) + "\n}";
-			System.out.println (e);
+			ret = "{ exception :" + gson.toJson (e) + "\n}";
 		}
 
-		return res + "\n";
+		return ret + "\n";
 	}
 
 	/**
