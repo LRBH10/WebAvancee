@@ -311,7 +311,7 @@ public class SPARQLQuery {
 						+ " ?name . " + "FILTER regex( ?name,\"" + content
 						+ "\" , \"i\" ) }" + "UNION" + "{?individu author:"
 						+ VocabularyAutheur.facebookName + " ?name . "
-						+ "FILTER regex( ?name,\"" + content + "\" , \"i\" ) }";
+						+ "FILTER regex( ?name,\"" + content + "\" , \"i\" ) }}";
 				;
 				break;
 			case ISBN:
@@ -321,7 +321,7 @@ public class SPARQLQuery {
 						+ "FILTER regex( ?isbn \"" + content + "\" , \"i\" ) }"
 						+ "UNION" + "{?individu book:" + VocabularyBook.isbn13
 						+ " ?isbn ." + "FILTER regex( ?isbn \"" + content
-						+ "\" , \"i\" ) }";
+						+ "\" , \"i\" ) }}";
 				break;
 			case TITLE:
 				queryString = prefixBook + SPARQLQuery.NL
