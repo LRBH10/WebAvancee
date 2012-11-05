@@ -20,7 +20,7 @@ public class Main {
                 
                 //RDFOntology.getInstanceRDFOntology().databaseToString();
                 
-                ResponseQuery res = SPARQLQuery.responseSPARQLQuerry("8497899938", SearchType.ISBN);
+                ResponseQuery res = SPARQLQuery.responseSPARQLQuerry("8497899938", SearchType.ANY);
                 ArrayList<Author> listAuthors = res.getAuthors();
                 ArrayList<Book> listBooks = res.getBooks();
                 
