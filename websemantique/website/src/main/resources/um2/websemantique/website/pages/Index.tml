@@ -9,29 +9,42 @@
 		"content"
 		});
 		});
-		jQuery( ".selector" ).accordion({ active: 0 });
+		jQuery( ".selector" ).accordion({ active: 0
+		});
 	</script>
+	<link rel="stylesheet"
+		href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
 	<p:sidebar>
-		<div class="well">
+		<t:jquery.tabs t:tabs="Recherche,Interne,Web"
+			t:activePanelId="0">
 
-			<div class="nav-header ">Recherche</div>
-			<center>
-				<t:form t:id="searchForm" class="form-search">
-					<input t:type="textfield" t:value="search" t:id="search"
-						class="search-query" placeholder="Your Query" />
-					<br />
-					<br />
-					<t:select t:id="type" />
-					<br />
-					<br />
-					<br />
+			<p:Recherche>
+				<centre>
 
-					<t:submit t:id="submit" class="btn btn-inverse" style="width : 50%"
-						value="Rechercher" />
-				</t:form>
-			</center>
+					<t:form t:id="searchForm" class="form-horizontal">
+						<input t:type="textfield" t:value="search" t:id="search"
+							class="search" placeholder="Votre Requete ici" />
+						<t:select t:id="type" />
 
-		</div>
+						<t:submit t:id="submit" class="btn" style="width : 50%"
+							value="Rechercher" />
+					</t:form>
+				</centre>
+			</p:Recherche>
+
+			<p:Interne>
+				<h3>Panel 2</h3>
+				<hr />
+				content from block 2
+			</p:Interne>
+
+			<p:Web>
+				<h3>Panel 3</h3>
+				<hr />
+				content from block 3
+			</p:Web>
+
+		</t:jquery.tabs>
 
 	</p:sidebar>
 	<div class="row">
@@ -46,12 +59,10 @@
 			</t:zone>
 
 
-			<div id="results" class ="dl-horizontal">
+			<div id="results" class="dl-horizontal">
 				<t:if test="response">
 
 					<t:if test="response.authors">
-						<h3>Auteurs</h3>
-						<div></div>
 						<t:loop source="response.authors" value="author">
 							<h3>${author.LinkAbout}</h3>
 							<div class="dl-horizontal">
@@ -66,14 +77,13 @@
 							</div>
 						</t:loop>
 					</t:if>
-
+					<br />
+					<br />
 
 					<br />
 					<br />
 
 					<t:if test="response.books">
-						<h3>Livres</h3>
-						<div></div>
 						<t:loop source="response.books" value="book">
 							<h3>${book.title}</h3>
 							<t:beandisplay object="book" exclude="${book.excludes},excludes" />

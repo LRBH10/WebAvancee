@@ -31,24 +31,25 @@ public class GetterBookAuthor {
 		Author origin = null;
 
 		for ( Book book : books ) {
+			if ( !book.getAuthors ().isEmpty () ) {
+				if ( origin == null || origin.isNull () ) {
+					origin = new Author (book.getAuthors ().get (0));
+					authors.add (origin);
+				}
 
-			if ( origin == null || origin.isNull () ) {
-				origin = new Author (book.getAuthors ().get (0));
-				authors.add (origin);
-			}
+				if ( book.getAuthors ().size () < 1 ) {
+					book.getAuthorslink ().add (origin.getLinkAbout ());
 
-			if ( book.getAuthors ().size () < 1 ) {
-				book.getAuthorslink ().add (origin.getLinkAbout ());
-
-			} else {
-				for ( String name : book.getAuthors () ) {
-					if ( !origin.isNull ()
-							&& !name.toLowerCase ().equals (origin.getKey ().toLowerCase ()) ) {
-						Author inter = new Author (name);
-						book.getAuthorslink ().add (inter.getLinkAbout ());
-						authors.add (inter);
-					} else {
-						book.getAuthorslink ().add (origin.getLinkAbout ());
+				} else {
+					for ( String name : book.getAuthors () ) {
+						if ( !origin.isNull ()
+								&& !name.toLowerCase ().equals (origin.getKey ().toLowerCase ()) ) {
+							Author inter = new Author (name);
+							book.getAuthorslink ().add (inter.getLinkAbout ());
+							authors.add (inter);
+						} else {
+							book.getAuthorslink ().add (origin.getLinkAbout ());
+						}
 					}
 				}
 			}

@@ -1,6 +1,7 @@
 package um2.websemantique.website.pages;
 
 import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
@@ -21,7 +22,7 @@ import um2.websemantique.ontoligie.utils.ResponseQuery;
 public class Index {
 
 	@Property
-	@Persist
+	@Persist(PersistenceConstants.FLASH)
 	private String		search;
 
 	@Property
