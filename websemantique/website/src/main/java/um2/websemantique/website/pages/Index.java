@@ -24,11 +24,28 @@ public class Index {
 	@Property
 	@Persist(PersistenceConstants.FLASH)
 	private String		search;
+	
+	@Property
+	@Persist(PersistenceConstants.FLASH)
+	private String		searchInterne;
+
+	
+	@Property
+	@Persist(PersistenceConstants.FLASH)
+	private String		searchWeb;
+
 
 	@Property
 	@Persist
-	@Validate("required")
 	SearchType			type;
+
+	@Property
+	@Persist
+	SearchType			typeInterne;
+
+	@Property
+	@Persist
+	SearchType			typeWeb;
 
 	@Property
 	@Persist
@@ -63,6 +80,18 @@ public class Index {
 	}
 
 	void onValidateFromSearchForm() {
+		SDBUtil.openConnection ();
+		System.out.println (search + " " + type + "\n\n\n\n\n\n");
+		response = query.find (search, type);
+	}
+
+	void onValidateFromSearchFormInterne() {
+		SDBUtil.openConnection ();
+		System.out.println (search + " " + type + "\n\n\n\n\n\n");
+		response = query.find (search, type);
+	}
+
+	void onValidateFromSearchFormWeb() {
 		SDBUtil.openConnection ();
 		System.out.println (search + " " + type + "\n\n\n\n\n\n");
 		response = query.find (search, type);

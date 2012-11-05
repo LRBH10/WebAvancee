@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import um2.websemantique.entities.utils.SearchType;
 import um2.websemantique.ontoligie.factory.GetterRDFAuthorBook;
+import um2.websemantique.ontoligie.factory.RDFOntology;
 import um2.websemantique.ontoligie.sdb.SDBUtil;
 
 public class Test {
@@ -17,7 +18,8 @@ public class Test {
 			SQLException {
 		SDBUtil.openConnection ();
 
-		GetterRDFAuthorBook g = new GetterRDFAuthorBook ();
+		RDFOntology.getInstanceRDFOntology ().databaseToString ();
+		/*GetterRDFAuthorBook g = new GetterRDFAuthorBook ();
 		g.find ("alo", SearchType.TITLE);//*/
 	}
 

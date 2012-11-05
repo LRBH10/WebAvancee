@@ -19,29 +19,48 @@
 			t:activePanelId="0">
 
 			<p:Recherche>
-				<centre>
-
-					<t:form t:id="searchForm" class="form-horizontal">
-						<input t:type="textfield" t:value="search" t:id="search"
-							class="search" placeholder="Votre Requete ici" />
-						<t:select t:id="type" />
-
-						<t:submit t:id="submit" class="btn" style="width : 50%"
-							value="Rechercher" />
-					</t:form>
-				</centre>
+				<t:form t:id="searchForm" class="form-horizontal">
+					<input t:type="textfield" t:value="search" t:id="search"
+						class="search" placeholder="Votre Requete ici" />
+					<br />
+					<br />
+					<t:select t:id="type" />
+					<br />
+					<br />
+					<br />
+					<t:submit t:id="submit" class="btn" style="width : 50%"
+						value="Rechercher" />
+				</t:form>
 			</p:Recherche>
 
 			<p:Interne>
-				<h3>Panel 2</h3>
-				<hr />
-				content from block 2
+				<t:form t:id="searchFormInterne" class="form-horizontal">
+					<input t:type="textfield" t:value="searchInterne" t:id="searchInterne"
+						class="search" placeholder="Votre Requete ici" />
+					<br />
+					<br />
+					<t:select t:id="typeInterne" />
+					<br />
+					<br />
+					<br />
+					<t:submit t:id="submitInterne" class="btn" style="width : 50%"
+						value="Rechercher Interne" />
+				</t:form>
 			</p:Interne>
 
 			<p:Web>
-				<h3>Panel 3</h3>
-				<hr />
-				content from block 3
+				<t:form t:id="searchFormWeb" class="form-horizontal">
+					<input t:type="textfield" t:value="searchWeb" t:id="searchWeb"
+						class="search" placeholder="Votre Requete ici" />
+					<br />
+					<br />
+					<t:select t:id="typeWeb" />
+					<br />
+					<br />
+					<br />
+					<t:submit t:id="submitWeb" class="btn" style="width : 50%"
+						value="Rechercher Web" />
+				</t:form>
 			</p:Web>
 
 		</t:jquery.tabs>
