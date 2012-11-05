@@ -37,6 +37,7 @@ public class Index {
 
 	@Property
 	@Persist
+	@Validate("required")
 	SearchType			type;
 
 	@Property

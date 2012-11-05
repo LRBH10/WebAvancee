@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 
 import um2.websemantique.entities.utils.SearchType;
 import um2.websemantique.ontoligie.factory.SPARQLQuery;
+import um2.websemantique.ontoligie.sdb.SDBUtil;
 import um2.websemantique.ontoligie.utils.ResponseQuery;
 
 import com.google.gson.Gson;
@@ -34,12 +35,11 @@ public class JSONResponse {
 	@GET
 	@Path("get/excuteQuery/q={query}&type={type}")
 	public String excuteQuery(@PathParam("query") String query, @PathParam("type") String type) {
-
-		ResponseQuery result = new ResponseQuery (query,
-				SearchType.fromString (type));
+		SDBUtil.openConnection ();
+		ResponseQuery result = SPARQLQuery.responseSPARQLQuerry (query, SearchType.fromString (type));
 		Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
 
-		String res = gson.toJson (result) + type;
+		String res = gson.toJson (result) + type + result.getAuthors ().size ();
 		return res + "\n";
 	}
 
@@ -73,27 +73,24 @@ public class JSONResponse {
 	@GET
 	@Path("get/excuteSPARQL/sparql={query}")
 	public String excuteSPRQL(@PathParam("query") String query) {
-		String res = "";
+		String ret = "";
+		ResponseQuery res;
 		ArrayList<Resource> rs = null;
 		Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
 
 		try {
-			rs = SPARQLQuery.executeSPARQLQuery (query);
-
-			res = "{\nsize:\"" + rs.size () + "\"items:";
-			res = gson.toJson (rs, Resource.class);
-			res = "\n}";
+			res = SPARQLQuery.responseSPARQLQueryFromService (query);
+			ret = gson.toJson (res);
 
 		} catch ( QueryParseException e ) {
-			res = "{ queryparseexception :" + gson.toJson (e) + "\n}";
+			ret = "{ queryparseexception :" + gson.toJson (e) + "\n}";
 
 		} catch ( Exception e ) {
 
-			res = "{ exception :" + gson.toJson (e) + "\n}";
-			System.out.println (e);
+			ret = "{ exception :" + gson.toJson (e) + "\n}";
 		}
 
-		return res + "\n";
+		return ret + "\n";
 	}
 
 	/**
