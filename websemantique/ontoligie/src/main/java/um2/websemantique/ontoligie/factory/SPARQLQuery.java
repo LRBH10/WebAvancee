@@ -36,7 +36,27 @@ import um2.websemantique.ontoligie.utils.VocabularyBook;
 public class SPARQLQuery {
 
     public static final String NL = System.getProperty("line.separator");
-
+    
+    /**
+     * Method that execute  a SPARQL query  into the endpoint
+     * ( out base rdf ) and return the result
+     * of the research
+     * @param query the query
+     * @return the result of the research
+     */
+    public static ResponseQuery responseSPARQLQueryFromService(String query){
+        ArrayList<Resource> resultExec = new ArrayList<Resource>();
+        resultExec.addAll(executeSPARQLQuery(query));        
+        return dispatchClasses(resultExec);
+    }
+    
+    /**
+     * Method that search a  word  into the base rdf and return the result
+     * of the research
+     * @param recherche searched word
+     * @param typeResearch type of research ( by author , by title ....)
+     * @return the result of the research
+     */
     public static ResponseQuery responseSPARQLQuerry(String recherche,
             SearchType typeResearch) {
 
