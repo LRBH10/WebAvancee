@@ -62,7 +62,15 @@ public class SPARQLQuery {
 
         return dispatch(recherche, typeResearch);
     }
-
+    
+    /**
+     * The main dispatch method that make connection between<br/>
+     * - the passed word, his type and the query generated from it<br/>
+     * - the generated query and the result of its execution
+     * @param recherche the word
+     * @param type the type of the research @{link SearchType}
+     * @return 
+     */
     private static ResponseQuery dispatch(String recherche, SearchType type) {
         ResponseQuery result = new ResponseQuery();
         ArrayList<String> querys = createSPARQLQuerys(recherche, type);
@@ -423,6 +431,7 @@ private static AuthorGoodRead createGoodreadAuthor(Resource res) {
                         + NL + "UNION" + NL
                         + "{?individu author:" + VocabularyAutheur.facebookName + " ?name . "
                         + "FILTER regex( ?name,\"" + content + "\" , \"i\" ) }}";
+                        
                 ;
                 break;
             case ISBN:
