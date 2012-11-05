@@ -39,7 +39,7 @@ public class JSONResponse {
 		ResponseQuery result = SPARQLQuery.responseSPARQLQuerry (query, SearchType.fromString (type));
 		Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
 
-		String res = gson.toJson (result) + type + result.getAuthors ().size ();
+		String res = gson.toJson (result) + type;
 		return res + "\n";
 	}
 
@@ -55,11 +55,11 @@ public class JSONResponse {
 	@Path("post/excuteQuery/")
 	public String excuteQueryPost(@FormParam("query") String query, @PathParam("type") String type) {
 
-		ResponseQuery result = new ResponseQuery (query,
-				SearchType.fromString (type));
+		SDBUtil.openConnection ();
+		ResponseQuery result = SPARQLQuery.responseSPARQLQuerry (query, SearchType.fromString (type));
 		Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
 
-		String res = gson.toJson (result) + type;
+		String res = gson.toJson (result);
 		return res + "\n";
 	}
 
@@ -75,7 +75,6 @@ public class JSONResponse {
 	public String excuteSPRQL(@PathParam("query") String query) {
 		String ret = "";
 		ResponseQuery res;
-		ArrayList<Resource> rs = null;
 		Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
 
 		try {
@@ -101,7 +100,7 @@ public class JSONResponse {
 	 * @return json associated
 	 */
 	@POST
-	@Path("get/excuteSPARQL/")
+	@Path("post/excuteSPARQL/")
 	public String excuteSPRQLPost(@FormParam("query") String query) {
 		String res = "";
 		ArrayList<Resource> rs = null;
