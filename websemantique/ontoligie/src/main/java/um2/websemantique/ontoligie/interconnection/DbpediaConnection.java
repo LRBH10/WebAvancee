@@ -46,6 +46,10 @@ public class DbpediaConnection {
                     return rb.getResource("s");
                 }                
             }
+            catch(Exception e){
+                System.out.println("Impossible to find Resource for "+ word + " !");
+                return null;
+            }
             finally {
                qexec.close();
             }
