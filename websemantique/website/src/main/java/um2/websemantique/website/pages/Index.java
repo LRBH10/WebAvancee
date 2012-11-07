@@ -1,7 +1,6 @@
 package um2.websemantique.website.pages;
 
 import org.apache.tapestry5.EventConstants;
-import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
@@ -9,7 +8,6 @@ import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.corelib.components.Zone;
-import org.openjena.riot.Lang;
 
 import um2.websemantique.entities.base.Author;
 import um2.websemantique.entities.base.Book;
