@@ -1,5 +1,7 @@
 package um2.websemantique.ontoligie.factory;
 
+import com.hp.hpl.jena.rdf.model.Resource;
+
 import um2.websemantique.entities.base.Author;
 import um2.websemantique.entities.base.Book;
 import um2.websemantique.entities.utils.GetterBookAuthor;
@@ -55,7 +57,8 @@ public class GetterRDFAuthorBook implements Runnable {
 
 		for ( Author author : getweb.getAuthors () ) {
 			progress = 50 + i * 50 / getTaille ();
-			author.setSameAs (DbpediaConnection.executeSPARQLToDbpedia (author.getKey ()).getURI ());
+			Resource str = DbpediaConnection.executeSPARQLToDbpedia (author.getKey ());
+			if ( str != null ) author.setSameAs (str.getURI ());
 
 			RDFFactory.generateRDFAuthorInstance (author);
 			i++;
@@ -63,7 +66,8 @@ public class GetterRDFAuthorBook implements Runnable {
 
 		for ( Book book : getweb.getBooks () ) {
 			progress = 50 + i * 50 / getTaille ();
-			book.setSameAs (DbpediaConnection.executeSPARQLToDbpedia (book.getTitle ()).getURI ());
+			Resource str = DbpediaConnection.executeSPARQLToDbpedia (book.getTitle ());
+			if ( str != null ) book.setSameAs (str.getURI ());
 			RDFFactory.generateRDFBookInstance (book);
 
 			i++;

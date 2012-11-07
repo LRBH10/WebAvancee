@@ -1,13 +1,11 @@
 package um2.websemantique.ontoligie.tests;
 
-import com.hp.hpl.jena.rdf.model.Resource;
 import java.sql.SQLException;
 
 import um2.websemantique.entities.utils.SearchType;
 import um2.websemantique.ontoligie.factory.GetterRDFAuthorBook;
 import um2.websemantique.ontoligie.factory.RDFOntology;
 import um2.websemantique.ontoligie.sdb.SDBUtil;
-import um2.websemantique.ontologie.interconnection.DbpediaConnection;
 
 public class Test {
 
@@ -18,14 +16,11 @@ public class Test {
 	 */
 	public static void main(String [] args) throws InterruptedException,
 			SQLException {
-		//SDBUtil.openConnection ();
-		//RDFOntology.getInstanceRDFOntology ().databaseToString ();
-		/*GetterRDFAuthorBook g = new GetterRDFAuthorBook ();
-		g.find ("alo", SearchType.TITLE);//*/
-            
-            Resource r = DbpediaConnection.executeSPARQLToDbpedia("123");
-            if(r != null)
-                System.out.println(r.getURI());
+		SDBUtil.openConnection ().cleanDB ();
+		GetterRDFAuthorBook g = new GetterRDFAuthorBook ();
+		g.find ("yasmina", SearchType.AUTHOR);
+		RDFOntology.getInstanceRDFOntology ().databaseToString ();
+		    
 	}
 
 }
