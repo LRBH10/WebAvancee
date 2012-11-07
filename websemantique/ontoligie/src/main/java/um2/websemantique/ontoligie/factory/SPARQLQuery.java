@@ -5,6 +5,7 @@
 package um2.websemantique.ontoligie.factory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.openjena.atlas.io.IndentedWriter;
 
@@ -12,8 +13,11 @@ import um2.websemantique.entities.base.Author;
 import um2.websemantique.entities.base.AuthorFacebook;
 import um2.websemantique.entities.base.AuthorGoodRead;
 import um2.websemantique.entities.base.Book;
+import um2.websemantique.entities.utils.IdentifierBook;
 import um2.websemantique.entities.utils.SearchType;
 import um2.websemantique.ontoligie.utils.ResponseQuery;
+import um2.websemantique.ontoligie.utils.VocabularyAutheur;
+import um2.websemantique.ontoligie.utils.VocabularyBook;
 
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
@@ -22,12 +26,6 @@ import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
-import java.util.List;
-import um2.websemantique.entities.apicallers.GoodReadApiCaller;
-import um2.websemantique.entities.utils.IdentifierBook;
-import um2.websemantique.ontoligie.utils.VocabularyAutheur;
-import um2.websemantique.ontoligie.utils.VocabularyBook;
 
 /**
  *
@@ -72,7 +70,6 @@ public class SPARQLQuery {
      * @return 
      */
     private static ResponseQuery dispatch(String recherche, SearchType type) {
-        ResponseQuery result = new ResponseQuery();
         ArrayList<String> querys = createSPARQLQuerys(recherche, type);
         ArrayList<Resource> resultExec = new ArrayList<Resource>();
         for (String query : querys) {

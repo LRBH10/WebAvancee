@@ -33,7 +33,7 @@ public class JSONResponse {
 	 * @return associeted json
 	 */
 	@GET
-	@Path("get/excuteQuery/q={query}&type={type}")
+	@Path("get/excuteQuery/q={query}&t={type}")
 	public String excuteQuery(@PathParam("query") String query, @PathParam("type") String type) {
 		SDBUtil.openConnection ();
 		ResponseQuery result = SPARQLQuery.responseSPARQLQuerry (query, SearchType.fromString (type));
@@ -71,7 +71,7 @@ public class JSONResponse {
 	 * @return json associated
 	 */
 	@GET
-	@Path("get/excuteSPARQL/sparql={query}")
+	@Path("get/excuteSPARQL/q={query}")
 	public String excuteSPRQL(@PathParam("query") String query) {
 		String ret = "";
 		ResponseQuery res;
@@ -102,25 +102,32 @@ public class JSONResponse {
 	@POST
 	@Path("post/excuteSPARQL/")
 	public String excuteSPRQLPost(@FormParam("query") String query) {
-		String ret = "";
-		ResponseQuery res;
-		Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
 
+	    System.out.println(query);
+	    String ret = ""+query;
+	    ResponseQuery res;
+		Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
+		if(query!=null){
 		try {
 			res = SPARQLQuery.responseSPARQLQueryFromService (query);
+			
+			
 			//ret = gson.toJson (res);
 
 		} catch ( QueryParseException e ) {
-			e.printStackTrace ();
-			System.out.println (e);
-			//ret = "{ queryparseexception :" + gson.toJson (e) + "\n}";
+		    //e.printStackTrace ();
+		    	System.out.println (e);
+		    //ret = "{ queryparseexception :" + gson.toJson (e) + "\n}";
 
 		} catch ( Exception e ) {
-			System.out.println (e);
-			e.printStackTrace ();
+		    System.out.println (e);
+			//e.printStackTrace ();
 			//ret = "{ exception :" + gson.toJson (e) + "\n}";
+			}//*/
 		}
-
+		else{
+		    ret = "Requete Vide";
+		}
 		return ret + "\n";
 	}
 
