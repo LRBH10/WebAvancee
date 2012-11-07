@@ -130,6 +130,10 @@ public class RDFFactory {
 		OntClass authorClass = RDFOntology.getInstanceRDFOntology ().getAuthorClass ();
 		Individual instance = authorClass.createIndividual (author.getLinkAbout ());
          
+		RDFFactory.addPropertyToAuthorInstance (VocabularyAutheur.SameAs, instance, author.getSameAs ());
+		RDFFactory.addPropertyToAuthorInstance (VocabularyAutheur.key, instance, author.getKey ());
+		
+		
 		if ( !author.isAuthorGoodReadNull () ) {
 			RDFFactory.addPropertyToAuthorInstance (VocabularyAutheur.googreadIdAutheur, instance, author.getGoodRead ().getId ());
 			RDFFactory.addPropertyToAuthorInstance (VocabularyAutheur.goodreadLink, instance, author.getGoodRead ().getLink ());
@@ -168,6 +172,8 @@ public class RDFFactory {
 	public static void generateRDFBookInstance(Book book) {
 		OntClass bookClass = RDFOntology.getInstanceRDFOntology ().getBookClass ();
 		Individual instance = bookClass.createIndividual (book.getCanonicalVolumeLink ());
+		
+		RDFFactory.addPropertyToBookInstance (VocabularyBook.SameAs, instance, book.getSameAs ());
 		
 		RDFFactory.addPropertyToBookInstance (VocabularyBook.idBook, instance, book.getId ());
 		RDFFactory.addPropertyToBookInstance (VocabularyBook.title, instance, book.getTitle ());

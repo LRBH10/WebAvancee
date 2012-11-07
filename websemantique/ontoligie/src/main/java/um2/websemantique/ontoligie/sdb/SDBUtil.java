@@ -57,7 +57,7 @@ public class SDBUtil {
 		if ( SDBUtil.conn == null ) {
 			JDBC.loadDriverMySQL ();
 			String jdbcURL = "jdbc:mysql://localhost:3306/rdf_base";
-
+			
 			SDBUtil.conn = new DBConnection (jdbcURL, "root", "rabah123",
 					"MySQL");
 		}

@@ -20,6 +20,11 @@ public class Author {
 	public String getSameAs() {
 		return sameAs;
 	}
+	
+	
+	public void setKey(String key) {
+		this.key = key;
+	}
 
 	/**
 	 * Constuct from two class Author
@@ -50,10 +55,25 @@ public class Author {
 		facebook = GeneratorFromJSON.createAuthorFacebook (fa.findAuthorFacebook (author));
 	}
 
+	/**
+	 * Excludes Null attributes from show in Web site
+	 * @return
+	 */
 	public String getExcludes() {
 		String res = "";
+		res += ExcludeNullProperty.isExcluded (this.sameAs, "sameAs");
+		
 		res += this.facebook.getExcludes () + this.goodRead.getExcludes ()
-				+ ",AuthorFacebookNull(),isAuthorGoodReadNull,key,Null";
+				+ ",AuthorFacebookNull,isAuthorGoodReadNull,Null,key";
+		return res;
+	}
+	/**
+	 * Reorder Attributes 
+	 * @return
+	 */
+	public String  getReorder() {
+		String res = "";
+		
 		return res;
 	}
 

@@ -10,6 +10,8 @@ package um2.websemantique.ontoligie.utils;
  */
 public class VocabularyAutheur {
 
+	public static final String	key							= "key";
+
 	public static final String	facebookIdAutheur			= "facebook_id_autheur";
 	public static final String	facebookName				= "facebook_name";
 	public static final String	facebookLikes				= "facebook_likes";

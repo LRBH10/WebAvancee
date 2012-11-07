@@ -73,6 +73,7 @@ public class JSONResponse {
 	@GET
 	@Path("get/excuteSPARQL/q={query}")
 	public String excuteSPRQL(@PathParam("query") String query) {
+		SDBUtil.openConnection ();
 		String ret = "";
 		ResponseQuery res;
 		Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
@@ -102,7 +103,7 @@ public class JSONResponse {
 	@POST
 	@Path("post/excuteSPARQL/")
 	public String excuteSPRQLPost(@FormParam("query") String query) {
-
+		SDBUtil.openConnection ();
 	    System.out.println(query);
 	    String ret = ""+query;
 	    ResponseQuery res;
@@ -110,9 +111,7 @@ public class JSONResponse {
 		if(query!=null){
 		try {
 			res = SPARQLQuery.responseSPARQLQueryFromService (query);
-			
-			
-			//ret = gson.toJson (res);
+			ret = gson.toJson (res);
 
 		} catch ( QueryParseException e ) {
 		    //e.printStackTrace ();
@@ -121,7 +120,7 @@ public class JSONResponse {
 
 		} catch ( Exception e ) {
 		    System.out.println (e);
-			//e.printStackTrace ();
+			e.printStackTrace ();
 			//ret = "{ exception :" + gson.toJson (e) + "\n}";
 			}//*/
 		}

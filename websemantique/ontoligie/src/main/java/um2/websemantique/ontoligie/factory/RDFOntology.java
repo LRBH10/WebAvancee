@@ -90,6 +90,8 @@ public class RDFOntology {
 		this.authorClass.addComment ("La description de la class Auteur", "fr");
 
 
+		addAuthorProperty (VocabularyAutheur.key, "Le nom de l'auteur extrait de book", "Key", XSD.Name);
+		
 		addAuthorProperty (VocabularyAutheur.SameAs, "Le lien vers Dbpedia (InterConnection)", "Same As", XSD.xstring);
 		addAuthorProperty (VocabularyAutheur.facebookIdAutheur, "ID de l'auteur attribuer par le web service http://graph.facebook.com", "Facebook id auteur", XSD.ID);
 		addAuthorProperty (VocabularyAutheur.facebookLikes, "Nombre de Likes de la meilleur page de Facebook", "Facebook Likes", XSD.integer);

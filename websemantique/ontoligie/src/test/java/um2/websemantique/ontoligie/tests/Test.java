@@ -16,9 +16,10 @@ public class Test {
 	 */
 	public static void main(String [] args) throws InterruptedException,
 			SQLException {
-		SDBUtil.openConnection ().cleanDB ();
+		SDBUtil.openConnection ();
 		GetterRDFAuthorBook g = new GetterRDFAuthorBook ();
 		g.find ("yasmina", SearchType.AUTHOR);
+		
 		RDFOntology.getInstanceRDFOntology ().databaseToString ();
 		    
 	}

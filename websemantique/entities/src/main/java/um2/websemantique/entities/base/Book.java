@@ -131,6 +131,7 @@ public class Book {
 		res += ExcludeNullProperty.isExcluded (this.title, "title");
 		res += ExcludeNullProperty.isExcluded (this.viewability, "viewability");
 		res += ExcludeNullProperty.isExcluded (this.webReaderLink, "webReaderLink");
+		res += ExcludeNullProperty.isExcluded (this.sameAs, "sameAs");
 
 		return res;
 	}

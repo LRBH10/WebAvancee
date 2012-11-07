@@ -4,12 +4,11 @@
 	<t:jquery.accordion panels="" t:activeElementId="1" />
 	<script>
 		jQuery(function() {
-		jQuery( "#results" ).accordion({
-		heightStyle:
-		"content"
+		jQuery( "#results" ).accordion();
 		});
-		});
-		jQuery( ".selector" ).accordion({ active: 0
+		jQuery(
+		".selector" ).accordion({ active:
+		${encours}
 		});
 	</script>
 	<link rel="stylesheet"
@@ -77,43 +76,61 @@
 				</t:if>
 			</t:zone>
 
-			
-				<div id="results" class="dl-horizontal">
-					<t:if test="response">
 
-						<t:if test="response.authors">
-							<t:loop source="response.authors" value="author">
-								<h3>${author.LinkAbout}</h3>
-								<div class="dl-horizontal">
-									<t:if test="author.goodRead">
-										<t:beandisplay object="author.goodRead"
-											exclude="${author.goodRead.excludes},excludes" />
-									</t:if>
-									<t:if test="author.facebook">
-										<t:beandisplay object="author.facebook"
-											exclude="${author.facebook.excludes},excludes" />
-									</t:if>
-								</div>
-							</t:loop>
-						</t:if>
-						<br />
-						<br />
+			<div id="results" class="dl-horizontal">
+				<t:if test="response">
 
-						<br />
-						<br />
+					<t:if test="response.authors">
+						<t:loop source="response.authors" value="author">
+							<h3>${author.key}</h3>
+							<div class="dl-horizontal">
+								<dt class="bornAt">Our Link</dt>
+								<dd>
+									<a class="btn btn-small btn-block " href="${author.linkabout}"> From Web</a>
+								</dd>
 
-						<t:if test="response.books">
-							<t:loop source="response.books" value="book">
-								<h3>${book.title}</h3>
-								<t:beandisplay object="book" exclude="${book.excludes},excludes" />
-							</t:loop>
-						</t:if>
-						<p:else>
-							<h1>Pas de Resultat</h1>
-						</p:else>
+								<t:if test="author.SameAs">
+									<dt>Same As</dt>
+									<dd>
+										<a class="btn btn-small btn-block " href="${author.SameAs}"> Lien Dbpedia</a>
+									</dd>
+								</t:if>
+								<t:if test="author.goodRead">
+									<t:beandisplay object="author.goodRead"
+										exclude="${author.goodRead.excludes},excludes"
+										reorder="id">
+										<p:ImageUrl>
+											<img src="${author.goodRead.imageUrl}" />
+										</p:ImageUrl>
+									</t:beandisplay>
+								</t:if>
+
+								<t:if test="author.facebook">
+									<t:beandisplay object="author.facebook"
+										exclude="${author.facebook.excludes},excludes" reorder="">
+									</t:beandisplay>
+								</t:if>
+							</div>
+						</t:loop>
 					</t:if>
+					<br />
+					<br />
 
-				</div>
+					<br />
+					<br />
+
+					<t:if test="response.books">
+						<t:loop source="response.books" value="book">
+							<h3>${book.title}</h3>
+							<t:beandisplay object="book" exclude="${book.excludes},excludes" />
+						</t:loop>
+					</t:if>
+					<p:else>
+						<h1>Pas de Resultat</h1>
+					</p:else>
+				</t:if>
+
+			</div>
 
 		</div>
 	</div>
