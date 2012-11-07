@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  // */
-package um2.websemantique.ontoligie.interconnection;
+package um2.websemantique.ontologie.interconnection;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;

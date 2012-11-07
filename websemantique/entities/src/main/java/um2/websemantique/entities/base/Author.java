@@ -10,6 +10,16 @@ public class Author {
 	private AuthorGoodRead	goodRead;
 	private AuthorFacebook	facebook;
 	private String			key;
+	private String			sameAs;
+	
+	
+	public void setSameAs(String sameas) {
+		this.sameAs = sameas;
+	}
+	
+	public String getSameAs() {
+		return sameAs;
+	}
 
 	/**
 	 * Constuct from two class Author

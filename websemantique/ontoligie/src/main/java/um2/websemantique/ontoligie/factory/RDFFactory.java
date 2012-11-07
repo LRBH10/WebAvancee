@@ -12,12 +12,12 @@ import um2.websemantique.entities.base.Book;
 import um2.websemantique.entities.utils.IdentifierBook;
 import um2.websemantique.ontoligie.utils.VocabularyAutheur;
 import um2.websemantique.ontoligie.utils.VocabularyBook;
+import um2.websemantique.ontologie.interconnection.DbpediaConnection;
 
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.rdf.model.Resource;
-import um2.websemantique.ontoligie.interconnection.DbpediaConnection;
 
 /**
  * The class RDFFactory will generate the ontology of the rdf base. It generate
@@ -129,8 +129,7 @@ public class RDFFactory {
 
 		OntClass authorClass = RDFOntology.getInstanceRDFOntology ().getAuthorClass ();
 		Individual instance = authorClass.createIndividual (author.getLinkAbout ());
-                Resource same = null;
-
+         
 		if ( !author.isAuthorGoodReadNull () ) {
 			RDFFactory.addPropertyToAuthorInstance (VocabularyAutheur.googreadIdAutheur, instance, author.getGoodRead ().getId ());
 			RDFFactory.addPropertyToAuthorInstance (VocabularyAutheur.goodreadLink, instance, author.getGoodRead ().getLink ());
@@ -153,11 +152,7 @@ public class RDFFactory {
 					"" + author.getFacebook ().getTalkingAboutCount ()));
 			RDFFactory.addPropertyToAuthorInstance (VocabularyAutheur.facebookName, instance, author.getFacebook ().getName ());
                         
-                        same = DbpediaConnection.executeSPARQLToDbpedia(author.getFacebook().getName());
                         
-                        if(same  != null){
-                            instance.setSameAs(same);
-                        }
 		}
 	}
 
@@ -173,9 +168,7 @@ public class RDFFactory {
 	public static void generateRDFBookInstance(Book book) {
 		OntClass bookClass = RDFOntology.getInstanceRDFOntology ().getBookClass ();
 		Individual instance = bookClass.createIndividual (book.getCanonicalVolumeLink ());
-		instance.setSameAs(DbpediaConnection.executeSPARQLToDbpedia(book.getTitle()));
-                
-
+		
 		RDFFactory.addPropertyToBookInstance (VocabularyBook.idBook, instance, book.getId ());
 		RDFFactory.addPropertyToBookInstance (VocabularyBook.title, instance, book.getTitle ());
 		RDFFactory.addPropertyToBookInstance (VocabularyBook.description, instance, book.getDescription ());

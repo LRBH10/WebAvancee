@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import um2.websemantique.entities.utils.SearchType;
 import um2.websemantique.ontoligie.factory.GetterRDFAuthorBook;
 import um2.websemantique.ontoligie.factory.RDFOntology;
-import um2.websemantique.ontoligie.interconnection.DbpediaConnection;
 import um2.websemantique.ontoligie.sdb.SDBUtil;
+import um2.websemantique.ontologie.interconnection.DbpediaConnection;
 
 public class Test {
 

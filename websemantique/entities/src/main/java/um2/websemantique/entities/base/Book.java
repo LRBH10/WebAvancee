@@ -37,6 +37,19 @@ public class Book {
 	private String						webReaderLink;
 	private String						textSnippet;
 	private String						currencyCode;
+	private String						sameAs;
+
+	public String getSameAs() {
+		return sameAs;
+	}
+
+	public String getEbook() {
+		return Ebook;
+	}
+
+	public void setSameAs(String sameAs) {
+		this.sameAs = sameAs;
+	}
 
 	public ArrayList<String> getAuthors() {
 		return authors;

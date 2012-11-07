@@ -44,4 +44,5 @@ public class VocabularyBook {
 	public static final String	epubLink		= "epub_link";
 	public static final String	pdfLink			= "pdf_link";
 	public static final String	webReaderLink	= "web_reader_link";
+	public static final String	SameAs			= "SameAs";
 }

@@ -5,6 +5,7 @@ import um2.websemantique.entities.base.Book;
 import um2.websemantique.entities.utils.GetterBookAuthor;
 import um2.websemantique.entities.utils.SearchType;
 import um2.websemantique.ontoligie.utils.ResponseQuery;
+import um2.websemantique.ontologie.interconnection.DbpediaConnection;
 
 public class GetterRDFAuthorBook implements Runnable {
 
@@ -54,13 +55,17 @@ public class GetterRDFAuthorBook implements Runnable {
 
 		for ( Author author : getweb.getAuthors () ) {
 			progress = 50 + i * 50 / getTaille ();
+			author.setSameAs (DbpediaConnection.executeSPARQLToDbpedia (author.getKey ()).getURI ());
+
 			RDFFactory.generateRDFAuthorInstance (author);
 			i++;
 		}
 
 		for ( Book book : getweb.getBooks () ) {
 			progress = 50 + i * 50 / getTaille ();
+			book.setSameAs (DbpediaConnection.executeSPARQLToDbpedia (book.getTitle ()).getURI ());
 			RDFFactory.generateRDFBookInstance (book);
+
 			i++;
 		}
 		progress = 0;

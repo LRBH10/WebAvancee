@@ -27,4 +27,5 @@ public class VocabularyAutheur {
 	public static final String	goodreadHomeTown			= "goodread_home_town";
 	public static final String	goodreadBornAt				= "goodread_born_at";
 	public static final String	goodreadDiedAt				= "goodread_died_at";
+	public static final String	SameAs						= "SameAs";
 }

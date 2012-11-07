@@ -87,7 +87,10 @@ public class RDFOntology {
 		this.authorClass = this.base.createClass (authorNS + "Author");
 		this.authorClass.addLabel ("The  Author Class", "en");
 		this.authorClass.addComment ("The class describint en author", "en");
+		this.authorClass.addComment ("La description de la class Auteur", "fr");
 
+
+		addAuthorProperty (VocabularyAutheur.SameAs, "Le lien vers Dbpedia (InterConnection)", "Same As", XSD.xstring);
 		addAuthorProperty (VocabularyAutheur.facebookIdAutheur, "ID de l'auteur attribuer par le web service http://graph.facebook.com", "Facebook id auteur", XSD.ID);
 		addAuthorProperty (VocabularyAutheur.facebookLikes, "Nombre de Likes de la meilleur page de Facebook", "Facebook Likes", XSD.integer);
 		addAuthorProperty (VocabularyAutheur.facebookLink, "Lien vers la page de Facebook", "Facebook Link", XSD.xstring);
@@ -120,6 +123,7 @@ public class RDFOntology {
 
 		this.bookClass.addLabel ("The Book Class", "en");
 
+		addAuthorProperty (VocabularyBook.SameAs, "Le lien vers Dbpedia (InterConnection)", "Same As", XSD.xstring);
 		addBookProperty (VocabularyBook.author, "Nom de l'auteur de livre", "Nom de l'Auteur", FOAF.Person);
 		addBookProperty (VocabularyBook.averageRaiting, "La moyenne des votes sur le livre de Google Book", "Note", XSD.xdouble);
 		addBookProperty (VocabularyBook.buyLink, "Le lien pour acheter le livre", "Lien d'Achat", XSD.xstring);
