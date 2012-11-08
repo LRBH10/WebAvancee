@@ -1,6 +1,8 @@
 package um2.websemantique.website.services;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
@@ -45,6 +47,8 @@ public class AppModule {
 		configuration.add (SymbolConstants.DEFAULT_STYLESHEET, "context:layoutWS/css/defaultImageau.css");
 		configuration.add (JQuerySymbolConstants.JQUERY_ALIAS, "$j");
 		configuration.add (JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "false");
+		configuration.add (SymbolConstants.HMAC_PASSPHRASE, new BigInteger (
+				130, new SecureRandom ()).toString (32));
 
 	}
 

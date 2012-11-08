@@ -8,14 +8,14 @@
 		});
 		jQuery(
 		".selector" ).accordion({ active:
-		${encours}
+		0
 		});
 	</script>
 	<link rel="stylesheet"
 		href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
 	<p:sidebar>
 		<t:jquery.tabs t:tabs="Recherche,Interne,Web"
-			t:activePanelId="0">
+			t:activePanelId="encours">
 
 			<p:Recherche>
 				<t:form t:id="searchForm" class="form-horizontal">
@@ -97,17 +97,24 @@
 								</t:if>
 								<t:if test="author.goodRead">
 									<t:beandisplay object="author.goodRead"
-										exclude="${author.goodRead.excludes},excludes"
-										reorder="id">
+										exclude="${author.goodRead.excludes},excludes" reorder="">
 										<p:ImageUrl>
 											<img src="${author.goodRead.imageUrl}" />
 										</p:ImageUrl>
+										<p:Link>
+											<a class="btn btn-small btn-block " href="${author.goodRead.link}"> Lien GoodRead</a>
+										</p:Link>
+
 									</t:beandisplay>
 								</t:if>
 
 								<t:if test="author.facebook">
 									<t:beandisplay object="author.facebook"
 										exclude="${author.facebook.excludes},excludes" reorder="">
+										<p:Link>
+											<a class="btn btn-small btn-block " href="${author.facebook.link}"> Lien FaceBook</a>
+										</p:Link>
+
 									</t:beandisplay>
 								</t:if>
 							</div>
@@ -134,7 +141,6 @@
 
 		</div>
 	</div>
-
 
 
 

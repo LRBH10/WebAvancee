@@ -3,6 +3,7 @@ package um2.websemantique.website.pages;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.Log;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
@@ -70,8 +71,10 @@ public class Index {
 	Index				index;
 
 	@Property
+	@Persist
 	int					encours;
 
+	@Log
 	public void setup(int enc, Index last) {
 		encours = enc;
 		search = last.search;
@@ -110,8 +113,8 @@ public class Index {
 		SDBUtil.openConnection ();
 		System.out.println (search + " " + type + "\n\n\n\n\n\n");
 		response = query.find (search, type);
-		index.setup (0, this);
-		return index;
+		encours = 0;
+		return this;
 	}
 
 	/**
@@ -120,11 +123,10 @@ public class Index {
 	 * @return {@link Zone}
 	 */
 	Object onValidateFromSearchFormInterne() {
-
 		SDBUtil.openConnection ();
 		response = query.findSPRQL (searchInterne, typeInterne);
-		index.setup (1, this);
-		return index;
+		encours = 1;
+		return this;
 	}
 
 	/**
@@ -140,8 +142,8 @@ public class Index {
 		while (progress != 0) {
 			Thread.sleep (100);
 		}
-		index.setup (2, this);
-		return index;
+		encours = 2;
+		return this;
 	}
 
 	@Property

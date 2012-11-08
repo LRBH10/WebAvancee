@@ -1,6 +1,8 @@
 package um2.websemantique.website.base;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.tapestry5.annotations.Log;
@@ -59,9 +61,16 @@ public abstract class Details {
 				System.out.println (p.getLocalName () + "-" + p.getLabel ("en")
 						+ "-" + p.getComment ("fr"));
 			}
+
+			Collections.sort (Properties, new Comparator<OntProperty> () {
+
+				@Override
+				public int compare(OntProperty o1, OntProperty o2) {
+					return o1.getLocalName ().compareTo (o2.getLocalName ());
+				}
+			});//*/
 		}
 		System.out.println (Properties.size ());
 	}
 
-	
 }

@@ -2,6 +2,7 @@ package um2.websemantique.entities.base;
 
 import java.util.ArrayList;
 
+import um2.websemantique.entities.utils.ExcludeNullProperty;
 import um2.websemantique.entities.utils.IdentifierBook;
 
 public class Book {

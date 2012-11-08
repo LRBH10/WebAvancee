@@ -1,5 +1,7 @@
 package um2.websemantique.entities.base;
 
+import um2.websemantique.entities.utils.ExcludeNullProperty;
+
 public class AuthorGoodRead {
 
 	private String	id;

@@ -1,5 +1,7 @@
 package um2.websemantique.entities.base;
 
+import um2.websemantique.entities.utils.ExcludeNullProperty;
+
 public class AuthorFacebook {
 
 	private String	name;
@@ -20,6 +22,18 @@ public class AuthorFacebook {
 		return res;
 
 	}
+	
+	/*public String getReorder() {
+		String res = "";
+		res += ExcludeNullProperty.isReordered (this.id, "id");
+		res += ExcludeNullProperty.isReordered (this.name, "name");
+		res += ExcludeNullProperty.isReordered (this.link, "link");
+		res += ExcludeNullProperty.isReordered (this.likes, "likes");
+		res += ExcludeNullProperty.isReordered (this.talkingAboutCount, "talkingAboutCount");
+
+		return res;
+
+	}//*/
 
 	public String getId() {
 		return id;
@@ -33,7 +47,7 @@ public class AuthorFacebook {
 		return link;
 	}
 
-	public String getName() {
+	public String getPageName() {
 		return name;
 	}
 

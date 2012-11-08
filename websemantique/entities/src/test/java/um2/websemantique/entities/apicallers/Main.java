@@ -1,5 +1,6 @@
 package um2.websemantique.entities.apicallers;
 
+import um2.websemantique.entities.base.AuthorFacebook;
 import um2.websemantique.entities.utils.SearchType;
 
 public class Main {
@@ -8,8 +9,8 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String [] args) {
-		System.out.println (SearchType.fromString ("reara"));
-
+		AuthorFacebook ss = new AuthorFacebook ();
+		
 	}
 
 }

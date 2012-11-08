@@ -3,6 +3,7 @@ package um2.websemantique.entities.base;
 import um2.websemantique.entities.apicallers.ApiCaller;
 import um2.websemantique.entities.apicallers.FacebookAuthorApiCaller;
 import um2.websemantique.entities.apicallers.GoodReadApiCaller;
+import um2.websemantique.entities.utils.ExcludeNullProperty;
 import um2.websemantique.entities.utils.GeneratorFromJSON;
 
 public class Author {

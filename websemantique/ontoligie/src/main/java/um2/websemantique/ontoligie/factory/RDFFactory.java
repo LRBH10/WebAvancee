@@ -154,7 +154,7 @@ public class RDFFactory {
 			RDFFactory.addPropertyToAuthorInstance (VocabularyAutheur.facebookLink, instance, author.getFacebook ().getLink ());
 			RDFFactory.addPropertyToAuthorInstance (VocabularyAutheur.facebookTalkingAboutCount, instance, new String (
 					"" + author.getFacebook ().getTalkingAboutCount ()));
-			RDFFactory.addPropertyToAuthorInstance (VocabularyAutheur.facebookName, instance, author.getFacebook ().getName ());
+			RDFFactory.addPropertyToAuthorInstance (VocabularyAutheur.facebookName, instance, author.getFacebook ().getPageName ());
                         
                         
 		}

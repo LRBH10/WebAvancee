@@ -47,7 +47,7 @@ public class GetterRDFAuthorBook implements Runnable {
 	 */
 	public synchronized void findFromWeb(String query, SearchType type) {
 		progress = 25;
-		getweb.find (key, typeS);
+		getweb.find (query, type);
 		progress = 50;
 
 		int taille_ = getweb.getAuthors ().size () + getweb.getBooks ().size ();
