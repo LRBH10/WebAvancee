@@ -106,12 +106,11 @@ public class JSONResponse {
 		SDBUtil.openConnection ();
 	    System.out.println(query);
 	    String ret = ""+query;
-	    ResponseQuery res;
+	    String res;
 		Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
 		if(query!=null){
 		try {
-			res = SPARQLQuery.responseSPARQLQueryFromService (query);
-			ret = gson.toJson (res);
+			res = SPARQLQuery.executeEndpointSPARQLQuery(query);
 
 		} catch ( QueryParseException e ) {
 		    //e.printStackTrace ();

@@ -17,7 +17,7 @@ public class Main {
 	public static void main(String [] args) throws SQLException {
 		SDBUtil.openConnection ();
                 //RDFOntology.getInstanceRDFOntology().databaseToString();
-                System.out.println(SPARQLQuery.executeEndpointSPARQLQuery("select ?s ?o ?p where{ ?s ?o ?p }"));
+                System.out.println(SPARQLQuery.executeEndpointSPARQLQuery("select ?p ?s ?o where{ ?s ?o ?p }"));
                 //SPARQLQuery.executeEndpointSPARQLQuery("select ?s ?o ?p where{ ?s ?o ?p }");
                 //System.out.println(SPARQLQuery.executeEndpointSPARQLQuery(SPARQLQuery.createSPARQLQuerry("Paulo Coelho", SearchType.AUTHOR)));
                 

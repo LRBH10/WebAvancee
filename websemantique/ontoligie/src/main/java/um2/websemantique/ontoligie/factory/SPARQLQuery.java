@@ -445,24 +445,38 @@ public class SPARQLQuery {
 
     public static String executeEndpointSPARQLQuery(String queryString) {
 
-        String result = "";
+        String result = "<rdf:RDF xmlns:res=\"http://www.w3.org/2005/sparql-results#\"\n"
+                            + "\t xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n"
+                                + "<rdf:Description rdf:nodeID=\"rset\">\n"
+                                + "<rdf:type rdf:resource=\"http://www.w3.org/2005/sparql-results#ResultSet\" />\n";
         com.hp.hpl.jena.query.Query query = QueryFactory.create(queryString);
         List<String> queryVars = query.getResultVars();
-        
+        for(String s : queryVars){
+            result += "\t<res:resultVariable>" + s + "</res:resultVariable>\n";
+        }
         query.serialize(new IndentedWriter(System.out, true));
         
         System.out.println();
         QueryExecution qexec = QueryExecutionFactory.create(query, RDFOntology.getInstanceRDFOntology().getModel());
         try {
             ResultSet rs = qexec.execSelect();
+            int cpt1 = 0;
             for (; rs.hasNext();) {
+                int cpt2 =0;
+                result +="\t<res:solution rdf:nodeID=\"r"+cpt1+"\">\n";
                 QuerySolution solution = rs.nextSolution();
                 
                 for(String var : queryVars){
-                    result += solution.get(var).toString() + "\t";
+                    result += "\t\t<res:binding rdf:nodeID=\"r"+cpt1+"c"+cpt2+"\">\n";
+                    result += "\t\t\t<res:variable>"+var+"</res:variable>\n";
+                    result += "\t\t\t<res:value rdf:resource=\""+solution.get(var).toString()+"\"/>\n";
+                    result += "\t\t</res:binding>\n";
+                    cpt2++;
+                    //result += ""+solution.get(var).toString() + "\t";
                 }
                 
-                result += "\n";
+                result += "\t</res:solution>\n";
+                cpt1++;
                 
             }
         } catch (Exception e) {
@@ -471,6 +485,8 @@ public class SPARQLQuery {
         } finally {
             qexec.close();
         }
+        result += "</rdf:Description>\n";
+        result += "</rdf:RDF>";
         return result;
     }
     
