@@ -1,0 +1,62 @@
+lien https://github.com/LRBH10/WebAvancee
+
+Pour lancer l'application
+
+
+
+I-LINUX:
+  ***** il faut installer maven2
+ 
+  ***** extraire le fichier WebAvancee-master.zip
+
+
+  ***** Dans MySQL il faut cree une base de données avec le nom "rdf_base" ,  et avoir un access root sans mot de passe
+
+     ou sinon il faut modifier dans : websemantique/ontologies/src/main/um2/websemantique/ontologies/sdb/SDBUtil.java
+     et modifier dans la ligne 62 : SDBUtil.conn = new DBConnection (jdbcURL, "root", "" , "MySQL"); 
+
+  *****  dans Terminal 
+           : cd WebAvancee-master.zip/websemantique/    puis tapez  :    mvn install
+
+
+  ***** s'apprendera de temps le temps qu'il telecharge tout les packages
+
+
+  ***** Web Site : cd websemantique/website/      puis tapez : mvn jetty:run       
+  ***** Web Service : cd websemantique/webservice/       puis tapez : mvn exec:java
+
+
+
+II-Windows  :
+
+ ***** NETBEANS AVEC MAVEN VERSION
+
+  ***** extraire le fichier WebAvancee-master.zip
+
+ ***** importer project (maven with existing pom.xml) et apres double click sur tout les modules 
+
+ ***** Dans MySQL il faut cree une base de données avec le nom "rdf_base" ,  et avoir un access root sans mot de passe
+
+     ou sinon il faut modifier dans : websemantique/ontologies/src/main/um2/websemantique/ontologies/sdb/SDBUtil.java
+     et modifier dans la ligne 62 : SDBUtil.conn = new DBConnection (jdbcURL, "root", "" , "MySQL"); 
+
+
+ ***** Project -> Clean and Build
+
+
+  ***** Web Site : selectionez "website"    et click-droit de la souris et costumize    et dans goal : jetty:run
+
+  ***** Web Service : selectionez "webservice"    et click-droit de la souris et costumize    et dans goal : exec:java
+ 
+
+
+III-TESTS :
+               /navigateur: 127.0.0.1:8080/website
+
+                 *webService : curl --data "query=yasmina&type=any" http://127.0.0.1:9998/post/excuteQuery/
+                 
+                 *End Point : curl --data "query=PREFIX  author: <http://localhost:8080/website/about/Author#> PREFIX  book: <http://localhost:8080/website/about/Book#> SELECT ?s ?p ?o WHERE { ?s ?p ?o }" http://127.0.0.1:9998/post/excuteSPARQL/
+
+
+
+ 
