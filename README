@@ -1,9 +1,6 @@
 lien https://github.com/LRBH10/WebAvancee
 
 Pour lancer l'application
-
-
-
 I-LINUX:
   ***** il faut installer maven2
  
@@ -49,8 +46,14 @@ II-Windows  :
   ***** Web Service : selectionez "webservice"    et click-droit de la souris et costumize    et dans goal : exec:java
  
 
+III-Déploiment : 
+    *** Configuerer MYSQL 
+    *** copier le .war dans SERVEUR d'APPLICATION JAVA   : jetty,  tomcat, GlassFish ...
+    *** excuter le .jar de Web Service
 
-III-TESTS :
+
+
+VI-TESTS :
                /navigateur: 127.0.0.1:8080/website
 
                  *webService : curl --data "query=yasmina&type=any" http://127.0.0.1:9998/post/excuteQuery/
