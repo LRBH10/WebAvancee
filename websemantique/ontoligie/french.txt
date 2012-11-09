@@ -1,45 +1,4 @@
- 
-Irène Némirovsky 
-Jean Follain 
-Georges Simenon 
-Raymond Queneau 
-Marguerite Yourcenar 
-Gilbert Lely 
-Guy Levis Mano 
-Jean-Paul Sartre 
-Maurice Fombeure 
-Charles Exbrayat 
-Samuel Beckett 
-Roger Frison-Roche 
-Roger Vailland 
-Pauline Réage 
-Violette Leduc 
-Raymond Abellio 
-René Char 
-Louis Guillaume 
-Maurice Blanchot 
-Roger Peyrefitte 
-Roger Gilbert-Lecomte 
-Jacques Roumain 
-René Daumal 
-Simone de Beauvoir 
-Paul Bénichou 
-Robert Merle 
-Simone Weil 
-Anaïs Nin 
-Jean-Fernand Brierre 
-Robert Brasillach 
-André Pieyre de Mandiargues 
-Léo Malet 
-Jean Anouilh 
-Jean Genet 
-Paul Guth 
-Julien Gracq 
-André Hardellet 
-Patrice de La Tour du Pin 
-René Barjavel 
-Guy des Cars 
-Hervé Bazin 
+
 Jean Cayrol 
 Henri Troyat 
 Pierre Boulle 

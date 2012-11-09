@@ -38,6 +38,15 @@ public class GetterRDFAuthorBook implements Runnable {
 		}
 		return res;
 	}
+	
+	public void findWeb(String query, SearchType type) {
+		key = query;
+		typeS = type;
+		
+		Thread x = new Thread (this);
+		x.start ();
+		
+	}
 
 	/**
 	 * find from Web and pill the DATABASE
@@ -75,6 +84,8 @@ public class GetterRDFAuthorBook implements Runnable {
 		progress = 0;
 	}
 
+	
+	
 	/**
 	 * find a query in data base
 	 * 

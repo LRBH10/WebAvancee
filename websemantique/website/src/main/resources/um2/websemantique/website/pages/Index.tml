@@ -14,16 +14,16 @@
 	<link rel="stylesheet"
 		href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
 	<p:sidebar>
-		<t:jquery.tabs t:tabs="Recherche,Interne,Web"
+		<t:jquery.tabs t:tabs="Tous,Interne,Web"
 			t:activePanelId="encours">
 
 			<p:Recherche>
 				<t:form t:id="searchForm" class="form-horizontal">
 					<input t:type="textfield" t:value="search" t:id="search"
-						class="search" placeholder="Votre Requete ici" />
+						style="width: 90%" placeholder="Votre Requete ici" />
 					<br />
 					<br />
-					<t:select t:id="type" />
+					<t:select t:id="type" style="width: 90%"/>
 					<br />
 					<br />
 					<br />
@@ -35,10 +35,10 @@
 			<p:Interne>
 				<t:form t:id="searchFormInterne" class="form-horizontal">
 					<input t:type="textfield" t:value="searchInterne" t:id="searchInterne"
-						class="search" placeholder="Votre Requete ici" />
+						style="width: 90%" placeholder="Votre Requete ici" />
 					<br />
 					<br />
-					<t:select t:id="typeInterne" />
+					<t:select t:id="typeInterne" style="width: 90%" />
 					<br />
 					<br />
 					<br />
@@ -50,14 +50,14 @@
 			<p:Web>
 				<t:form t:id="searchFormWeb" class="form-horizontal">
 					<input t:type="textfield" t:value="searchWeb" t:id="searchWeb"
-						class="search" placeholder="Votre Requete ici" />
+						style="width: 90%" placeholder="Votre Requete ici" />
 					<br />
 					<br />
-					<t:select t:id="typeWeb" />
+					<t:select t:id="typeWeb" style="width: 90%"/>
 					<br />
 					<br />
 					<br />
-					<t:submit t:id="submitWeb" class="btn" style="width : 50%"
+					<t:submit t:id="submitWeb" class="btn" 
 						value="Rechercher Web" />
 				</t:form>
 			</p:Web>
@@ -97,7 +97,7 @@
 								</t:if>
 								<t:if test="author.goodRead">
 									<t:beandisplay object="author.goodRead"
-										exclude="${author.goodRead.excludes},excludes" reorder="">
+										exclude="${author.goodRead.excludes},about,excludes" reorder="">
 										<p:ImageUrl>
 											<img src="${author.goodRead.imageUrl}" />
 										</p:ImageUrl>
@@ -129,7 +129,33 @@
 					<t:if test="response.books">
 						<t:loop source="response.books" value="book">
 							<h3>${book.title}</h3>
-							<t:beandisplay object="book" exclude="${book.excludes},excludes" />
+							<t:beandisplay object="book" exclude="${book.excludes},excludes">
+								<p:BuyLink>
+									<a class="btn btn-small btn-block " href="${book.buylink}"> Acheter le Livre</a>
+								</p:BuyLink>
+								<p:infoLink>
+									<a class="btn btn-small btn-block " href="${book.infolink}"> Information Sur
+										Livre</a>
+								</p:infoLink>
+
+								<p:Thumbnail>
+									<img src="${book.Thumbnail}" />
+								</p:Thumbnail>
+								<p:WebReaderLink>
+									<a class="btn btn-small btn-block " href="${book.infolink}"> Extrait de Livre</a>
+								</p:WebReaderLink>
+								
+								<p:PdfLink>
+									<a class="btn btn-small btn-block " href="${book.pdflink}"> PDF de Livre</a>
+								</p:PdfLink>
+								 
+								<p:PreviewLink>
+									<a class="btn btn-small btn-block " href="${book.Previewlink}"> Version Preview</a>
+								</p:PreviewLink>
+								
+
+
+							</t:beandisplay>
 						</t:loop>
 					</t:if>
 					<p:else>

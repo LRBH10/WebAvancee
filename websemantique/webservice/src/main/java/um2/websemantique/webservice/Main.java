@@ -49,7 +49,7 @@ public class Main {
 
 		ResourceConfig rc = new PackagesResourceConfig (
 				"um2.websemantique.webservice.resources");
-		HttpServer httpServer = GrizzlyServerFactory.createHttpServer ("http://0.0.0.0:9998/", rc);
+		HttpServer httpServer = GrizzlyServerFactory.createHttpServer ("http://127.0.0.1:9998/", rc);
 		System.out.println ("L'application de WebService est sur le Port http://localhost:9998/");
 		System.in.read ();
 		httpServer.stop ();

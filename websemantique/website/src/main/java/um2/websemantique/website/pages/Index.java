@@ -138,10 +138,8 @@ public class Index {
 	Object onValidateFromSearchFormWeb() throws InterruptedException {
 
 		SDBUtil.openConnection ();
-		response = query.find (searchWeb, typeWeb);
-		while (progress != 0) {
-			Thread.sleep (100);
-		}
+		query.findWeb (searchWeb, typeWeb);
+		
 		encours = 2;
 		return this;
 	}

@@ -17,8 +17,8 @@ public class Test {
 	public static void main(String [] args) throws InterruptedException,
 			SQLException {
 		SDBUtil.openConnection ();
-		GetterRDFAuthorBook g = new GetterRDFAuthorBook ();
-		g.find ("yasmina", SearchType.AUTHOR);
+		//GetterRDFAuthorBook g = new GetterRDFAuthorBook ();
+		//System.out.print (g.findSPRQL ("blazo", SearchType.AUTHOR).getAuthors ().size ());
 		
 		RDFOntology.getInstanceRDFOntology ().databaseToString ();
 		    

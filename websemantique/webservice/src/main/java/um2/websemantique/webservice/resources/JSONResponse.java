@@ -36,10 +36,11 @@ public class JSONResponse {
 	@Path("get/excuteQuery/q={query}&t={type}")
 	public String excuteQuery(@PathParam("query") String query, @PathParam("type") String type) {
 		SDBUtil.openConnection ();
-		ResponseQuery result = SPARQLQuery.responseSPARQLQuerry (query, SearchType.fromString (type));
-		Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
+		System.out.println(query+" "+type);
+		//ResponseQuery result = SPARQLQuery.responseSPARQLQuerry (query, SearchType.fromString (type));
+		//Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
 
-		String res = gson.toJson (result) + type;
+		String res = "";//gson.toJson (result) + type;
 		return res + "\n";
 	}
 
@@ -105,13 +106,13 @@ public class JSONResponse {
 	public String excuteSPRQLPost(@FormParam("query") String query) {
 		SDBUtil.openConnection ();
 	    System.out.println(query);
-	    String ret = ""+query;
-	    String res;
+	    String ret = "";
+	    ResponseQuery res;
 		Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
 		if(query!=null){
 		try {
-			res = SPARQLQuery.executeEndpointSPARQLQuery(query);
-
+			ret = SPARQLQuery.executeEndpointSPARQLQuery (query);
+			
 		} catch ( QueryParseException e ) {
 		    //e.printStackTrace ();
 		    	System.out.println (e);
